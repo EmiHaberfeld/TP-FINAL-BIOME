@@ -1,6 +1,6 @@
 ---
 title: "TP_FINAL_RMarkdown"
-author: "Emilia Haberfeld, Manuel Fiz, Milagros Azcueta, Ilan Shalom, Diego Kafer"
+author: "Emilia Haberfeld, Manuel Fiz, Milagros Azcueta, Ilan Shalom, Diego Kafer, Matias Aleman"
 date: "21/10/2021"
 output: pdf_document
 ---
