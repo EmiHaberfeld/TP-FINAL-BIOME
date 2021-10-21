@@ -31,4 +31,9 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 
 HOLAHOLAHOLA
 
+<<<<<<< HEAD
+
+##HOLA EMI ESTOY EDITANDO KEMOSION
+>>>>>>> 8288e45e1bf05677c42ad4397f9998a4c70e1a47
+
 # messi
