@@ -1,6 +1,6 @@
 ---
-title: "TP_FINAL_RMarkdown"
-author: "Emilia Haberfeld, Manuel Fiz, Milagros Azcueta, Ilan Shalom, Diego Kafer, Matias Aleman"
+title: "Trabajo Práctico Final  \nBiometría II - 2021"
+author: "Matías Alemán, Milagros Azcueta, Manuel Fiz, Emilia Haberfeld, Diego Kafer, Ilan Shalom"
 date: "21/10/2021"
 output: pdf_document
 ---
@@ -29,13 +29,18 @@ plot(pressure)
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
-HOLAHOLAHOLA
 
-<<<<<<< HEAD
+# Introducción
+Breve y con el único fin de dar el contexto necesario para entender el análisis) y objetivos
 
-##HOLA EMI ESTOY EDITANDO KEMOSION
->>>>>>> 8288e45e1bf05677c42ad4397f9998a4c70e1a47
-#A VER ILANI SI FUNCIONA ESTOOOOOO
+# Materiales y métodos
+Mencionar, además del diseño experimental o de campo, el o los modelos estadísticos propuestos y la estrategia analítica.
 
-# messi
-#############
+# Resultados
+Presentar gráficos y/o Tablas. Editar lo que sea necesario de formato para que el lector comprenda. Informar medias, magnitud del efecto, letras de significación cuando corresponda. Supuestos: salvo excepciones, sólo mencionarlos y mencionar su cumplimiento. Incluir decisiones metodológicas.
+
+# Discusión o conclusión
+Párrafo de discusión/conclusión.
+
+# Bibliografía
+Si corresponde
