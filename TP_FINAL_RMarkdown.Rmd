@@ -44,3 +44,51 @@ Párrafo de discusión/conclusión.
 
 # Bibliografía
 Si corresponde
+
+```{r}
+rm(list = ls()) 
+
+# CARGA DE DATOS Y LIBRERIAS
+library(reshape2) #melt
+library(pastecs)  #tapply
+library(ggplot2)
+
+setwd("D:/Milagros Azcueta/Documents/GitHub/TP-FINAL-BIOME")
+datos <- read.delim("datos.txt")
+str(datos)
+datos$Semana <- as.factor(datos$Semana)
+datos$ID <- as.factor(datos$ID)
+datos$ANT <- as.factor(datos$ANT)
+datos$PROB <- as.factor(datos$PROB)
+str(datos)
+
+
+# PASAMOS DATOS TEST A LONG:
+wide_test <- datos[,c(1,2,3,4,5,6,11,12,13)]
+
+long_test <- melt(wide_test,
+                  id.vars = c("Colmena", "Semana", "ID", "ANT", "PROB", "TRAT"),
+                  variable.name = "tiempo_test",
+                  value.name = "rta")
+
+# DESCRIPTIVA
+summary(datos)
+# PROBABILIDAD DE EXITO SEGUN TRATAMIENTO Y TIEMPO:
+prob_exito <- round(tapply(long_test$rta,list(long_test$TRAT,long_test$tiempo_test),mean),2)
+prob_exito 
+#A =  0.5M - 0.5M       B = 1.5M - 1.5M       C = 0.5M - 1.5M       D = 1.5M - 0.5M
+
+#Para verlo graficamente:
+#gp <- ggplot(prob_exito, aes(x=colnames, y=mean(rta), colour=TRAT, group=TRAT))
+#gp
+#gp + geom_line(aes(linetype=TRAT), size=.6) +geom_point(aes(shape=TRAT), size=3)
+
+df <- data.frame()
+df <- cbind()
+colnames(df) <- c("tiempo_test","TRAT","prob_exito")
+
+valores_y <- c(prob_exito[1])
+
+
+```
+
