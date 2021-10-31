@@ -52,43 +52,72 @@ rm(list = ls())
 library(reshape2) #melt
 library(pastecs)  #tapply
 library(ggplot2)
+library(plyr)     #revalue
+library(readxl)   #excel
 
 setwd("D:/Milagros Azcueta/Documents/GitHub/TP-FINAL-BIOME")
-datos <- read.delim("datos.txt")
+datos <- read_excel("datos.xlsx")
 str(datos)
-datos$Semana <- as.factor(datos$Semana)
-datos$ID <- as.factor(datos$ID)
-datos$ANT <- as.factor(datos$ANT)
-datos$PROB <- as.factor(datos$PROB)
+datos$Colmena <- as.factor(datos$Colmena)
+datos$Semana  <- as.factor(datos$Semana)
+datos$ID      <- as.factor(datos$ID)
+datos$ANT     <- as.factor(datos$ANT)
+datos$PROB    <- as.factor(datos$PROB)
+datos$TRAT    <- as.factor(datos$TRAT)
 str(datos)
+summary(datos)
 
+############################### DESCRIPTIVA ####################################################
 
+################## TESTEO 
 # PASAMOS DATOS TEST A LONG:
 wide_test <- datos[,c(1,2,3,4,5,6,11,12,13)]
-
 long_test <- melt(wide_test,
                   id.vars = c("Colmena", "Semana", "ID", "ANT", "PROB", "TRAT"),
                   variable.name = "tiempo_test",
                   value.name = "rta")
 
-# DESCRIPTIVA
-summary(datos)
 # PROBABILIDAD DE EXITO SEGUN TRATAMIENTO Y TIEMPO:
 prob_exito <- round(tapply(long_test$rta,list(long_test$TRAT,long_test$tiempo_test),mean),2)
-prob_exito 
-#A =  0.5M - 0.5M       B = 1.5M - 1.5M       C = 0.5M - 1.5M       D = 1.5M - 0.5M
+prob_exito
+# Creamos un data frame con estos valores:
+prob_exito_long <- as.data.frame.table(prob_exito)
+colnames(prob_exito_long) <- c("Tratamiento","Tiempo_de_testeo","Proporcion_de_exitos")
 
 #Para verlo graficamente:
-#gp <- ggplot(prob_exito, aes(x=colnames, y=mean(rta), colour=TRAT, group=TRAT))
-#gp
-#gp + geom_line(aes(linetype=TRAT), size=.6) +geom_point(aes(shape=TRAT), size=3)
+gp_test <- ggplot(prob_exito_long, aes(x=Tiempo_de_testeo, y=Proporcion_de_exitos, colour=Tratamiento, group=Tratamiento)) +
+  geom_line(aes(linetype=Tratamiento), size=.6) +
+  geom_point(aes(shape=Tratamiento),size=3) +
+  labs(x="Tiempo de testeo",y="Proporcion de exitos",title="Proporcion de exitos en funcion del tiempo y el tratamiento") +
+  ylim(0,1) + theme_bw()
+  
+gp_test
 
-df <- data.frame()
-df <- cbind()
-colnames(df) <- c("tiempo_test","TRAT","prob_exito")
+################## ENTRENAMIENTO
+# PASAMOS DATOS ENTRENAMIENTO A LONG:
+wide_tr <- datos[,c(1,2,3,4,5,6,7,8,9,10)]
+long_tr <- melt(wide_tr,
+                  id.vars = c("Colmena", "Semana", "ID", "ANT", "PROB", "TRAT"),
+                  variable.name = "tiempo_tr",
+                  value.name = "rta")
 
-valores_y <- c(prob_exito[1])
+# PROBABILIDAD DE EXITO SEGUN TRATAMIENTO Y TIEMPO:
+prob_exito_tr <- round(tapply(long_tr$rta,list(long_tr$TRAT,long_tr$tiempo_tr),mean),2)
+prob_exito_tr
 
+prob_exito_long_tr <- as.data.frame.table(prob_exito_tr)
+colnames(prob_exito_long_tr) <- c("Tratamiento","Nro_de_ensayo","Proporcion_de_exitos")
+
+#Para verlo graficamente:
+gp_tr <- ggplot(prob_exito_long_tr, aes(x=Nro_de_ensayo, y=Proporcion_de_exitos, colour=Tratamiento, group=Tratamiento)) +
+  geom_line(aes(linetype=Tratamiento), size=.6) +
+  geom_point(aes(shape=Tratamiento),size=3) +
+  labs(x="Numero de ensayo",y="Proporcion de exitos",title="Curva de aprendizaje") +
+  ylim(0,1) + theme_bw()
+  
+gp_tr
+
+############################### FIN DESCRIPTIVA ################################################
 
 ```
 
