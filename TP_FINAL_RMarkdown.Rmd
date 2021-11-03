@@ -70,11 +70,11 @@ library(MuMIn)     #model.sel
 setwd("D:/Milagros Azcueta/Documents/GitHub/TP-FINAL-BIOME")
 datos <- read_excel("datos.xlsx")
 str(datos)
-datos$Semana  <- as.factor(datos$Semana)
-datos$ID      <- as.factor(datos$ID)
-datos$ANT     <- as.factor(datos$ANT)
-datos$PROB    <- as.factor(datos$PROB)
-datos$TRAT    <- as.factor(datos$TRAT)
+datos$Semana         <- as.factor(datos$Semana)
+datos$ID             <- as.factor(datos$ID)
+datos$ANT            <- as.factor(datos$ANT)
+datos$PROB           <- as.factor(datos$PROB)
+datos$TRATAMIENTO    <- as.factor(datos$TRATAMIENTO)
 str(datos)
 # Colmena no la vamos a incluir en el analisis porque esta explicada por Semana.
 
