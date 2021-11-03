@@ -46,9 +46,15 @@ Párrafo de discusión/conclusión.
 Si corresponde
 
 ```{r}
+#################################### SCRIPT ####################################
+
+# Borrar objetos de la memoria
 rm(list = ls()) 
 
-################## CARGA DE LIBRERIAS Y DATOS:
+################################################################################
+####################### CARGA DE LIBRERIAS Y DATOS: ############################
+################################################################################
+
 library(reshape2)  #melt
 library(pastecs)   #tapply
 library(ggplot2)
@@ -70,7 +76,7 @@ library(MuMIn)     #model.sel
 setwd("D:/Milagros Azcueta/Documents/GitHub/TP-FINAL-BIOME")
 datos <- read_excel("datos.xlsx")
 str(datos)
-datos$Semana         <- as.factor(datos$Semana)
+datos$SEMANA         <- as.factor(datos$SEMANA)
 datos$ID             <- as.factor(datos$ID)
 datos$ANT            <- as.factor(datos$ANT)
 datos$PROB           <- as.factor(datos$PROB)
@@ -78,148 +84,152 @@ datos$TRATAMIENTO    <- as.factor(datos$TRATAMIENTO)
 str(datos)
 # Colmena no la vamos a incluir en el analisis porque esta explicada por Semana.
 
-################################################################################################
-############################### DESCRIPTIVA ####################################################
-################################################################################################
-
-################## TESTEO:
-# PASAMOS DATOS TEST A LONG:
-wide_test <- datos[,c(1,2,3,4,5,10,11,12)]
-long_test <- melt(wide_test,
-                  id.vars = c("Semana", "ID", "ANT", "PROB", "TRATAMIENTO"),
-                  variable.name = "tiempo_test",
-                  value.name = "rta")
-
-# PROBABILIDAD DE EXITO SEGUN TRATAMIENTO Y TIEMPO:
-prob_exito <- round(tapply(long_test$rta,list(long_test$TRATAMIENTO,long_test$tiempo_test),
-                           mean),2)
-prob_exito
-# Creamos un data frame con estos valores:
-prob_exito_long <- as.data.frame.table(prob_exito)
-colnames(prob_exito_long) <- c("Tratamiento","Tiempo_de_testeo","Proporcion_de_exitos")
-# Graficamente:
-gp_test <- ggplot(prob_exito_long, aes(x=Tiempo_de_testeo, y=Proporcion_de_exitos, 
-                                       colour=Tratamiento, group=Tratamiento)) +
-  geom_line(aes(linetype=Tratamiento), size=.6) +
-  geom_point(aes(shape=Tratamiento),size=3) +
-  labs(x="Tiempo de testeo",y="Proporcion de exitos",
-       title="Proporcion de exitos en funcion del tiempo y el tratamiento") +
-  ylim(0,1) + theme_bw()
-gp_test
+################################################################################
+############################### DESCRIPTIVA ####################################
+################################################################################
 
 ################## ENTRENAMIENTO:
+
 # PASAMOS DATOS ENTRENAMIENTO A LONG:
-wide_tr <- datos[,c(1,2,3,4,5,6,7,8,9)]
-long_tr <- melt(wide_tr,
-                id.vars = c("Semana", "ID", "ANT", "PROB", "TRATAMIENTO"),
-                variable.name = "tiempo_tr",
+wide_entr <- datos[,c(1,2,3,4,5,6,7,8,9)]
+long_entr <- melt(wide_entr,
+                id.vars = c("SEMANA", "ID", "ANT", "PROB", "TRATAMIENTO"),
+                variable.name = "tiempo_entr",
                 value.name = "rta")
 
 # PROBABILIDAD DE EXITO SEGUN TRATAMIENTO Y TIEMPO:
-prob_exito_tr <- round(tapply(long_tr$rta,list(long_tr$TRATAMIENTO,long_tr$tiempo_tr),mean),2)
-prob_exito_tr
-# Creamos un data frame con estos valores:
-prob_exito_long_tr <- as.data.frame.table(prob_exito_tr)
-colnames(prob_exito_long_tr) <- c("Tratamiento","Nro_de_ensayo","Proporcion_de_exitos")
+prob_exito_entr <- round(tapply(long_entr$rta,list(long_entr$TRATAMIENTO,long_entr$tiempo_entr),mean),2)
+prob_exito_entr
+# Creamos un data frame en formato long con estos valores:
+prob_exito_entr_long <- as.data.frame.table(prob_exito_entr)
+colnames(prob_exito_entr_long) <- c("TRATAMIENTO","nro_ensayo","proporcion_exitos")
 
 # Graficamente:
-gp_tr <- ggplot(prob_exito_long_tr, aes(x=Nro_de_ensayo, y=Proporcion_de_exitos, 
-                                        colour=Tratamiento, group=Tratamiento)) +
-  geom_line(aes(linetype=Tratamiento), size=.6) +
-  geom_point(aes(shape=Tratamiento),size=3) +
-  labs(x="Numero de ensayo",y="Proporcion de exitos",title="Curva de aprendizaje") +
+gp_entr <- ggplot(prob_exito_entr_long, aes(x=nro_ensayo, y=proporcion_exitos, 
+                                        colour=TRATAMIENTO, group=TRATAMIENTO)) +
+  geom_line(aes(linetype=TRATAMIENTO), size=.6) +
+  geom_point(aes(shape=TRATAMIENTO),size=3) +
+  labs(x="Número de ensayo",y="Proporción de éxitos",title="Curva de aprendizaje") +
   ylim(0,1) + theme_bw()
-gp_tr
+gp_entr
 
-################## SIGNIFICANCIA DE SEMANA COMO COVARIABLE:
-prob_exito_week <- round(tapply(long_test$rta,list(long_test$Semana,long_test$tiempo_test),
-                                mean),2)
-prob_exito_week
-# Creamos un data frame con estos valores:
-prob_exito_w_df <- as.data.frame.table(prob_exito_week)
-colnames(prob_exito_w_df) <- c("Semana","Nro_de_ensayo","Proporcion_de_exitos")
+
+################## TESTEO:
+
+# PASAMOS DATOS TEST A LONG:
+wide_testeo <- datos[,c(1,2,3,4,5,10,11,12)]
+long_testeo <- melt(wide_testeo,
+                  id.vars = c("SEMANA", "ID", "ANT", "PROB", "TRATAMIENTO"),
+                  variable.name = "tiempo_testeo",
+                  value.name = "rta")
+
+# PROBABILIDAD DE EXITO SEGUN TRATAMIENTO Y TIEMPO EN TESTEO:
+prob_exito_testeo <- round(tapply(long_testeo$rta,list(long_testeo$TRATAMIENTO,long_testeo$tiempo_testeo), mean),2)
+prob_exito_testeo
+# Creamos un data frame en formato long con estos valores:
+prob_exito_testeo_long <- as.data.frame.table(prob_exito_testeo)
+colnames(prob_exito_testeo_long) <- c("TRATAMIENTO","tiempo_testeo","proporcion_exitos")
+# Graficamente:
+gp_testeo <- ggplot(prob_exito_testeo_long, aes(x=tiempo_testeo, y=proporcion_exitos,
+                                              colour=TRATAMIENTO, group=TRATAMIENTO)) + 
+  geom_line(aes(linetype=TRATAMIENTO), size=.6) +
+  geom_point(aes(shape=TRATAMIENTO),size=3) +
+  labs(x="Tiempo de testeo",y="Proporcion de exitos",
+       title="Proporcion de éxitos en función del tiempo y el tratamiento") +
+  ylim(0,1) + theme_bw()
+gp_testeo
+
+
+################## SEMANA COMO COVARIABLE:
+
+prob_exito_semana <- round(tapply(long_testeo$rta,list(long_testeo$SEMANA,long_testeo$tiempo_testeo), mean),2)
+prob_exito_semana
+# Creamos un data frame en formato long con estos valores:
+prob_exito_semana_long <- as.data.frame.table(prob_exito_semana)
+colnames(prob_exito_semana_long) <- c("SEMANA","tiempo_testeo","proporcion_exitos")
 
 # Graficamente:
-gp_week <- ggplot(prob_exito_w_df, aes(x=Nro_de_ensayo, y=Proporcion_de_exitos, colour=Semana, 
-                                       group=Semana)) +
-  geom_line(aes(linetype=Semana), size=.6) +
-  geom_point(aes(shape=Semana),size=3) +
-  labs(x="Numero de ensayo",y="Proporcion de exitos",title="Promedio de rta por semana") +
+gp_semana <- ggplot(prob_exito_semana_long, aes(x=tiempo_testeo, y=proporcion_exitos, colour=SEMANA,group=SEMANA)) +
+  geom_line(aes(linetype=SEMANA), size=.6) +
+  geom_point(aes(shape=SEMANA),size=3) +
+  labs(x="Tiempo de testeo",y="Proporción de éxitos",title="Proporcion de éxitos en función del tiempo y la semana") +
   ylim(0,1) + theme_bw()
-gp_week
+gp_semana
 
 ## Las semanas 5 y 7 parecen ser outliers. Podria excluirlas:
 ######## LO DEJO COMENTADO PERO LA IDEA ES NO SACAR LOS DATOS.
 # Primero ordeno el df por semana para ver que filas quiero sacar. Despues las borro.
-long_test_order <- arrange(long_test,Semana)
+#long_test_order <- arrange(long_test,Semana)
 #long_test_2     <- long_test_order[-c(198:264,349:396),]
 #long_test_2$TRATAMIENTO <- as.factor(long_test_2$TRATAMIENTO)
-# Genero el modelo nulo, Semana es la unica explicatoria:
-m0 <- gls(rta ~ Semana, correlation=corCAR1(form=~1|ID), data=long_test)
-anova(m0)
 
-################################################################################################
-############################### MODELADO #######################################################
-################################################################################################
+# Genero un modelo con la variable semana como única explicatoria:
+m0 <- gls(rta ~ SEMANA, correlation=corCAR1(form=~1|ID), data=long_testeo)
+Anova(m0)
+# Semana explica una parte significativa de la variabilidad de la extensión de probóscide en el testeo.
+
+################################################################################
+############################### MODELADO #######################################
+################################################################################
 
 ################## PRIMERA PROPUESTA: GEEGLM
-# Para geeglm, las filas del df tienen que estar ordenadas por paciente y por tiempo:
-long_test <- arrange(long_test,ID)   #si uso todas las semanas
+
+# Para geeglm, las filas del data frame tienen que estar ordenadas por paciente y por tiempo:
+long_testeo <- arrange(long_testeo,ID)
 
 # Notacion de matrices de covarianza en geeglm:
-## Estructura simple: independence
-## Simetria compuesta: exchangeable
-## AR1: ar1
-## Desestructurada: unstructured
+# Estructura simple: independence
+# Simetria compuesta: exchangeable
+# AR1: ar1
+# Desestructurada: unstructured
 
-## PRIMERA PROPUESTA: triple interaccion
-m1 <- geeglm(formula=rta~ANT*PROB*tiempo_test+Semana,family=binomial,data=long_test,id=ID,
-             corstr="unstructured")
-anova(m1)
-m2 <- geeglm(formula=rta~ANT*PROB*tiempo_test+Semana,family=binomial,data=long_test,id=ID,
+### A) triple interaccion
+m1 <- geeglm(formula=rta~ANT*PROB*tiempo_testeo+SEMANA,family=binomial,data=long_testeo,id=ID,
              corstr="independence")
-anova(m2)
-m3 <- geeglm(formula=rta~ANT*PROB*tiempo_test+Semana,family=binomial,data=long_test,id=ID,
+anova(m1)
+m2 <- geeglm(formula=rta~ANT*PROB*tiempo_testeo+SEMANA,family=binomial,data=long_testeo,id=ID,
              corstr="exchangeable")
-anova(m3)
-m4 <- geeglm(formula=rta~ANT*PROB*tiempo_test+Semana,family=binomial,data=long_test,id=ID,
+anova(m2)
+m3 <- geeglm(formula=rta~ANT*PROB*tiempo_testeo+SEMANA,family=binomial,data=long_testeo,id=ID,
              corstr="ar1")
+anova(m3)
+m4 <- geeglm(formula=rta~ANT*PROB*tiempo_testeo+SEMANA,family=binomial,data=long_testeo,id=ID,
+             corstr="unstructured")
 anova(m4)
 
-## SEGUNDA PROPUESTA: tratamiento*tiempo
-m5 <- geeglm(formula=rta~TRATAMIENTO*tiempo_test+Semana,family=binomial,data=long_test,id=ID,
-             corstr="unstructured")
-anova(m5)
-m6 <- geeglm(formula=rta~TRATAMIENTO*tiempo_test+Semana,family=binomial,data=long_test,id=ID,
+### B) tratamiento*tiempo
+m5 <- geeglm(formula=rta~TRATAMIENTO*tiempo_testeo+SEMANA,family=binomial,data=long_testeo,id=ID,
              corstr="independence")
-anova(m6)
-m7 <- geeglm(formula=rta~TRATAMIENTO*tiempo_test+Semana,family=binomial,data=long_test,id=ID,
+anova(m5)
+m6 <- geeglm(formula=rta~TRATAMIENTO*tiempo_testeo+SEMANA,family=binomial,data=long_testeo,id=ID,
              corstr="exchangeable")
-anova(m7)
-m8 <- geeglm(formula=rta~TRATAMIENTO*tiempo_test+Semana,family=binomial,data=long_test,id=ID,
+anova(m6)
+m7 <- geeglm(formula=rta~TRATAMIENTO*tiempo_testeo+SEMANA,family=binomial,data=long_testeo,id=ID,
              corstr="ar1")
+anova(m7)
+m8 <- geeglm(formula=rta~TRATAMIENTO*tiempo_testeo+SEMANA,family=binomial,data=long_testeo,id=ID,
+             corstr="unstructured")
 anova(m8)
 
 ## SELECCION DE MODELOS (en geeglm rankeamos por QIC):
 model.sel(m1,m2,m3,m4,m5,m6,m7,m8, rank = QIC)
 
-## Si elejimos simetria compuesta (m3 o m7), decimos que para cada abeja hay una misma
-## correlacion entre tiempos.
-## Independiente: la sacamos porque no estariamos declarando dependencia de datos entre
-## tiempos para una misma abeja
-## AR1: la sacamos porque tiene un menor QIC, tiempos no equidistantes + tiene mismo N
-## parametros que la de simetria compuesta y a pesar de eso tiene QIC mayor.
-## Desestructurada: la sacamos porque estima mas parametros, por eso el QIC da un poco
-## mas alto.
+# Estructura simple: la sacamos porque no estariamos declarando dependencia de datos entre tiempos para una misma abeja.
+# Simetria compuesta: decimos que para cada abeja hay una misma correlacion entre tiempos.
+# AR1: la sacamos porque a pesar de tener la misma cantidad de parámetros que la de simetria compuesta, tiene un peor ajuste porque nuestros tiempos no son equidistantes como asume AR1, entonces el QIC es mayor.
+# Desestructurada: la sacamos porque estima mas parametros, por eso el QIC da un poco mas alto.
 
-# Como elejimos simetria compuesta, probamos un condicional:
+
 ################## SEGUNDA PROPUESTA: GLMMTMB
-# glmmTMB es bueno para mixtos y muchos niveles del aleatorio.
-m9 <- glmmTMB(rta ~ TRATAMIENTO*tiempo_test + Semana + (1|ID), data=long_test, family="binomial")
 
-################################################################################################
-################################## SUPUESTOS ###################################################
-################################################################################################
+# Como elegimos simetria compuesta, probamos un modelo condicional:
+# glmmTMB es bueno para mixtos y muchos niveles del aleatorio.
+m9 <- glmmTMB(rta ~ TRATAMIENTO*tiempo_testeo + SEMANA + (1|ID), data=long_testeo, family="binomial")
+Anova(m9) # Semana e interaccion significativas
+
+################################################################################
+################################## SUPUESTOS ###################################
+################################################################################
 
 # Parte fija:
 library(DHARMa)
@@ -229,65 +239,25 @@ plot(sim)
 e_aleat <- ranef(m9)
 e_aleat <- as.data.frame(e_aleat)
 e_aleat <- e_aleat[4:5]
-colnames(e_aleat) <- c("ID","alfa")
+colnames(e_aleat) <- c("ID","betai")
 ## Grafico un qqPlot con estos residuos:
-qqPlot(e_aleat$alfa,main="QQ Plot residuos VE aleatoria")
+qqPlot(e_aleat$betai,main="QQ Plot residuos VE aleatoria")
 ## Hago la prueba de shapiro:
-shapiro.test(e_aleat$alfa)
+shapiro.test(e_aleat$betai)
 
-################## NO HAY EVIDENCIAS PARA RECHAZAR SUPUESTOS DE LA PARTE FIJA NI ALEATORIA.
+# NO HAY EVIDENCIAS PARA RECHAZAR SUPUESTOS DE LA PARTE FIJA NI ALEATORIA.
 
-################################################################################################
-############################### COMPARACIONES ##################################################
-################################################################################################
+################################################################################
+############################### COMPARACIONES ##################################
+################################################################################
 
-# Corremos el anova:
-Anova(m9,test.statistic="Chisq")  # Semana e interaccion significativas
+##### PRIMERA PROPUESTA: COMO TENEMOS COMPARACIONES A PRIORI, HACEMOS BONFERRONI. BONFERRONI SE PUEDE PONER EN EL EMMEANS. 
+
 # Seteamos el emmeans:
 options(emmeans= list(emmeans = list(infer = c(TRUE, TRUE)),
                       contrast = list(infer = c(TRUE, TRUE))))
 
-################## PRIMERA PROPUESTA: COMO TENEMOS COMPARACIONES A PRIORI, HACEMOS BONFERRONI
-################## BONFERRONI SE PUEDE PONER EN EL EMMEANS. 
-################## A CONTINUACION, PROBAMOS MUUUCHAS FORMAS DE QUE SALGA. 
-################## Las dejamos comentadas, la que funciono (pero no sabemos si esta bien
-################## porque da todo NS) se llama "FUNCIONA" y esta al final.
-# -------------------------------------------------------------------------------------------- #
-#comp <- emmeans(m9, 
-#                pairwise ~ TRATAMIENTO*tiempo_test, type="response",adjust="bonferroni", 
-#                contrast=list(c(1,0,0,-1,0,0,0,0,0,0,0,0), 
-#                              c(0,1,-1,0,0,0,0,0,0,0,0,0), 
-#                               c(0,0,0,0,1,0,0,-1,0,0,0,0),
-#                               c(0,0,0,0,0,0,0,0,1,0,0,-1),
-#                               c(0,0,0,0,0,0,0,0,0,1,-1,0)))
-# comp2 <- emmeans(m9, specs=c("TRATAMIENTO","tiempo_test"),type="response",adjust="bonferroni", 
-#                 contrast=list(c(1,0,0,-1,0,0,0,0,0,0,0,0), 
-#                               c(0,1,-1,0,0,0,0,0,0,0,0,0), 
-#                               c(0,0,0,0,1,0,0,-1,0,0,0,0),
-#                               c(0,0,0,0,0,0,0,0,1,0,0,-1),
-#                               c(0,0,0,0,0,0,0,0,0,1,-1,0)))
-# comp3 <- emmeans(m9,type="response", specs=c("TRATAMIENTO","tiempo_test"),adjust="bonferroni", 
-#                  contrast=list(c(1,0,0,-1,0,0,0,0,0,0,0,0), 
-#                                c(0,1,-1,0,0,0,0,0,0,0,0,0)))
-# comp4 <- rbind(emmeans(m9, specs= pairwise~TRATAMIENTO|tiempo_test,type="response",adjust="bonferroni", 
-#                  contrast=list(c(1,0,0,-1,0,0,0,0,0,0,0,0), 
-#                                c(0,1,-1,0,0,0,0,0,0,0,0,0), 
-#                                c(0,0,0,0,1,0,0,-1,0,0,0,0),
-#                                c(0,0,0,0,0,0,0,0,1,0,0,-1),
-#                                c(0,0,0,0,0,0,0,0,0,1,-1,0))))
-# comp5 <- emmeans(m9, specs= pairwise~TRATAMIENTO|tiempo_test,type="response",adjust="bonferroni",
-#                  contrast=list (c("contraste_pos","constante_alto"),c("contraste_neg","constante_bajo")))
-# # Probamos con la funcion contrast de emmeans, pero no anda con glmmTMB:
-# contrast(m9, method=list(c(1,0,0,-1,0,0,0,0,0,0,0,0), 
-#                          c(0,1,-1,0,0,0,0,0,0,0,0,0), 
-#                          c(0,0,0,0,1,0,0,-1,0,0,0,0), 
-#                          c(0,0,0,0,0,1,-1,0,0,0,0,0), 
-#                          c(0,0,0,0,0,0,0,0,1,0,0,-1), 
-#                          c(0,0,0,0,0,0,0,0,0,1,-1,0)),
-#          specs=c("TRATAMIENTO","tiempo_test"),
-#          adjust = "bonferroni")
-# -------------------------------------------------------------------------------------------- #
-FUNCIONA<-contrast(emmeans(m9,~TRATAMIENTO*tiempo_test),type="response",
+FUNCIONA<-contrast(emmeans(m9,~TRATAMIENTO*tiempo_testeo),type="response",
                 list("3hs_alto_pos"=c(1,0,0,-1,0,0,0,0,0,0,0,0), 
                      "3hs_bajo_neg"=c(0,1,-1,0,0,0,0,0,0,0,0,0), 
                      "24hs_alto_pos"=c(0,0,0,0,1,0,0,-1,0,0,0,0), 
@@ -296,7 +266,19 @@ FUNCIONA<-contrast(emmeans(m9,~TRATAMIENTO*tiempo_test),type="response",
                      "48hs_bajo_neg"=c(0,0,0,0,0,0,0,0,0,1,-1,0)),
                 adjust="bonferroni")
 FUNCIONA
-plot(FUNCIONA,comparisons=T)  ## Funciona... Mas o menos. Hay que verlo en el TP!
+plot(FUNCIONA)  ## Funciona... Mas o menos. Hay que verlo en el TP!
 
+# Esta es una forma más linda de escribirlo. Nos da la probabilidad para cada grupo y las comparaciones porque lo seteamos en options más arriba en el código. Podemos graficar los IC y las flechas rojas para comparar.
+FUNCIONA2<-emmeans(m9,~TRATAMIENTO*tiempo_testeo,type="response",
+                contr=list("3hs_alto_pos"=c(1,0,0,-1,0,0,0,0,0,0,0,0), 
+                     "3hs_bajo_neg"=c(0,1,-1,0,0,0,0,0,0,0,0,0), 
+                     "24hs_alto_pos"=c(0,0,0,0,1,0,0,-1,0,0,0,0), 
+                     "24hs_bajo_neg"=c(0,0,0,0,0,1,-1,0,0,0,0,0), 
+                     "48hs_alto_pos"=c(0,0,0,0,0,0,0,0,1,0,0,-1), 
+                     "48hs_bajo_neg"=c(0,0,0,0,0,0,0,0,0,1,-1,0)),
+                adjust="bonferroni")
+FUNCIONA2
+plot(FUNCIONA2, comparisons=T) # No sabemos si está comaprando bien porque el gráfico no está dividido en las 6 comparaciones.
+# Hicimos las comparaciones a mano y las cuentas están bien.
 ```
 
