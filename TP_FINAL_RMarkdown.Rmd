@@ -67,8 +67,8 @@ library(lme4)
 library(car)       #Anova
 library(MuMIn)     #model.sel
 
-setwd("C:/Users/Milagros Azcueta/Desktop/tesis/DATA")
-datos <- read_excel("1_datos_antenaprob.xlsx")
+setwd("D:/Milagros Azcueta/Documents/GitHub/TP-FINAL-BIOME")
+datos <- read_excel("datos.xlsx")
 str(datos)
 datos$Semana  <- as.factor(datos$Semana)
 datos$ID      <- as.factor(datos$ID)
