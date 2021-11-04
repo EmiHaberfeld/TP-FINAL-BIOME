@@ -3,6 +3,8 @@ title: "Trabajo Práctico Final  \nBiometría II - 2021"
 author: "Matías Alemán, Milagros Azcueta, Manuel Fiz, Emilia Haberfeld, Diego Kafer, Ilan Shalom"
 date: "21/10/2021"
 output: pdf_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -72,6 +74,7 @@ library(lme4)
 #install.packages("car")
 library(car)       #Anova
 library(MuMIn)     #model.sel
+library(dplyr)
 
 setwd("D:/Milagros Azcueta/Documents/GitHub/TP-FINAL-BIOME")
 datos <- read_excel("datos.xlsx")
@@ -172,7 +175,9 @@ Anova(m0)
 ############################### MODELADO #######################################
 ################################################################################
 
-################## PRIMERA PROPUESTA: GEEGLM
+################## PRIMERA PROPUESTA: MODELO MARGINAL (GEEGLM)
+
+# Modelo:
 
 # Para geeglm, las filas del data frame tienen que estar ordenadas por paciente y por tiempo:
 long_testeo <- arrange(long_testeo,ID)
@@ -220,32 +225,39 @@ model.sel(m1,m2,m3,m4,m5,m6,m7,m8, rank = QIC)
 # Desestructurada: la sacamos porque estima mas parametros, por eso el QIC da un poco mas alto.
 
 
-################## SEGUNDA PROPUESTA: GLMMTMB
+################## SEGUNDA PROPUESTA: MODELO CONDICIONAL (GLMMTMB)
 
 # Como elegimos simetria compuesta, probamos un modelo condicional:
+
+# Modelo: 
+
 # glmmTMB es bueno para mixtos y muchos niveles del aleatorio.
 m9 <- glmmTMB(rta ~ TRATAMIENTO*tiempo_testeo + SEMANA + (1|ID), data=long_testeo, family="binomial")
-Anova(m9) # Semana e interaccion significativas
 
 ################################################################################
-################################## SUPUESTOS ###################################
+########################### EVALUACIÓN DE SUPUESTOS ############################
 ################################################################################
 
-# Parte fija:
+## Parte fija:
 library(DHARMa)
 sim <- simulateResiduals(m9, n=1000)
 plot(sim)
-# Parte aleatoria:
-e_aleat <- ranef(m9)
-e_aleat <- as.data.frame(e_aleat)
-e_aleat <- e_aleat[4:5]
-colnames(e_aleat) <- c("ID","betai")
-## Grafico un qqPlot con estos residuos:
+
+## Parte aleatoria:
+e_aleat<-ranef(m9)%>%as.data.frame()%>%select(4:5)%>%`colnames<-`(c("ID","betai"))
+# QQPlot con estos residuos:
 qqPlot(e_aleat$betai,main="QQ Plot residuos VE aleatoria")
-## Hago la prueba de shapiro:
+# Prueba de shapiro:
 shapiro.test(e_aleat$betai)
 
 # NO HAY EVIDENCIAS PARA RECHAZAR SUPUESTOS DE LA PARTE FIJA NI ALEATORIA.
+
+################################################################################
+########################## ESTIMACIÓN E INFERENCIA #############################
+################################################################################
+
+Anova(m9) # Semana e interaccion significativas
+summary(m9)
 
 ################################################################################
 ############################### COMPARACIONES ##################################
@@ -280,5 +292,15 @@ FUNCIONA2<-emmeans(m9,~TRATAMIENTO*tiempo_testeo,type="response",
 FUNCIONA2
 plot(FUNCIONA2, comparisons=T) # No sabemos si está comaprando bien porque el gráfico no está dividido en las 6 comparaciones.
 # Hicimos las comparaciones a mano y las cuentas están bien.
+
+################################################################################
+############################### GRÁFICO FINAL ##################################
+################################################################################
+
+
+################################################################################
+########################### VALIDACIÓN DEL MODELO ##############################
+################################################################################
+
 ```
 
