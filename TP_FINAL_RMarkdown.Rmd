@@ -343,7 +343,7 @@ ef_simples_sin3 # A las 24 hs no dan significativas las comparaciones y las 48 h
 
 # Son los contrastes que queríamos hacer porque en otros experimentos que hizo Mili observó que las abejas aprenden más en el tiempo si son alimentadas con mayor concentración de azúcar, hasta llegar a un techo (también hay un piso). Entonces, tiene sentido comparar a los grupos que fueron alimentados con la misma concentración de azúcar en el entrenamiento.
 
-# Pensamos que la comparación constante bajo vs contraste negativo a las 24 hs y constante alto vs contraste positivo a las 48 hs no están dando significativos porque los controles (constante bajo a las 24 hs y constante alto a las 48 hs) tienen probabilidad muy cercana a 0,5, lo que hace que su varianza sea enorme y haya menor potencia en las comparaciones.
+# Pensamos que la comparación constante alto vs contraste positivo a las 48 hs no está dando significativa porque el control (constante alto a las 48 hs) tiene probabilidad muy cercana a 0,5, lo que hace que su varianza sea enorme y haya menor potencia en la comparación.
 
 
 ################################################################################
