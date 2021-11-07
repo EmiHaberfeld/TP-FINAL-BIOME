@@ -201,11 +201,11 @@ sim <- simulateResiduals(m9, n=1000)
 plot(sim)
 
 ## Parte aleatoria:
-e_aleat<-ranef(m9)%>%as.data.frame()%>%select(4:5)%>%`colnames<-`(c("ID","betai"))
+e_aleat<-ranef(m9)%>%as.data.frame()%>%select(4:5)%>%`colnames<-`(c("ID","Bi"))
 # QQPlot con estos residuos:
-qqPlot(e_aleat$betai,main="QQ Plot residuos VE aleatoria")
+qqPlot(e_aleat$Bi,main="QQ Plot residuos VE aleatoria")
 # Prueba de shapiro:
-shapiro.test(e_aleat$betai)
+shapiro.test(e_aleat$Bi)
 
 # NO HAY EVIDENCIAS PARA RECHAZAR SUPUESTOS DE LA PARTE FIJA NI ALEATORIA.
 
