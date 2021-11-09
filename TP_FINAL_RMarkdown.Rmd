@@ -190,6 +190,8 @@ model.sel(m1,m2,m3,m4,m5,m6,m7,m8, rank = QIC)
 
 # glmmTMB es bueno para mixtos y muchos niveles del aleatorio.
 m9 <- glmmTMB(rta ~ TRATAMIENTO*tiempo_testeo + SEMANA + (1|ID), data=long_testeo, family="binomial")
+m10 <- glmmTMB(rta ~ TRATAMIENTO*tiempo_testeo +  (1|SEMANA) + (1|ID), data=long_testeo, family="binomial")
+# No cambia info biológica y obtenemos más información porque podemos generalizar las semanas (al menos a todas las semanas que Mili podría haber ido con buen clima).
 
 ################################################################################
 ########################### EVALUACIÓN DE SUPUESTOS ############################
@@ -214,7 +216,9 @@ shapiro.test(Bi)
 ################################################################################
 
 Anova(m9) # Semana e interaccion significativas
+Anova(m10)
 summary(m9)
+summary(m10)
 
 ################################################################################
 ############################### COMPARACIONES ##################################
@@ -244,9 +248,16 @@ plot(bonferroni, comparisons=T)
 # No sabemos si está comparando bien porque el gráfico no está dividido en las 6 comparaciones.
 
 
-##### SEGUNDA PROPUESTA: CONTRASTES ORTOGONALES (TENEMOS COMPARACIONES A PRIORI Y SEGÚN JOSÉ SI NO ACLARAMOS adjust="bonferroni" EMMEANS HACE ORTOGONALES. SEGÚN ADRIANA NO SE PUEDE HACER ORTOGONALES EN EMMEANS)
+##### SEGUNDA PROPUESTA: CONTRASTES ORTOGONALES (TENEMOS COMPARACIONES A PRIORI Y SEGÚN JOSÉ SI NO ACLARAMOS adjust="bonferroni" EMMEANS HACE ORTOGONALES. CHECKEADO.)
 
 ortogonales<-emmeans(m9,~TRATAMIENTO*tiempo_testeo,type="response",
+                contr=list("3hs_alto_pos"=c(1,0,0,-1,0,0,0,0,0,0,0,0), 
+                     "3hs_bajo_neg"=c(0,1,-1,0,0,0,0,0,0,0,0,0), 
+                     "24hs_alto_pos"=c(0,0,0,0,1,0,0,-1,0,0,0,0), 
+                     "24hs_bajo_neg"=c(0,0,0,0,0,1,-1,0,0,0,0,0), 
+                     "48hs_alto_pos"=c(0,0,0,0,0,0,0,0,1,0,0,-1), 
+                     "48hs_bajo_neg"=c(0,0,0,0,0,0,0,0,0,1,-1,0)))
+ortogonales_10<-emmeans(m10,~TRATAMIENTO*tiempo_testeo,type="response",
                 contr=list("3hs_alto_pos"=c(1,0,0,-1,0,0,0,0,0,0,0,0), 
                      "3hs_bajo_neg"=c(0,1,-1,0,0,0,0,0,0,0,0,0), 
                      "24hs_alto_pos"=c(0,0,0,0,1,0,0,-1,0,0,0,0), 
@@ -257,6 +268,15 @@ ortogonales<-emmeans(m9,~TRATAMIENTO*tiempo_testeo,type="response",
 ortogonales # Dan significativas las comparaciones constante alto vs contraste positivo a las 24 hs y constante bajo vs contraste negativo a las 48 hs. El director de Mili dijo que hay forma de justificar esto :D
 
 plot(ortogonales, comparisons=T) # Tira el mismo plot que para Bonferroni. Raro.
+
+# FORMA DE JOSÉ:
+emm <- emmeans(m9,specs=~TRATAMIENTO*tiempo_testeo)
+confint(contrast(emm, method = list("3hs_alto_pos"=c(1,0,0,-1,0,0,0,0,0,0,0,0), 
+                     "3hs_bajo_neg"=c(0,1,-1,0,0,0,0,0,0,0,0,0), 
+                     "24hs_alto_pos"=c(0,0,0,0,1,0,0,-1,0,0,0,0), 
+                     "24hs_bajo_neg"=c(0,0,0,0,0,1,-1,0,0,0,0,0), 
+                     "48hs_alto_pos"=c(0,0,0,0,0,0,0,0,1,0,0,-1), 
+                     "48hs_bajo_neg"=c(0,0,0,0,0,0,0,0,0,1,-1,0))))
 
 
 ##### TERCERA PROPUESTA: EFECTOS SIMPLES (COMPARACIÓN DE TODOS LOS TRATAMIENTOS PARA CADA TIEMPO)
