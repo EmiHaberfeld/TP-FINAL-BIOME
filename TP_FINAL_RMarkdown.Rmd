@@ -168,7 +168,7 @@ Como solución a este problema decidimos probar incluir en el modelo la variable
 
 ## Modelo teorico:
 Escala del Predictor Lineal
-logit(?) =  + i + j + *ij + Sk + Al(ij)(k)
+logit(\pi_ijkl) = \mu + \alpha_i + \beta_j + \alpha*\beta_ij + \gamma_k + A_l(ij)(k)
 
 ```{r,include=FALSE}
 ################################################################################
