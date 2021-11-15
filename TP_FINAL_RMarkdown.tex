@@ -112,214 +112,6 @@ Diego Kafer, Ilan Shalom}
 \begin{document}
 \maketitle
 
-\hypertarget{introduccion}{%
-\section{Introduccion}\label{introduccion}}
-
-Los animales se encuentran constantemente tomando decisiones respecto a
-cuando alimentarse, aparearse, dormir, y demas acciones (1). A traves de
-aprendizajes y experiencias previas, son capaces de comparar dos o mas
-escenarios probables antes de realizar cualquier accion (2). La
-generacion de una expectativa respecto a dichos escenarios es un proceso
-que permite a los animales predecir la aparicion de estimulos (tanto
-aversivos como apetitivos) y de este modo, adaptar su comportamiento
-(3). Esta expectativa incide directamente en sus capacidades mnesicas,
-debido a que el aprendizaje depende de asociaciones entre claves
-externas y representaciones internas de dichas claves (4). Este proceso
-ha sido ampliamente estudiado en vertebrados, pero hay menos informacion
-disponible en invertebrados.
-
-El objetivo de este trabajo es estudiar la modulacion de memorias a
-largo termino a partir de cambios en la expectativa de la recompensa. El
-modelo experimental es la abeja Apis mellifera y los experimentos fueron
-realizados en un contexto controlado dentro del laboratorio.
-
-\hypertarget{materiales-y-metodos}{%
-\section{Materiales y metodos}\label{materiales-y-metodos}}
-
-Abejas Apis mellifera fueron entrenadas bajo un condicionamiento clasico
-del reflejo de extension de proboscide (PER, por sus siglas en ingles)
-(5,6): se administra un odorante a la vez que se tocan las antenas con
-una gota de sacarosa. La abeja extiende su proboscide como reflejo de
-este estimulo, y en ese momento se la alimenta con una solucion
-azucarada. De este entrenamiento, recibieron 4 ensayos. Terminada la
-etapa de entrenamiento, se realizaron tres testeos donde se presento
-solo el odorante a 3, 24 y 48 hs posteriores al ultimo ensayo de
-entrenamiento.
-
-Las abejas se dividieron en 4 grupos experimentales dependiendo de la
-sacarosa recibida en las antenas y en la probóoscide. Los grupos
-``constante alto'' y ``constante bajo'' recibieron tanto en las antenas
-como en la proboscide azucar de concentracion 1,5 M y 0,5 M
-respectivamente. Por otro lado, los grupos ``contraste positivo'' y
-``contraste negativo'' recibieron azucar de distinta concentracion en
-cada pieza sensorial: los animales del grupo contraste positivo
-recibieron sacarosa 0,5 M en las antenas y 1,5 M en su proboscide. Por
-otro lado, los animales del contraste negativo recibieron azucar 1,5 M
-en las antenas para luego ser alimentadas con sacarosa 0,5 M.
-
-Como VR se midio la extension de la proboscide frente al olor (si-no).
-Al ser una variable dicotomica, la distribucion de probabilidades
-esperada es una Bernoulli. El diseño es de medidas repetidas ya que cada
-abeja fue medida 7 veces (4 ensayos de entrenamiento + 3 testeos). Se
-realizo estadistica descriptiva de la etapa de entrenamiento y un modelo
-estadistico para la etapa de evaluacion ya que el mayor interes del
-analisis esta depositado en las diferencias observables durante esta
-etapa. Como variables explicatorias se incluyeron:
-
-VE1: Tiempo de testeo → cualitativa fija de 3 niveles (3, 24, 48 hs).
-VE2: Tratamiento → cualitativa fija de 4 niveles (constante alto,
-constante bajo, contraste positivo, contraste negativo) VE3: ID de abeja
-→ cualitativa aleatoria de 132 niveles (abeja 1 a 132). VE4: Semana de
-trabajo → cualitativa aleatoria de 7 niveles (semanas 1 a 7).
-Covariable.
-
-Se implemento un modelo lineal generalizado condicional con la funcion
-glmmTMB de la librería glmmTMB. Se opto por un modelo condicional ya que
-se compararon modelos marginales con distintas matrices de correlacion
-y, a partir de un ranking de QIC (el cual compara modelos según su
-verosimilitud y cantidad de parametros estimados), el mas conveniente
-resulto un modelo marginal con matriz de simetria compuesta. Como los
-modelos condicionales tienen implicita una matriz de simetria compuesta
-y resultan mas familiares para su implementacion en R, se eligio esta
-opcion.
-
-¿¿Acá habría que explicitar el modelo como lo escribimos en la teórica??
-
-Contrastes a priori: Se espera que el grupo contraste positivo aprenda
-la asociacion olor-azucar mas fuertemente que el constante alto, debido
-a un mayor estado motivacional gracias a la ``sorpresa'' recibida en la
-proboscide (azucar 1,5 M) en contraste con el azucar esperada que toco
-las antenas segundos antes (0,5 M). Caso opuesto, se espera que la
-proporcion de animales de contraste negativo que aprendan la asociacion
-sea menor que la proporcion de constante bajo, debido a un estado
-motivacional degradado por la ``decepcion'' de recibir azucar 0,5 M
-cuando esperaban 1,5 M.
-
-\hypertarget{resultados}{%
-\section{Resultados}\label{resultados}}
-
-Presentar graficos y/o Tablas. Editar lo que sea necesario de formato
-para que el lector comprenda. Informar medias, magnitud del efecto,
-letras de significacion cuando corresponda. Supuestos: salvo
-excepciones, solo mencionarlos y mencionar su cumplimiento. Incluir
-decisiones metodologicas.
-
-En el primer tiempo de evaluación (3 hs) no se observaron diferencias
-significativas en los contrastes (p\textgreater0,05). A 24 hs se
-observaron diferencias significativas entre los grupos CONSTANTE ALTO y
-CONTRASTE POSITIVO. Se estima que la chance de extension de proboscide
-para el grupo CONTRASTE POSITIVO aumenta entre un 2,96\% y un 84,2\%
-respecto al grupo CONSTANTE ALTO, con un 95\% de confianza
-(p\textless0,05). No se observaron diferencias significativas en la
-comparacion CONSTANTE BAJO vs CONTRASTE NEGATIVO a 24 hs
-(p\textgreater0,05). En la evaluacion a 48 hs, se observaron diferencias
-significativas entre los grupos CONSTANTE BAJO y CONTRASTE NEGATIVO. Se
-estima que la chance de extension de proboscide para el grupo CONTRASTE
-NEGATIVO disminuye entre un 27,26\% y un 4.720,20\% respecto al grupo
-CONSTANTE BAJO, con un 95\% de confianza (p\textless0,05). No se
-observaron diferencias significativas en la comparacion CONSTANTE ALTO
-vs CONTRASTE POSITIVO a 48 hs (p\textgreater0,05), aunque la tendencia
-de las estimaciones coincide con lo observado a 24 hs.
-
-\hypertarget{discusiuxf3n-o-conclusiuxf3n}{%
-\section{Discusión o conclusión}\label{discusiuxf3n-o-conclusiuxf3n}}
-
-Debido a que la interaccion tratamiento*tiempo resultó significativa, se
-realizaron contrastes ortogonales teniendo en cuenta ambas variables. Si
-nos situamos en primer lugar en las comparaciones en t = 3 hs, se
-observa que ninguno de los dos contrastes propuestos mostro diferencias
-significativas. Lo que es mas curioso aun es que la tendencia de la
-respuesta parece ser opuesta a la esperada por los contrastes a priori:
-los grupos contraste negativo y constante bajo son aquellos que mayor
-proporcion de PER presentaron. Debido a que la memoria observada a las 3
-hs posteriores de finalizado el ultimo ensayo de entrenamiento es una
-memoria de corto término, puede estar influida por diversos fenomenos
-ajenos al tratamiento aplicado. En particular, se propone que en este
-punto temporal hay un conflicto en relacion a la expresion de la memoria
-generada. Los animales de los grupos contraste negativo y constante bajo
-son los que menos azucar ingirieron (en terminos nutricionales), ya que
-siempre consumieron azucar de concentración 0,5 M. Por lo tanto, es muy
-probable que a 3 hs estos animales esten mas motivados que los otros dos
-grupos y que por ende, lo que parece ser una mayor retencion de la
-memoria (que solo es posible de observar a traves de la extensión de la
-proboscide, en este experimento) sea un reflejo de la motivacion de
-estos animales por seguir ingiriendo azucar. En contraste, las abejas de
-los grupos contraste positivo y constante alto habrian alcanzado un
-nivel de saciedad mas alto, respondiendo menos al estimulo (odorante).
-{[}agregar algunas citas a esto, después busco{]}.
-
-{[}discusion 24 hs{]}
-
-El dia siguiente al aprendizaje, se buscó estudiar la consolidación de
-memoria de largo termino en las abejas. Al hacer las comparaciones a t =
-24 hs se observaron diferencias significativas entre los grupos
-constante alto y contraste positivo. Esto sugiere que un mismatch
-positivo entre lo que el animal sensa con las antenas y lo que ingiere
-genera una consolidacion de memoria de largo termino mas robusta, la
-cual tiene un efecto directo en el comportamiento. Creemos que el animal
-al sensar con las antenas genera expectativas de lo que va a ingerir y
-es la sorpresa positiva que siente lo que generaria un estado
-motivacional que predispone a una mayor retención de la experiencia. Por
-otro lado al comparar constante bajo con contraste negativo no
-observamos diferencias significativas. Sin embargo se pudo observar una
-tendencia que encaja con lo teorizado a priori. Aquellos animales
-pertenecientes al grupo contraste negativo presentaron una menor
-proporción de PER que el grupo constante bajo. Esto sugiere que puede
-haber un efecto en la consolidacion de la memoria de largo termino por
-mismatch negativo. La abeja al sentir frustrada su expectativa le resta
-importancia a la experiencia y en consecuencia la memoria no perdura
-tanto en el tiempo. Es interesante haber observado que no solo es
-importante que haya contraste o mismatch para generar un efecto
-diferencial en el comportamiento, sino tambien la valencia del mismatch,
-siendo la valencia positiva una que genera un mayor efecto diferencial a
-las 24 hs.
-
-{[}discusion 48 hs, aca para pos-alto podemos sumar lo de la varianza de
-las bernoulli y que por eso seria difícil ver diferencias{]}
-
-48 hs luego de la etapa de aprendizaje se volvio a medir el PER, con el
-objetivo de analizar como se desarrollaba la memoria de largo termino en
-los distintos grupos. Contrariamente a lo observado a las 24 hs, no se
-observaron diferencias significativas entre los grupos constante alto y
-contraste positivo. Se puede deber a que el grupo contraste positivo
-habria llegado a un estado asintótico a las 24 hs mientras que el grupo
-constante positivo, con mayor margen, aumenta respecto a las 24 hs,
-reduciendo asi la brecha entre los grupos a las 48 hs. Por otro lado,
-los grupos constante bajo y contraste negativo presentaron diferencias
-significativas. Se pudo observar que la sorpresa negativa que sufre el
-animal tiene un efecto fuerte en la retencion o evocacion de la memoria
-a las 48 hs. Si bien la memoria del grupo constante bajo decae en el
-tiempo, la memoria del grupo contraste negativo decae a un ritmo mayor.
-A diferencia de lo observado a las 24 hs, es la valencia negativa la que
-genera un mayor efecto diferencial.
-
-\hypertarget{bibliografia}{%
-\section{Bibliografia}\label{bibliografia}}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  McFarland, D. J. Decision making in animals. Nature 269, 15--21
-  (1977).
-\item
-  Menzel, R. \& Giurfa, M. Dimensions of Cognition in an Insect, the
-  Honeybee. Behav. Cogn. Neurosci. Rev.~5, 24--40 (2006).
-\item
-  Gil, M., De Marco, R. J. \& Menzel, R. Learning reward expectations in
-  honeybees. Learn. Mem. 14, 491--6 (2007).
-\item
-  Rescorla, R. A. A Pavlovian analysis of goal-directed behavior. Am.
-  Psychol. 42, 119--129 (1987).
-\item
-  Bitterman, M. E., Menzel, R., Fietz, A. \& Schäfer, S. Classical
-  conditioning of proboscis extension in honeybees (Apis mellifera). J.
-  Comp. Psychol. 97, 107--119 (1983).
-\item
-  Takeda, K. Classical conditioned response in the honey bee. J. Insect
-  Physiol. 6, 168--179 (1961).
-\end{enumerate}
-
 \begin{Shaded}
 \begin{Highlighting}[]
 \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\# SCRIPT \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
@@ -418,8 +210,16 @@ genera un mayor efecto diferencial.
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(emmeans)   }\CommentTok{\# comparaciones}
+\FunctionTok{library}\NormalTok{(DHARMa)}
+\end{Highlighting}
+\end{Shaded}
 
+\begin{verbatim}
+## This is DHARMa 0.4.4. For overview type '?DHARMa'. For recent changes, type news(package = 'DHARMa')
+\end{verbatim}
 
+\begin{Shaded}
+\begin{Highlighting}[]
 \FunctionTok{setwd}\NormalTok{(}\StringTok{"C:/Users/hecto/Desktop/Ilán/Biome II/TP FINAL/TP{-}FINAL{-}BIOME"}\NormalTok{)}
 \NormalTok{datos }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"datos.xlsx"}\NormalTok{)}
 \FunctionTok{str}\NormalTok{(datos)}
@@ -582,7 +382,7 @@ genera un mayor efecto diferencial.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\# SEMANA COMO COVARIABLE:}
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\# EXPLORAMOS SEMANA COMO COVARIABLE:}
 
 \NormalTok{prob\_exito\_semana }\OtherTok{\textless{}{-}} \FunctionTok{round}\NormalTok{(}\FunctionTok{tapply}\NormalTok{(long\_testeo}\SpecialCharTok{$}\NormalTok{rta,}\FunctionTok{list}\NormalTok{(long\_testeo}\SpecialCharTok{$}\NormalTok{SEMANA,long\_testeo}\SpecialCharTok{$}\NormalTok{tiempo\_testeo), mean),}\DecValTok{2}\NormalTok{)}
 \NormalTok{prob\_exito\_semana}
@@ -627,7 +427,6 @@ genera un mayor efecto diferencial.
 \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
 
 \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\# PRIMERA PROPUESTA: MODELO MARGINAL (GEEGLM)}
-
 \CommentTok{\# Para geeglm, las filas del data frame tienen que estar ordenadas por paciente y por tiempo:}
 \NormalTok{long\_testeo }\OtherTok{\textless{}{-}} \FunctionTok{arrange}\NormalTok{(long\_testeo,ID)}
 
@@ -637,116 +436,7 @@ genera un mayor efecto diferencial.
 \CommentTok{\# AR1: ar1}
 \CommentTok{\# Desestructurada: unstructured}
 
-\DocumentationTok{\#\#\# A) triple interaccion}
-\NormalTok{m1 }\OtherTok{\textless{}{-}} \FunctionTok{geeglm}\NormalTok{(}\AttributeTok{formula=}\NormalTok{rta}\SpecialCharTok{\textasciitilde{}}\NormalTok{ANT}\SpecialCharTok{*}\NormalTok{PROB}\SpecialCharTok{*}\NormalTok{tiempo\_testeo}\SpecialCharTok{+}\NormalTok{SEMANA,}\AttributeTok{family=}\NormalTok{binomial,}\AttributeTok{data=}\NormalTok{long\_testeo,}\AttributeTok{id=}\NormalTok{ID,}
-             \AttributeTok{corstr=}\StringTok{"independence"}\NormalTok{)}
-\FunctionTok{anova}\NormalTok{(m1)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Analysis of 'Wald statistic' Table
-## Model: binomial, link: logit
-## Response: rta
-## Terms added sequentially (first to last)
-## 
-##                        Df      X2 P(>|Chi|)    
-## ANT                     1  3.3128 0.0687441 .  
-## PROB                    1  2.0180 0.1554467    
-## tiempo_testeo           2  5.0550 0.0798580 .  
-## SEMANA                  6 25.1108 0.0003257 ***
-## ANT:PROB                1  0.1502 0.6983642    
-## ANT:tiempo_testeo       2  5.6791 0.0584508 .  
-## PROB:tiempo_testeo      2 27.8820  8.82e-07 ***
-## ANT:PROB:tiempo_testeo  2  1.4604 0.4818194    
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{m2 }\OtherTok{\textless{}{-}} \FunctionTok{geeglm}\NormalTok{(}\AttributeTok{formula=}\NormalTok{rta}\SpecialCharTok{\textasciitilde{}}\NormalTok{ANT}\SpecialCharTok{*}\NormalTok{PROB}\SpecialCharTok{*}\NormalTok{tiempo\_testeo}\SpecialCharTok{+}\NormalTok{SEMANA,}\AttributeTok{family=}\NormalTok{binomial,}\AttributeTok{data=}\NormalTok{long\_testeo,}\AttributeTok{id=}\NormalTok{ID,}
-             \AttributeTok{corstr=}\StringTok{"exchangeable"}\NormalTok{)}
-\FunctionTok{anova}\NormalTok{(m2)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Analysis of 'Wald statistic' Table
-## Model: binomial, link: logit
-## Response: rta
-## Terms added sequentially (first to last)
-## 
-##                        Df      X2 P(>|Chi|)    
-## ANT                     1  3.3128 0.0687441 .  
-## PROB                    1  2.0180 0.1554467    
-## tiempo_testeo           2  5.0551 0.0798535 .  
-## SEMANA                  6 24.9080 0.0003551 ***
-## ANT:PROB                1  0.2217 0.6377318    
-## ANT:tiempo_testeo       2  5.6283 0.0599557 .  
-## PROB:tiempo_testeo      2 26.8741  1.46e-06 ***
-## ANT:PROB:tiempo_testeo  2  1.3454 0.5103303    
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{m3 }\OtherTok{\textless{}{-}} \FunctionTok{geeglm}\NormalTok{(}\AttributeTok{formula=}\NormalTok{rta}\SpecialCharTok{\textasciitilde{}}\NormalTok{ANT}\SpecialCharTok{*}\NormalTok{PROB}\SpecialCharTok{*}\NormalTok{tiempo\_testeo}\SpecialCharTok{+}\NormalTok{SEMANA,}\AttributeTok{family=}\NormalTok{binomial,}\AttributeTok{data=}\NormalTok{long\_testeo,}\AttributeTok{id=}\NormalTok{ID,}
-             \AttributeTok{corstr=}\StringTok{"ar1"}\NormalTok{)}
-\FunctionTok{anova}\NormalTok{(m3)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Analysis of 'Wald statistic' Table
-## Model: binomial, link: logit
-## Response: rta
-## Terms added sequentially (first to last)
-## 
-##                        Df      X2 P(>|Chi|)    
-## ANT                     1  2.8907   0.08909 .  
-## PROB                    1  1.7756   0.18269    
-## tiempo_testeo           2  5.1253   0.07710 .  
-## SEMANA                  6 29.0655 5.912e-05 ***
-## ANT:PROB                1  0.0965   0.75604    
-## ANT:tiempo_testeo       2  5.3849   0.06771 .  
-## PROB:tiempo_testeo      2 25.5799 2.789e-06 ***
-## ANT:PROB:tiempo_testeo  2  1.5180   0.46814    
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{m4 }\OtherTok{\textless{}{-}} \FunctionTok{geeglm}\NormalTok{(}\AttributeTok{formula=}\NormalTok{rta}\SpecialCharTok{\textasciitilde{}}\NormalTok{ANT}\SpecialCharTok{*}\NormalTok{PROB}\SpecialCharTok{*}\NormalTok{tiempo\_testeo}\SpecialCharTok{+}\NormalTok{SEMANA,}\AttributeTok{family=}\NormalTok{binomial,}\AttributeTok{data=}\NormalTok{long\_testeo,}\AttributeTok{id=}\NormalTok{ID,}
-             \AttributeTok{corstr=}\StringTok{"unstructured"}\NormalTok{)}
-\FunctionTok{anova}\NormalTok{(m4)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Analysis of 'Wald statistic' Table
-## Model: binomial, link: logit
-## Response: rta
-## Terms added sequentially (first to last)
-## 
-##                        Df      X2 P(>|Chi|)    
-## ANT                     1  3.0812   0.07920 .  
-## PROB                    1  2.0380   0.15342    
-## tiempo_testeo           2  5.0867   0.07860 .  
-## SEMANA                  6 29.7362 4.412e-05 ***
-## ANT:PROB                1  0.0771   0.78133    
-## ANT:tiempo_testeo       2  5.3622   0.06849 .  
-## PROB:tiempo_testeo      2 26.0166 2.242e-06 ***
-## ANT:PROB:tiempo_testeo  2  1.4747   0.47837    
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\DocumentationTok{\#\#\# B) tratamiento*tiempo}
+\DocumentationTok{\#\#\# Interaccion tratamiento*tiempo}
 \NormalTok{m5 }\OtherTok{\textless{}{-}} \FunctionTok{geeglm}\NormalTok{(}\AttributeTok{formula=}\NormalTok{rta}\SpecialCharTok{\textasciitilde{}}\NormalTok{TRATAMIENTO}\SpecialCharTok{*}\NormalTok{tiempo\_testeo}\SpecialCharTok{+}\NormalTok{SEMANA,}\AttributeTok{family=}\NormalTok{binomial,}\AttributeTok{data=}\NormalTok{long\_testeo,}\AttributeTok{id=}\NormalTok{ID,}
              \AttributeTok{corstr=}\StringTok{"independence"}\NormalTok{)}
 \FunctionTok{anova}\NormalTok{(m5)}
@@ -840,30 +530,17 @@ genera un mayor efecto diferencial.
 \begin{Shaded}
 \begin{Highlighting}[]
 \DocumentationTok{\#\# SELECCION DE MODELOS (en geeglm rankeamos por QIC):}
-\FunctionTok{model.sel}\NormalTok{(m1,m2,m3,m4,m5,m6,m7,m8, }\AttributeTok{rank =}\NormalTok{ QIC)}
+\FunctionTok{model.sel}\NormalTok{(m5,m6,m7,m8, }\AttributeTok{rank =}\NormalTok{ QIC)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ## Model selection table 
-##     (Int) ANT PRO SEM tmp_tst ANT:PRO ANT:tmp_tst PRO:tmp_tst ANT:PRO:tmp_tst
-## m1 1.3590   +   +   +       +       +           +           +               +
-## m5 0.4608           +       +                                                
-## m2 1.2690   +   +   +       +       +           +           +               +
-## m6 0.4283           +       +                                                
-## m4 1.3200   +   +   +       +       +           +           +               +
-## m8 0.4809           +       +                                                
-## m3 1.3750   +   +   +       +       +           +           +               +
-## m7 0.5293           +       +                                                
-##    TRA tmp_tst:TRA corstr     qLik   QIC delta weight
-## m1                 indpnd -227.246 497.0  0.00  0.155
-## m5   +           + indpnd -227.246 497.0  0.00  0.155
-## m2                 exchng -227.326 497.1  0.10  0.147
-## m6   +           + exchng -227.326 497.1  0.10  0.147
-## m4                 unstrc -227.552 497.7  0.65  0.112
-## m8   +           + unstrc -227.552 497.7  0.65  0.112
-## m3                    ar1 -227.769 498.2  1.17  0.086
-## m7   +           +    ar1 -227.769 498.2  1.17  0.086
+##     (Int) SEM tmp_tst TRA tmp_tst:TRA corstr     qLik   QIC delta weight
+## m5 0.4608   +       +   +           + indpnd -227.246 497.0  0.00  0.310
+## m6 0.4283   +       +   +           + exchng -227.326 497.1  0.10  0.294
+## m8 0.4809   +       +   +           + unstrc -227.552 497.7  0.65  0.223
+## m7 0.5293   +       +   +           +    ar1 -227.769 498.2  1.17  0.173
 ## Abbreviations:
 ## corstr: exchng = 'exchangeable', indpnd = 'independence', 
 ##         unstrc = 'unstructured'
@@ -877,33 +554,24 @@ genera un mayor efecto diferencial.
 \CommentTok{\# AR1: la sacamos porque a pesar de tener la misma cantidad de parámetros que la de simetria compuesta, tiene un peor ajuste porque nuestros tiempos no son equidistantes como asume AR1, entonces el QIC es mayor.}
 \CommentTok{\# Desestructurada: la sacamos porque estima mas parametros, por eso el QIC da un poco mas alto.}
 
-
 \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\# SEGUNDA PROPUESTA: MODELO CONDICIONAL (GLMMTMB)}
 
 \CommentTok{\# Como elegimos simetria compuesta, probamos un modelo condicional:}
 
-\CommentTok{\# glmmTMB es bueno para mixtos y muchos niveles del aleatorio.}
-\NormalTok{m9 }\OtherTok{\textless{}{-}} \FunctionTok{glmmTMB}\NormalTok{(rta }\SpecialCharTok{\textasciitilde{}}\NormalTok{ TRATAMIENTO}\SpecialCharTok{*}\NormalTok{tiempo\_testeo }\SpecialCharTok{+}\NormalTok{ SEMANA }\SpecialCharTok{+}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{|}\NormalTok{ID), }\AttributeTok{data=}\NormalTok{long\_testeo, }\AttributeTok{family=}\StringTok{"binomial"}\NormalTok{)}
-\NormalTok{m10 }\OtherTok{\textless{}{-}} \FunctionTok{glmmTMB}\NormalTok{(rta }\SpecialCharTok{\textasciitilde{}}\NormalTok{ TRATAMIENTO}\SpecialCharTok{*}\NormalTok{tiempo\_testeo }\SpecialCharTok{+}\NormalTok{  (}\DecValTok{1}\SpecialCharTok{|}\NormalTok{SEMANA) }\SpecialCharTok{+}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{|}\NormalTok{ID), }\AttributeTok{data=}\NormalTok{long\_testeo, }\AttributeTok{family=}\StringTok{"binomial"}\NormalTok{)}
-\CommentTok{\# No cambia info biológica y obtenemos más información porque podemos generalizar las semanas (al menos a todas las semanas que Mili podría haber ido con buen clima).}
+\CommentTok{\# Semana como aleatoria:}
+\NormalTok{m9 }\OtherTok{\textless{}{-}} \FunctionTok{glmmTMB}\NormalTok{(rta }\SpecialCharTok{\textasciitilde{}}\NormalTok{ TRATAMIENTO}\SpecialCharTok{*}\NormalTok{tiempo\_testeo }\SpecialCharTok{+}\NormalTok{  (}\DecValTok{1}\SpecialCharTok{|}\NormalTok{SEMANA) }\SpecialCharTok{+}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{|}\NormalTok{ID), }\AttributeTok{data=}\NormalTok{long\_testeo, }\AttributeTok{family=}\StringTok{"binomial"}\NormalTok{)}
+
+\CommentTok{\# Semana como fija:}
+\NormalTok{m10 }\OtherTok{\textless{}{-}} \FunctionTok{glmmTMB}\NormalTok{(rta }\SpecialCharTok{\textasciitilde{}}\NormalTok{ TRATAMIENTO}\SpecialCharTok{*}\NormalTok{tiempo\_testeo }\SpecialCharTok{+}\NormalTok{ SEMANA }\SpecialCharTok{+}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{|}\NormalTok{ID), }\AttributeTok{data=}\NormalTok{long\_testeo, }\AttributeTok{family=}\StringTok{"binomial"}\NormalTok{)}
 
 \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
 \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\# EVALUACIÓN DE SUPUESTOS \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
 \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
 
+\CommentTok{\# Supuestos m9:}
 \DocumentationTok{\#\# Parte fija:}
-\FunctionTok{library}\NormalTok{(DHARMa)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## This is DHARMa 0.4.4. For overview type '?DHARMa'. For recent changes, type news(package = 'DHARMa')
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{sim }\OtherTok{\textless{}{-}} \FunctionTok{simulateResiduals}\NormalTok{(m9, }\AttributeTok{n=}\DecValTok{1000}\NormalTok{)}
-\FunctionTok{plot}\NormalTok{(sim)}
+\NormalTok{sim\_m9 }\OtherTok{\textless{}{-}} \FunctionTok{simulateResiduals}\NormalTok{(m9, }\AttributeTok{n=}\DecValTok{1000}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(sim\_m9)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -923,14 +591,101 @@ genera un mayor efecto diferencial.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DocumentationTok{\#\# Parte aleatoria:}
-\NormalTok{Bi}\OtherTok{\textless{}{-}}\FunctionTok{unlist}\NormalTok{(}\FunctionTok{ranef}\NormalTok{(m9))}
+\CommentTok{\# Supuestos para variable aleatoria Semana:}
+\NormalTok{Bi\_semana }\OtherTok{\textless{}{-}} \FunctionTok{unlist}\NormalTok{(}\FunctionTok{ranef}\NormalTok{(m9))}
+\NormalTok{Bi\_semana }\OtherTok{\textless{}{-}}\NormalTok{ Bi\_semana[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{7}\NormalTok{]}
 \CommentTok{\# QQPlot con estos residuos:}
-\FunctionTok{qqPlot}\NormalTok{(Bi,}\AttributeTok{main=}\StringTok{"QQ Plot efectos aleatorios abeja (ID)"}\NormalTok{)}
+\NormalTok{car}\SpecialCharTok{::}\FunctionTok{qqPlot}\NormalTok{(Bi\_semana)}
 \end{Highlighting}
 \end{Shaded}
 
 \includegraphics{TP_FINAL_RMarkdown_files/figure-latex/unnamed-chunk-1-5.pdf}
+
+\begin{verbatim}
+## cond.SEMANA.(Intercept)7 cond.SEMANA.(Intercept)4 
+##                        7                        4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Prueba de shapiro:}
+\FunctionTok{shapiro.test}\NormalTok{(Bi\_semana)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Shapiro-Wilk normality test
+## 
+## data:  Bi_semana
+## W = 0.82181, p-value = 0.06684
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Supuestos para variable aleatoria ID:}
+\NormalTok{Bi\_ID }\OtherTok{\textless{}{-}} \FunctionTok{unlist}\NormalTok{(}\FunctionTok{ranef}\NormalTok{(m9))}
+\NormalTok{Bi\_ID }\OtherTok{\textless{}{-}}\NormalTok{ Bi\_ID[}\DecValTok{8}\SpecialCharTok{:}\DecValTok{139}\NormalTok{]}
+\CommentTok{\# QQPlot con estos residuos:}
+\CommentTok{\# QQPlot con estos residuos:}
+\NormalTok{car}\SpecialCharTok{::}\FunctionTok{qqPlot}\NormalTok{(Bi\_ID)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{TP_FINAL_RMarkdown_files/figure-latex/unnamed-chunk-1-6.pdf}
+
+\begin{verbatim}
+##  cond.ID.(Intercept)87 cond.ID.(Intercept)131 
+##                     87                    131
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Prueba de shapiro:}
+\FunctionTok{shapiro.test}\NormalTok{(Bi\_ID)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Shapiro-Wilk normality test
+## 
+## data:  Bi_ID
+## W = 0.96898, p-value = 0.004093
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Supuestos m10:}
+\DocumentationTok{\#\# Parte fija:}
+\NormalTok{sim\_m10 }\OtherTok{\textless{}{-}} \FunctionTok{simulateResiduals}\NormalTok{(m9, }\AttributeTok{n=}\DecValTok{1000}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(sim\_m10)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Unable to calculate quantile regression for quantile 0.25. Possibly to few (unique) data points / predictions. Will be ommited in plots and significance calculations.
+\end{verbatim}
+
+\begin{verbatim}
+## Unable to calculate quantile regression for quantile 0.5. Possibly to few (unique) data points / predictions. Will be ommited in plots and significance calculations.
+\end{verbatim}
+
+\begin{verbatim}
+## Unable to calculate quantile regression for quantile 0.75. Possibly to few (unique) data points / predictions. Will be ommited in plots and significance calculations.
+\end{verbatim}
+
+\includegraphics{TP_FINAL_RMarkdown_files/figure-latex/unnamed-chunk-1-7.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Supuestos para variable aleatoria ID:}
+\NormalTok{Bi\_ID\_10 }\OtherTok{\textless{}{-}} \FunctionTok{unlist}\NormalTok{(}\FunctionTok{ranef}\NormalTok{(m10))}
+\NormalTok{car}\SpecialCharTok{::}\FunctionTok{qqPlot}\NormalTok{(Bi\_ID\_10)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{TP_FINAL_RMarkdown_files/figure-latex/unnamed-chunk-1-8.pdf}
 
 \begin{verbatim}
 ## cond.ID.(Intercept)131  cond.ID.(Intercept)87 
@@ -939,8 +694,7 @@ genera un mayor efecto diferencial.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Prueba de shapiro:}
-\FunctionTok{shapiro.test}\NormalTok{(Bi)}
+\FunctionTok{shapiro.test}\NormalTok{(Bi\_ID\_10)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -948,19 +702,34 @@ genera un mayor efecto diferencial.
 ## 
 ##  Shapiro-Wilk normality test
 ## 
-## data:  Bi
+## data:  Bi_ID_10
 ## W = 0.98393, p-value = 0.1224
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# NO HAY EVIDENCIAS PARA RECHAZAR SUPUESTOS DE LA PARTE FIJA NI ALEATORIA.}
+\CommentTok{\# PARA M10 (SEMANA FIJA) NO HAY EVIDENCIAS PARA RECHAZAR CUMPLIMIENTO DE SUPUESTOS DE LA PARTE FIJA NI ALEATORIA (ID).}
+\CommentTok{\# PARA M9 NO SE CUMPLE LA NORMALIDAD DE LA VARIABLE ALEATORIA ID.}
 
+\FunctionTok{AIC}\NormalTok{(m9,m10)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     df      AIC
+## m9  14 473.4523
+## m10 19 462.2870
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Elegimos usar m10 porque mejora el AIC y se cumplen los supuestos.}
+    
 \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
 \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\# ESTIMACIÓN E INFERENCIA \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
 \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
 
-\FunctionTok{Anova}\NormalTok{(m9) }\CommentTok{\# Semana e interaccion significativas}
+\FunctionTok{Anova}\NormalTok{(m10)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -979,25 +748,7 @@ genera un mayor efecto diferencial.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{Anova}\NormalTok{(m10)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Analysis of Deviance Table (Type II Wald chisquare tests)
-## 
-## Response: rta
-##                             Chisq Df Pr(>Chisq)    
-## TRATAMIENTO                3.4122  3  0.3323302    
-## tiempo_testeo              2.0872  2  0.3521861    
-## TRATAMIENTO:tiempo_testeo 26.7525  6  0.0001611 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{summary}\NormalTok{(m9)}
+\FunctionTok{summary}\NormalTok{(m10)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1061,59 +812,6 @@ genera un mayor efecto diferencial.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{summary}\NormalTok{(m10)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  Family: binomial  ( logit )
-## Formula:          rta ~ TRATAMIENTO * tiempo_testeo + (1 | SEMANA) + (1 | ID)
-## Data: long_testeo
-## 
-##      AIC      BIC   logLik deviance df.resid 
-##    473.5    529.2   -222.7    445.5      382 
-## 
-## Random effects:
-## 
-## Conditional model:
-##  Groups Name        Variance Std.Dev.
-##  SEMANA (Intercept) 1.539    1.241   
-##  ID     (Intercept) 3.210    1.792   
-## Number of obs: 396, groups:  SEMANA, 7; ID, 132
-## 
-## Conditional model:
-##                                               Estimate Std. Error z value
-## (Intercept)                                 -4.136e-01  7.629e-01  -0.542
-## TRATAMIENTOconstante_bajo                    1.417e+00  8.671e-01   1.634
-## TRATAMIENTOcontraste_neg                     1.646e+00  8.631e-01   1.907
-## TRATAMIENTOcontraste_pos                     4.068e-01  8.064e-01   0.505
-## tiempo_testeo24hs                            2.271e-06  6.820e-01   0.000
-## tiempo_testeo48hs                            4.629e-01  6.833e-01   0.678
-## TRATAMIENTOconstante_bajo:tiempo_testeo24hs -9.469e-01  9.773e-01  -0.969
-## TRATAMIENTOcontraste_neg:tiempo_testeo24hs  -1.936e+00  9.810e-01  -1.974
-## TRATAMIENTOcontraste_pos:tiempo_testeo24hs   1.434e+00  9.545e-01   1.503
-## TRATAMIENTOconstante_bajo:tiempo_testeo48hs -2.118e+00  1.001e+00  -2.117
-## TRATAMIENTOcontraste_neg:tiempo_testeo48hs  -4.317e+00  1.107e+00  -3.900
-## TRATAMIENTOcontraste_pos:tiempo_testeo48hs   9.716e-01  9.505e-01   1.022
-##                                             Pr(>|z|)    
-## (Intercept)                                   0.5877    
-## TRATAMIENTOconstante_bajo                     0.1023    
-## TRATAMIENTOcontraste_neg                      0.0565 .  
-## TRATAMIENTOcontraste_pos                      0.6139    
-## tiempo_testeo24hs                             1.0000    
-## tiempo_testeo48hs                             0.4981    
-## TRATAMIENTOconstante_bajo:tiempo_testeo24hs   0.3326    
-## TRATAMIENTOcontraste_neg:tiempo_testeo24hs    0.0484 *  
-## TRATAMIENTOcontraste_pos:tiempo_testeo24hs    0.1329    
-## TRATAMIENTOconstante_bajo:tiempo_testeo48hs   0.0343 *  
-## TRATAMIENTOcontraste_neg:tiempo_testeo48hs  9.61e-05 ***
-## TRATAMIENTOcontraste_pos:tiempo_testeo48hs    0.3067    
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
 \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\# COMPARACIONES \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
 \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
@@ -1122,92 +820,10 @@ genera un mayor efecto diferencial.
 \FunctionTok{options}\NormalTok{(}\AttributeTok{emmeans=} \FunctionTok{list}\NormalTok{(}\AttributeTok{emmeans =} \FunctionTok{list}\NormalTok{(}\AttributeTok{infer =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{)),}
                       \AttributeTok{contrast =} \FunctionTok{list}\NormalTok{(}\AttributeTok{infer =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{))))}
 
-\DocumentationTok{\#\#\#\#\# PRIMERA PROPUESTA: BONFERRONI (TENEMOS COMPARACIONES A PRIORI Y BONFERRONI SE PUEDE PONER EN EL EMMEANS)}
 
-\NormalTok{bonferroni}\OtherTok{\textless{}{-}}\FunctionTok{emmeans}\NormalTok{(m9,}\SpecialCharTok{\textasciitilde{}}\NormalTok{TRATAMIENTO}\SpecialCharTok{*}\NormalTok{tiempo\_testeo,}\AttributeTok{type=}\StringTok{"response"}\NormalTok{,}
-                \AttributeTok{contr=}\FunctionTok{list}\NormalTok{(}\StringTok{"3hs\_alto\_pos"}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{), }
-                     \StringTok{"3hs\_bajo\_neg"}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{), }
-                     \StringTok{"24hs\_alto\_pos"}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{), }
-                     \StringTok{"24hs\_bajo\_neg"}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{), }
-                     \StringTok{"48hs\_alto\_pos"}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{), }
-                     \StringTok{"48hs\_bajo\_neg"}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{)),}
-                \AttributeTok{adjust=}\StringTok{"bonferroni"}\NormalTok{)}
+\DocumentationTok{\#\#\#\#\# CONTRASTES ORTOGONALES (TENEMOS COMPARACIONES A PRIORI)}
 
-\NormalTok{bonferroni }\CommentTok{\# Nos da la probabilidad para cada grupo y las comparaciones (en odds ratio) porque lo seteamos en options más arriba en el código.}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## $emmeans
-##  TRATAMIENTO    tiempo_testeo   prob     SE  df lower.CL upper.CL null t.ratio
-##  constante_alto 3hs           0.3916 0.1441 377   0.1638    0.679  0.5  -0.728
-##  constante_bajo 3hs           0.7430 0.1193 377   0.4583    0.908  0.5   1.699
-##  contraste_neg  3hs           0.7648 0.1097 377   0.4950    0.915  0.5   1.934
-##  contraste_pos  3hs           0.4877 0.1379 377   0.2433    0.738  0.5  -0.090
-##  constante_alto 24hs          0.3916 0.1441 377   0.1638    0.679  0.5  -0.728
-##  constante_bajo 24hs          0.5241 0.1504 377   0.2519    0.783  0.5   0.160
-##  contraste_neg  24hs          0.3176 0.1248 377   0.1304    0.591  0.5  -1.328
-##  contraste_pos  24hs          0.8030 0.0954 377   0.5545    0.930  0.5   2.329
-##  constante_alto 48hs          0.5070 0.1506 377   0.2393    0.771  0.5   0.047
-##  constante_bajo 48hs          0.3493 0.1393 377   0.1386    0.642  0.5  -1.015
-##  contraste_neg  48hs          0.0642 0.0423 377   0.0168    0.215  0.5  -3.802
-##  contraste_pos  48hs          0.8030 0.0954 377   0.5545    0.930  0.5   2.329
-##  p.value
-##   0.4671
-##   0.0902
-##   0.0539
-##   0.9287
-##   0.4671
-##   0.8727
-##   0.1851
-##   0.0204
-##   0.9627
-##   0.3108
-##   0.0002
-##   0.0204
-## 
-## Results are averaged over the levels of: SEMANA 
-## Confidence level used: 0.95 
-## Intervals are back-transformed from the logit scale 
-## Tests are performed on the logit scale 
-## 
-## $contrasts
-##  contrast      odds.ratio    SE  df lower.CL upper.CL null t.ratio p.value
-##  3hs_alto_pos       0.676 0.545 377   0.0798     5.73    1  -0.485  1.0000
-##  3hs_bajo_neg       0.889 0.767 377   0.0903     8.75    1  -0.137  1.0000
-##  24hs_alto_pos      0.158 0.134 377   0.0165     1.51    1  -2.168  0.1845
-##  24hs_bajo_neg      2.367 1.980 377   0.2572    21.78    1   1.029  1.0000
-##  48hs_alto_pos      0.252 0.213 377   0.0270     2.36    1  -1.634  0.6188
-##  48hs_bajo_neg      7.832 7.238 377   0.6751    90.86    1   2.227  0.1592
-## 
-## Results are averaged over the levels of: SEMANA 
-## Confidence level used: 0.95 
-## Conf-level adjustment: bonferroni method for 6 estimates 
-## Intervals are back-transformed from the log odds ratio scale 
-## P value adjustment: bonferroni method for 6 tests 
-## Tests are performed on the log odds ratio scale
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# No da nada significativo pero puede ser porque son muchas comparaciones para Bonferroni (multiplica los p{-}valores por 6 en este caso).}
-\CommentTok{\# Hicimos las comparaciones a mano y las cuentas están bien.}
-
-\CommentTok{\# Podemos graficar los IC y las flechas rojas para comparar.}
-\FunctionTok{plot}\NormalTok{(bonferroni, }\AttributeTok{comparisons=}\NormalTok{T)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{TP_FINAL_RMarkdown_files/figure-latex/unnamed-chunk-1-6.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# No sabemos si está comparando bien porque el gráfico no está dividido en las 6 comparaciones.}
-
-
-\DocumentationTok{\#\#\#\#\# SEGUNDA PROPUESTA: CONTRASTES ORTOGONALES (TENEMOS COMPARACIONES A PRIORI Y SEGÚN JOSÉ SI NO ACLARAMOS adjust="bonferroni" EMMEANS HACE ORTOGONALES. CHECKEADO.)}
-
-\NormalTok{ortogonales}\OtherTok{\textless{}{-}}\FunctionTok{emmeans}\NormalTok{(m9,}\SpecialCharTok{\textasciitilde{}}\NormalTok{TRATAMIENTO}\SpecialCharTok{*}\NormalTok{tiempo\_testeo,}\AttributeTok{type=}\StringTok{"response"}\NormalTok{,}
+\NormalTok{ortogonales}\OtherTok{\textless{}{-}}\FunctionTok{emmeans}\NormalTok{(m10,}\SpecialCharTok{\textasciitilde{}}\NormalTok{TRATAMIENTO}\SpecialCharTok{*}\NormalTok{tiempo\_testeo,}\AttributeTok{type=}\StringTok{"response"}\NormalTok{,}
                 \AttributeTok{contr=}\FunctionTok{list}\NormalTok{(}\StringTok{"3hs\_alto\_pos"}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{), }
                      \StringTok{"3hs\_bajo\_neg"}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{), }
                      \StringTok{"24hs\_alto\_pos"}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{), }
@@ -1215,15 +831,7 @@ genera un mayor efecto diferencial.
                      \StringTok{"48hs\_alto\_pos"}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{), }
                      \StringTok{"48hs\_bajo\_neg"}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{)))}
 
-\NormalTok{ortogonales\_10}\OtherTok{\textless{}{-}}\FunctionTok{emmeans}\NormalTok{(m10,}\SpecialCharTok{\textasciitilde{}}\NormalTok{TRATAMIENTO}\SpecialCharTok{*}\NormalTok{tiempo\_testeo,}\AttributeTok{type=}\StringTok{"response"}\NormalTok{,}
-                \AttributeTok{contr=}\FunctionTok{list}\NormalTok{(}\StringTok{"3hs\_alto\_pos"}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{), }
-                     \StringTok{"3hs\_bajo\_neg"}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{), }
-                     \StringTok{"24hs\_alto\_pos"}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{), }
-                     \StringTok{"24hs\_bajo\_neg"}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{), }
-                     \StringTok{"48hs\_alto\_pos"}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{), }
-                     \StringTok{"48hs\_bajo\_neg"}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{)))}
-
-\NormalTok{ortogonales }\CommentTok{\# Dan significativas las comparaciones constante alto vs contraste positivo a las 24 hs y constante bajo vs contraste negativo a las 48 hs. El director de Mili dijo que hay forma de justificar esto :D}
+\NormalTok{ortogonales }
 \end{Highlighting}
 \end{Shaded}
 
@@ -1278,687 +886,6 @@ genera un mayor efecto diferencial.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{plot}\NormalTok{(ortogonales, }\AttributeTok{comparisons=}\NormalTok{T) }\CommentTok{\# Tira el mismo plot que para Bonferroni. Raro.}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{TP_FINAL_RMarkdown_files/figure-latex/unnamed-chunk-1-7.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# FORMA DE JOSÉ:}
-\NormalTok{emm }\OtherTok{\textless{}{-}} \FunctionTok{emmeans}\NormalTok{(m9,}\AttributeTok{specs=}\SpecialCharTok{\textasciitilde{}}\NormalTok{TRATAMIENTO}\SpecialCharTok{*}\NormalTok{tiempo\_testeo)}
-\FunctionTok{confint}\NormalTok{(}\FunctionTok{contrast}\NormalTok{(emm, }\AttributeTok{method =} \FunctionTok{list}\NormalTok{(}\StringTok{"3hs\_alto\_pos"}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{), }
-                     \StringTok{"3hs\_bajo\_neg"}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{), }
-                     \StringTok{"24hs\_alto\_pos"}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{), }
-                     \StringTok{"24hs\_bajo\_neg"}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{), }
-                     \StringTok{"48hs\_alto\_pos"}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{), }
-                     \StringTok{"48hs\_bajo\_neg"}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{))))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  contrast      estimate    SE  df lower.CL upper.CL
-##  3hs_alto_pos    -0.391 0.806 377   -1.975    1.193
-##  3hs_bajo_neg    -0.118 0.862 377   -1.814    1.578
-##  24hs_alto_pos   -1.846 0.851 377   -3.520   -0.172
-##  24hs_bajo_neg    0.861 0.837 377   -0.784    2.507
-##  48hs_alto_pos   -1.377 0.843 377   -3.035    0.280
-##  48hs_bajo_neg    2.058 0.924 377    0.241    3.875
-## 
-## Results are averaged over the levels of: SEMANA 
-## Results are given on the log odds ratio (not the response) scale. 
-## Confidence level used: 0.95
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\DocumentationTok{\#\#\#\#\# TERCERA PROPUESTA: EFECTOS SIMPLES (COMPARACIÓN DE TODOS LOS TRATAMIENTOS PARA CADA TIEMPO)}
-
-\NormalTok{ef\_simples}\OtherTok{\textless{}{-}}\FunctionTok{emmeans}\NormalTok{(m9,pairwise}\SpecialCharTok{\textasciitilde{}}\NormalTok{TRATAMIENTO}\SpecialCharTok{|}\NormalTok{tiempo\_testeo,}\AttributeTok{type=}\StringTok{"response"}\NormalTok{)}
-
-\NormalTok{ef\_simples }\CommentTok{\# A las 3hs no da nada significativo. A las 24hs tampoco. A las 48hs dan significativas las comparaciones constante alto vs contraste negativo y contraste negativo vs contraste positivo. No nos interesan mucho esas comparaciones.}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## $emmeans
-## tiempo_testeo = 3hs:
-##  TRATAMIENTO      prob     SE  df lower.CL upper.CL null t.ratio p.value
-##  constante_alto 0.3916 0.1441 377   0.1638    0.679  0.5  -0.728  0.4671
-##  constante_bajo 0.7430 0.1193 377   0.4583    0.908  0.5   1.699  0.0902
-##  contraste_neg  0.7648 0.1097 377   0.4950    0.915  0.5   1.934  0.0539
-##  contraste_pos  0.4877 0.1379 377   0.2433    0.738  0.5  -0.090  0.9287
-## 
-## tiempo_testeo = 24hs:
-##  TRATAMIENTO      prob     SE  df lower.CL upper.CL null t.ratio p.value
-##  constante_alto 0.3916 0.1441 377   0.1638    0.679  0.5  -0.728  0.4671
-##  constante_bajo 0.5241 0.1504 377   0.2519    0.783  0.5   0.160  0.8727
-##  contraste_neg  0.3176 0.1248 377   0.1304    0.591  0.5  -1.328  0.1851
-##  contraste_pos  0.8030 0.0954 377   0.5545    0.930  0.5   2.329  0.0204
-## 
-## tiempo_testeo = 48hs:
-##  TRATAMIENTO      prob     SE  df lower.CL upper.CL null t.ratio p.value
-##  constante_alto 0.5070 0.1506 377   0.2393    0.771  0.5   0.047  0.9627
-##  constante_bajo 0.3493 0.1393 377   0.1386    0.642  0.5  -1.015  0.3108
-##  contraste_neg  0.0642 0.0423 377   0.0168    0.215  0.5  -3.802  0.0002
-##  contraste_pos  0.8030 0.0954 377   0.5545    0.930  0.5   2.329  0.0204
-## 
-## Results are averaged over the levels of: SEMANA 
-## Confidence level used: 0.95 
-## Intervals are back-transformed from the logit scale 
-## Tests are performed on the logit scale 
-## 
-## $contrasts
-## tiempo_testeo = 3hs:
-##  contrast                        odds.ratio      SE  df lower.CL upper.CL null
-##  constante_alto / constante_bajo     0.2227  0.1944 377   0.0234    2.119    1
-##  constante_alto / contraste_neg      0.1979  0.1712 377   0.0212    1.845    1
-##  constante_alto / contraste_pos      0.6763  0.5449 377   0.0846    5.408    1
-##  constante_bajo / contraste_neg      0.8888  0.7665 377   0.0960    8.228    1
-##  constante_bajo / contraste_pos      3.0370  2.5118 377   0.3594   25.665    1
-##  contraste_neg / contraste_pos       3.4168  2.8121 377   0.4086   28.574    1
-##  t.ratio p.value
-##   -1.720  0.3145
-##   -1.872  0.2417
-##   -0.485  0.9623
-##   -0.137  0.9991
-##    1.343  0.5360
-##    1.493  0.4428
-## 
-## tiempo_testeo = 24hs:
-##  contrast                        odds.ratio      SE  df lower.CL upper.CL null
-##  constante_alto / constante_bajo     0.5844  0.4970 377   0.0651    5.247    1
-##  constante_alto / contraste_neg      1.3830  1.1424 377   0.1641   11.655    1
-##  constante_alto / contraste_pos      0.1579  0.1344 377   0.0176    1.420    1
-##  constante_bajo / contraste_neg      2.3665  1.9803 377   0.2731   20.508    1
-##  constante_bajo / contraste_pos      0.2702  0.2273 377   0.0308    2.369    1
-##  contraste_neg / contraste_pos       0.1142  0.0968 377   0.0128    1.018    1
-##  t.ratio p.value
-##   -0.632  0.9218
-##    0.393  0.9794
-##   -2.168  0.1340
-##    1.029  0.7323
-##   -1.556  0.4055
-##   -2.560  0.0528
-## 
-## tiempo_testeo = 48hs:
-##  contrast                        odds.ratio      SE  df lower.CL upper.CL null
-##  constante_alto / constante_bajo     1.9158  1.6329 377   0.2124   17.281    1
-##  constante_alto / contraste_neg     15.0047 13.7653 377   1.4063  160.091    1
-##  constante_alto / contraste_pos      0.2523  0.2127 377   0.0287    2.221    1
-##  constante_bajo / contraste_neg      7.8322  7.2383 377   0.7214   85.036    1
-##  constante_bajo / contraste_pos      0.1317  0.1130 377   0.0144    1.205    1
-##  contraste_neg / contraste_pos       0.0168  0.0162 377   0.0014    0.201    1
-##  t.ratio p.value
-##    0.763  0.8711
-##    2.952  0.0176
-##   -1.634  0.3609
-##    2.227  0.1178
-##   -2.364  0.0860
-##   -4.247  0.0002
-## 
-## Results are averaged over the levels of: SEMANA 
-## Confidence level used: 0.95 
-## Conf-level adjustment: tukey method for comparing a family of 4 estimates 
-## Intervals are back-transformed from the log odds ratio scale 
-## P value adjustment: tukey method for comparing a family of 4 estimates 
-## Tests are performed on the log odds ratio scale
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{plot}\NormalTok{(ef\_simples, }\AttributeTok{comparisons=}\NormalTok{T) }
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{TP_FINAL_RMarkdown_files/figure-latex/unnamed-chunk-1-8.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\DocumentationTok{\#\#\#\#\# CUARTA PROPUESTA: TUKEY (TODOS CONTRA TODOS, NO NOS INTERESA EN REALIDAD PERO PARA PROBAR. SI DA ALGO SIGNIFICATIVO ACÁ ES PORQUE ESTAMOS HACIENDO MAL LOS OTROS CONTRASTES)}
-
-\NormalTok{tukey}\OtherTok{\textless{}{-}}\FunctionTok{emmeans}\NormalTok{(m9,pairwise}\SpecialCharTok{\textasciitilde{}}\NormalTok{TRATAMIENTO}\SpecialCharTok{*}\NormalTok{tiempo\_testeo,}\AttributeTok{type=}\StringTok{"response"}\NormalTok{)}
-
-\NormalTok{tukey }\CommentTok{\# Dan significativas solo comparaciones entre tiempos y contraste negativo vs contraste positivo a las 48hs.}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## $emmeans
-##  TRATAMIENTO    tiempo_testeo   prob     SE  df lower.CL upper.CL null t.ratio
-##  constante_alto 3hs           0.3916 0.1441 377   0.1638    0.679  0.5  -0.728
-##  constante_bajo 3hs           0.7430 0.1193 377   0.4583    0.908  0.5   1.699
-##  contraste_neg  3hs           0.7648 0.1097 377   0.4950    0.915  0.5   1.934
-##  contraste_pos  3hs           0.4877 0.1379 377   0.2433    0.738  0.5  -0.090
-##  constante_alto 24hs          0.3916 0.1441 377   0.1638    0.679  0.5  -0.728
-##  constante_bajo 24hs          0.5241 0.1504 377   0.2519    0.783  0.5   0.160
-##  contraste_neg  24hs          0.3176 0.1248 377   0.1304    0.591  0.5  -1.328
-##  contraste_pos  24hs          0.8030 0.0954 377   0.5545    0.930  0.5   2.329
-##  constante_alto 48hs          0.5070 0.1506 377   0.2393    0.771  0.5   0.047
-##  constante_bajo 48hs          0.3493 0.1393 377   0.1386    0.642  0.5  -1.015
-##  contraste_neg  48hs          0.0642 0.0423 377   0.0168    0.215  0.5  -3.802
-##  contraste_pos  48hs          0.8030 0.0954 377   0.5545    0.930  0.5   2.329
-##  p.value
-##   0.4671
-##   0.0902
-##   0.0539
-##   0.9287
-##   0.4671
-##   0.8727
-##   0.1851
-##   0.0204
-##   0.9627
-##   0.3108
-##   0.0002
-##   0.0204
-## 
-## Results are averaged over the levels of: SEMANA 
-## Confidence level used: 0.95 
-## Intervals are back-transformed from the logit scale 
-## Tests are performed on the logit scale 
-## 
-## $contrasts
-##  contrast                                  odds.ratio      SE  df lower.CL
-##  constante_alto 3hs / constante_bajo 3hs       0.2227  0.1944 377  0.01261
-##  constante_alto 3hs / contraste_neg 3hs        0.1979  0.1712 377  0.01151
-##  constante_alto 3hs / contraste_pos 3hs        0.6763  0.5449 377  0.04780
-##  constante_alto 3hs / constante_alto 24hs      1.0000  0.6856 377  0.10491
-##  constante_alto 3hs / constante_bajo 24hs      0.5844  0.4970 377  0.03564
-##  constante_alto 3hs / contraste_neg 24hs       1.3830  1.1424 377  0.09143
-##  constante_alto 3hs / contraste_pos 24hs       0.1579  0.1344 377  0.00961
-##  constante_alto 3hs / constante_alto 48hs      0.6259  0.4304 377  0.06521
-##  constante_alto 3hs / constante_bajo 48hs      1.1990  1.0228 377  0.07251
-##  constante_alto 3hs / contraste_neg 48hs       9.3908  8.5175 377  0.47557
-##  constante_alto 3hs / contraste_pos 48hs       0.1579  0.1344 377  0.00961
-##  constante_bajo 3hs / contraste_neg 3hs        0.8888  0.7665 377  0.05213
-##  constante_bajo 3hs / contraste_pos 3hs        3.0370  2.5118 377  0.20005
-##  constante_bajo 3hs / constante_alto 24hs      4.4904  3.9202 377  0.25431
-##  constante_bajo 3hs / constante_bajo 24hs      2.6243  1.8557 377  0.25646
-##  constante_bajo 3hs / contraste_neg 24hs       6.2104  5.3585 377  0.36371
-##  constante_bajo 3hs / contraste_pos 24hs       0.7090  0.5991 377  0.04402
-##  constante_bajo 3hs / constante_alto 48hs      2.8103  2.4317 377  0.16327
-##  constante_bajo 3hs / constante_bajo 48hs      5.3839  3.9359 377  0.48634
-##  constante_bajo 3hs / contraste_neg 48hs      42.1682 41.0572 377  1.71522
-##  constante_bajo 3hs / contraste_pos 48hs       0.7090  0.5991 377  0.04402
-##  contraste_neg 3hs / contraste_pos 3hs         3.4168  2.8121 377  0.22809
-##  contraste_neg 3hs / constante_alto 24hs       5.0520  4.3706 377  0.29364
-##  contraste_neg 3hs / constante_bajo 24hs       2.9525  2.5221 377  0.17786
-##  contraste_neg 3hs / contraste_neg 24hs        6.9871  4.9574 377  0.67750
-##  contraste_neg 3hs / contraste_pos 24hs        0.7976  0.6751 377  0.04931
-##  contraste_neg 3hs / constante_alto 48hs       3.1618  2.7152 377  0.18767
-##  contraste_neg 3hs / constante_bajo 48hs       6.0573  5.2520 377  0.34984
-##  contraste_neg 3hs / contraste_neg 48hs       47.4420 40.8491 377  2.79482
-##  contraste_neg 3hs / contraste_pos 48hs        0.7977  0.6751 377  0.04931
-##  contraste_pos 3hs / constante_alto 24hs       1.4786  1.1912 377  0.10450
-##  contraste_pos 3hs / constante_bajo 24hs       0.8641  0.7003 377  0.06011
-##  contraste_pos 3hs / contraste_neg 24hs        2.0449  1.6309 377  0.14844
-##  contraste_pos 3hs / contraste_pos 24hs        0.2334  0.1573 377  0.02547
-##  contraste_pos 3hs / constante_alto 48hs       0.9254  0.7434 377  0.06591
-##  contraste_pos 3hs / constante_bajo 48hs       1.7728  1.4508 377  0.12017
-##  contraste_pos 3hs / contraste_neg 48hs       13.8849 12.4248 377  0.73189
-##  contraste_pos 3hs / contraste_pos 48hs        0.2334  0.1573 377  0.02547
-##  constante_alto 24hs / constante_bajo 24hs     0.5844  0.4970 377  0.03564
-##  constante_alto 24hs / contraste_neg 24hs      1.3830  1.1424 377  0.09143
-##  constante_alto 24hs / contraste_pos 24hs      0.1579  0.1344 377  0.00961
-##  constante_alto 24hs / constante_alto 48hs     0.6259  0.4304 377  0.06521
-##  constante_alto 24hs / constante_bajo 48hs     1.1990  1.0228 377  0.07251
-##  constante_alto 24hs / contraste_neg 48hs      9.3908  8.5175 377  0.47557
-##  constante_alto 24hs / contraste_pos 48hs      0.1579  0.1344 377  0.00961
-##  constante_bajo 24hs / contraste_neg 24hs      2.3665  1.9803 377  0.15097
-##  constante_bajo 24hs / contraste_pos 24hs      0.2702  0.2273 377  0.01698
-##  constante_bajo 24hs / constante_alto 48hs     1.0709  0.9068 377  0.06612
-##  constante_bajo 24hs / constante_bajo 48hs     2.0516  1.4344 377  0.20581
-##  constante_bajo 24hs / contraste_neg 48hs     16.0685 15.0299 377  0.74131
-##  constante_bajo 24hs / contraste_pos 48hs      0.2702  0.2273 377  0.01698
-##  contraste_neg 24hs / contraste_pos 24hs       0.1142  0.0968 377  0.00702
-##  contraste_neg 24hs / constante_alto 48hs      0.4525  0.3749 377  0.02967
-##  contraste_neg 24hs / constante_bajo 48hs      0.8669  0.7256 377  0.05528
-##  contraste_neg 24hs / contraste_neg 48hs       6.7899  5.0796 377  0.57989
-##  contraste_neg 24hs / contraste_pos 48hs       0.1142  0.0968 377  0.00702
-##  contraste_pos 24hs / constante_alto 48hs      3.9640  3.3415 377  0.24781
-##  contraste_pos 24hs / constante_bajo 48hs      7.5940  6.5138 377  0.45220
-##  contraste_pos 24hs / contraste_neg 48hs      59.4777 57.2237 377  2.51295
-##  contraste_pos 24hs / contraste_pos 48hs       1.0000  0.6817 377  0.10624
-##  constante_alto 48hs / constante_bajo 48hs     1.9158  1.6329 377  0.11613
-##  constante_alto 48hs / contraste_neg 48hs     15.0047 13.7653 377  0.73435
-##  constante_alto 48hs / contraste_pos 48hs      0.2523  0.2127 377  0.01577
-##  constante_bajo 48hs / contraste_neg 48hs      7.8322  7.2383 377  0.37489
-##  constante_bajo 48hs / contraste_pos 48hs      0.1317  0.1129 377  0.00784
-##  contraste_neg 48hs / contraste_pos 48hs       0.0168  0.0162 377  0.00071
-##  upper.CL null t.ratio p.value
-##     3.932    1  -1.720  0.8579
-##     3.405    1  -1.872  0.7757
-##     9.569    1  -0.485  1.0000
-##     9.532    1   0.000  1.0000
-##     9.582    1  -0.632  1.0000
-##    20.921    1   0.393  1.0000
-##     2.595    1  -2.168  0.5737
-##     6.006    1  -0.682  0.9999
-##    19.826    1   0.213  1.0000
-##   185.433    1   2.469  0.3627
-##     2.595    1  -2.168  0.5737
-##    15.156    1  -0.137  1.0000
-##    46.105    1   1.343  0.9728
-##    79.288    1   1.720  0.8579
-##    26.853    1   1.364  0.9694
-##   106.044    1   2.117  0.6112
-##    11.419    1  -0.407  1.0000
-##    48.375    1   1.194  0.9892
-##    59.602    1   2.303  0.4765
-##  1036.696    1   3.843  0.0078
-##    11.419    1  -0.407  1.0000
-##    51.183    1   1.493  0.9419
-##    86.918    1   1.872  0.7757
-##    49.011    1   1.267  0.9826
-##    72.058    1   2.740  0.2110
-##    12.903    1  -0.267  1.0000
-##    53.270    1   1.340  0.9732
-##   104.878    1   2.077  0.6392
-##   805.328    1   4.482  0.0006
-##    12.903    1  -0.267  1.0000
-##    20.920    1   0.485  1.0000
-##    12.421    1  -0.180  1.0000
-##    28.171    1   0.897  0.9991
-##     2.140    1  -2.159  0.5802
-##    12.992    1  -0.097  1.0000
-##    26.153    1   0.700  0.9999
-##   263.415    1   2.940  0.1314
-##     2.140    1  -2.159  0.5802
-##     9.582    1  -0.632  1.0000
-##    20.921    1   0.393  1.0000
-##     2.595    1  -2.168  0.5737
-##     6.006    1  -0.682  0.9999
-##    19.826    1   0.213  1.0000
-##   185.433    1   2.469  0.3627
-##     2.595    1  -2.168  0.5737
-##    37.096    1   1.029  0.9970
-##     4.298    1  -1.556  0.9235
-##    17.344    1   0.081  1.0000
-##    20.451    1   1.028  0.9970
-##   348.300    1   2.969  0.1221
-##     4.298    1  -1.556  0.9236
-##     1.855    1  -2.560  0.3067
-##     6.903    1  -0.957  0.9984
-##    13.594    1  -0.171  1.0000
-##    79.504    1   2.560  0.3063
-##     1.855    1  -2.560  0.3068
-##    63.407    1   1.634  0.8956
-##   127.528    1   2.364  0.4337
-##  1407.746    1   4.247  0.0016
-##     9.413    1   0.000  1.0000
-##    31.605    1   0.763  0.9998
-##   306.585    1   2.952  0.1274
-##     4.035    1  -1.634  0.8956
-##   163.630    1   2.227  0.5309
-##     2.211    1  -2.364  0.4337
-##     0.398    1  -4.247  0.0016
-## 
-## Results are averaged over the levels of: SEMANA 
-## Confidence level used: 0.95 
-## Conf-level adjustment: tukey method for comparing a family of 12 estimates 
-## Intervals are back-transformed from the log odds ratio scale 
-## P value adjustment: tukey method for comparing a family of 12 estimates 
-## Tests are performed on the log odds ratio scale
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{plot}\NormalTok{(tukey, }\AttributeTok{comparisons=}\NormalTok{T) }
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{TP_FINAL_RMarkdown_files/figure-latex/unnamed-chunk-1-9.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\#*******************************************************************************}
-\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\# SIN 3HS \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\CommentTok{\#*******************************************************************************}
-
-\CommentTok{\# Dado que 3hs no presenta diferencias, vamos a probar hacer el modelo sin los datos de las 3hs para ver si aumentamos la potencia y obtenemos nuevas comparaciones significativas. Esto es porque creíamos que a las 3hs había "ruido". Sin embargo, luego de una charla con el director de Mili llegamos a la conclusión de que la info a las 3hs sí nos interesa porque es para ver si hay memoria a corto término. Que dé NS es información.}
-
-\CommentTok{\# Eliminamos las columnas de 3hs}
-\NormalTok{wide\_testeo\_sin3 }\OtherTok{\textless{}{-}}\NormalTok{ datos[,}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{11}\NormalTok{,}\DecValTok{12}\NormalTok{)]}
-
-\CommentTok{\# Pasamos a formato long la base de datos}
-\NormalTok{long\_testeo\_sin3 }\OtherTok{\textless{}{-}} \FunctionTok{melt}\NormalTok{(wide\_testeo\_sin3,}
-                  \AttributeTok{id.vars =} \FunctionTok{c}\NormalTok{(}\StringTok{"SEMANA"}\NormalTok{, }\StringTok{"ID"}\NormalTok{, }\StringTok{"ANT"}\NormalTok{, }\StringTok{"PROB"}\NormalTok{, }\StringTok{"TRATAMIENTO"}\NormalTok{),}
-                  \AttributeTok{variable.name =} \StringTok{"tiempo\_testeo"}\NormalTok{,}
-                  \AttributeTok{value.name =} \StringTok{"rta"}\NormalTok{)}
-
-\CommentTok{\# Modelamos los datos sin 3hs con el mismo modelo}
-\NormalTok{m9\_sin3 }\OtherTok{\textless{}{-}} \FunctionTok{glmmTMB}\NormalTok{(rta }\SpecialCharTok{\textasciitilde{}}\NormalTok{ TRATAMIENTO}\SpecialCharTok{*}\NormalTok{tiempo\_testeo }\SpecialCharTok{+}\NormalTok{ SEMANA }\SpecialCharTok{+}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{|}\NormalTok{ID), }\AttributeTok{data=}\NormalTok{long\_testeo\_sin3, }\AttributeTok{family=}\StringTok{"binomial"}\NormalTok{)}
-
-\CommentTok{\# Estimación e inferencia}
-\FunctionTok{Anova}\NormalTok{(m9\_sin3) }\CommentTok{\# La interacción tratamiento*tiempo no da significativa así que podemos evaluar los tratamientos y el tiempo por separado. El efecto del tiempo no dio significativo. El efecto de los tratamientos sí sio significativo.}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Analysis of Deviance Table (Type II Wald chisquare tests)
-## 
-## Response: rta
-##                             Chisq Df Pr(>Chisq)   
-## TRATAMIENTO               12.0219  3   0.007309 **
-## tiempo_testeo              1.5461  1   0.213714   
-## SEMANA                    14.0044  6   0.029587 * 
-## TRATAMIENTO:tiempo_testeo  5.3796  3   0.146020   
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\# COMPARACIONES}
-
-\DocumentationTok{\#\#\#\# Efectos principales para tratamientos}
-
-\NormalTok{ef\_ppales\_trat\_sin3}\OtherTok{\textless{}{-}}\FunctionTok{emmeans}\NormalTok{(m9\_sin3,pairwise}\SpecialCharTok{\textasciitilde{}}\NormalTok{TRATAMIENTO,}\AttributeTok{type=}\StringTok{"response"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## NOTE: Results may be misleading due to involvement in interactions
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{ef\_ppales\_trat\_sin3 }\CommentTok{\# Da solo significativa la comparación de contraste negativo vs contraste positivo.}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## $emmeans
-##  TRATAMIENTO     prob     SE  df lower.CL upper.CL null t.ratio p.value
-##  constante_alto 0.476 0.1126 249   0.2719    0.689  0.5  -0.212  0.8322
-##  constante_bajo 0.445 0.1116 249   0.2476    0.661  0.5  -0.490  0.6244
-##  contraste_neg  0.182 0.0739 249   0.0772    0.372  0.5  -3.028  0.0027
-##  contraste_pos  0.793 0.0773 249   0.6023    0.906  0.5   2.851  0.0047
-## 
-## Results are averaged over the levels of: tiempo_testeo, SEMANA 
-## Confidence level used: 0.95 
-## Intervals are back-transformed from the logit scale 
-## Tests are performed on the logit scale 
-## 
-## $contrasts
-##  contrast                        odds.ratio     SE  df lower.CL upper.CL null
-##  constante_alto / constante_bajo     1.1340 0.7161 249  0.22142    5.807    1
-##  constante_alto / contraste_neg      4.0858 2.7116 249  0.73413   22.739    1
-##  constante_alto / contraste_pos      0.2374 0.1524 249  0.04513    1.249    1
-##  constante_bajo / contraste_neg      3.6031 2.3990 249  0.64383   20.164    1
-##  constante_bajo / contraste_pos      0.2094 0.1362 249  0.03895    1.126    1
-##  contraste_neg / contraste_pos       0.0581 0.0428 249  0.00864    0.391    1
-##  t.ratio p.value
-##    0.199  0.9972
-##    2.121  0.1493
-##   -2.240  0.1154
-##    1.925  0.2202
-##   -2.404  0.0789
-##   -3.862  0.0008
-## 
-## Results are averaged over the levels of: tiempo_testeo, SEMANA 
-## Confidence level used: 0.95 
-## Conf-level adjustment: tukey method for comparing a family of 4 estimates 
-## Intervals are back-transformed from the log odds ratio scale 
-## P value adjustment: tukey method for comparing a family of 4 estimates 
-## Tests are performed on the log odds ratio scale
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{plot}\NormalTok{(ef\_ppales\_trat\_sin3, }\AttributeTok{comparisons=}\NormalTok{T)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{TP_FINAL_RMarkdown_files/figure-latex/unnamed-chunk-1-10.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\DocumentationTok{\#\#\#\# Contrastes ortogonales}
-
-\NormalTok{ortogonales\_sin3}\OtherTok{\textless{}{-}}\FunctionTok{emmeans}\NormalTok{(m9\_sin3,}\SpecialCharTok{\textasciitilde{}}\NormalTok{TRATAMIENTO}\SpecialCharTok{*}\NormalTok{tiempo\_testeo,}\AttributeTok{type=}\StringTok{"response"}\NormalTok{,}
-                \AttributeTok{contr=}\FunctionTok{list}\NormalTok{(}\StringTok{"24hs\_alto\_pos"}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{), }
-                     \StringTok{"24hs\_bajo\_neg"}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{), }
-                     \StringTok{"48hs\_alto\_pos"}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{), }
-                     \StringTok{"48hs\_bajo\_neg"}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{)))}
-
-\NormalTok{ortogonales\_sin3 }\CommentTok{\# Dan significativas las comparaciones constante alto vs contraste positivo a las 24 hs y constante bajo vs contraste negativo a las 48 hs. Igual que cuando hacíamos comparaciones ortogonales conservando los datos de las 3hs.}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## $emmeans
-##  TRATAMIENTO    tiempo_testeo   prob     SE  df lower.CL upper.CL null t.ratio
-##  constante_alto 24hs          0.4233 0.1367 249   0.1958    0.689  0.5  -0.552
-##  constante_bajo 24hs          0.5258 0.1386 249   0.2706    0.768  0.5   0.186
-##  contraste_neg  24hs          0.3464 0.1216 249   0.1554    0.604  0.5  -1.183
-##  contraste_pos  24hs          0.7928 0.0935 249   0.5551    0.921  0.5   2.359
-##  constante_alto 48hs          0.5294 0.1388 249   0.2730    0.771  0.5   0.212
-##  constante_bajo 48hs          0.3667 0.1317 249   0.1593    0.639  0.5  -0.963
-##  contraste_neg  48hs          0.0854 0.0532 249   0.0238    0.263  0.5  -3.482
-##  contraste_pos  48hs          0.7928 0.0935 249   0.5551    0.921  0.5   2.359
-##  p.value
-##   0.5812
-##   0.8527
-##   0.2381
-##   0.0191
-##   0.8326
-##   0.3364
-##   0.0006
-##   0.0191
-## 
-## Results are averaged over the levels of: SEMANA 
-## Confidence level used: 0.95 
-## Intervals are back-transformed from the logit scale 
-## Tests are performed on the logit scale 
-## 
-## $contrasts
-##  contrast      odds.ratio    SE  df lower.CL upper.CL null t.ratio p.value
-##  24hs_alto_pos      0.192 0.153 249   0.0399    0.921    1  -2.072  0.0393
-##  24hs_bajo_neg      2.092 1.625 249   0.4531    9.662    1   0.951  0.3428
-##  48hs_alto_pos      0.294 0.230 249   0.0632    1.368    1  -1.568  0.1182
-##  48hs_bajo_neg      6.204 5.361 249   1.1314   34.024    1   2.112  0.0357
-## 
-## Results are averaged over the levels of: SEMANA 
-## Confidence level used: 0.95 
-## Intervals are back-transformed from the log odds ratio scale 
-## Tests are performed on the log odds ratio scale
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\DocumentationTok{\#\#\#\# Tukey}
-
-\NormalTok{tukey\_sin3}\OtherTok{\textless{}{-}}\FunctionTok{emmeans}\NormalTok{(m9\_sin3,pairwise}\SpecialCharTok{\textasciitilde{}}\NormalTok{TRATAMIENTO}\SpecialCharTok{*}\NormalTok{tiempo\_testeo,}\AttributeTok{type=}\StringTok{"link"}\NormalTok{)}
-
-\NormalTok{tukey\_sin3 }\CommentTok{\# Dan significativas solo las comparaciones contraste positivo 24 hs vs contraste negativo 48 hs y contraste negativo vs contraste positivo ambos a 48 hs.}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## $emmeans
-##  TRATAMIENTO    tiempo_testeo emmean    SE  df lower.CL upper.CL t.ratio
-##  constante_alto 24hs          -0.309 0.560 249   -1.413    0.794  -0.552
-##  constante_bajo 24hs           0.103 0.556 249   -0.991    1.198   0.186
-##  contraste_neg  24hs          -0.635 0.537 249   -1.693    0.423  -1.183
-##  contraste_pos  24hs           1.342 0.569 249    0.221    2.463   2.359
-##  constante_alto 48hs           0.118 0.557 249   -0.979    1.215   0.212
-##  constante_bajo 48hs          -0.546 0.567 249   -1.663    0.571  -0.963
-##  contraste_neg  48hs          -2.371 0.681 249   -3.713   -1.030  -3.482
-##  contraste_pos  48hs           1.342 0.569 249    0.221    2.463   2.359
-##  p.value
-##   0.5812
-##   0.8527
-##   0.2381
-##   0.0191
-##   0.8326
-##   0.3364
-##   0.0006
-##   0.0191
-## 
-## Results are averaged over the levels of: SEMANA 
-## Results are given on the logit (not the response) scale. 
-## Confidence level used: 0.95 
-## 
-## $contrasts
-##  contrast                                   estimate    SE  df lower.CL
-##  constante_alto 24hs - constante_bajo 24hs -0.412697 0.785 249   -2.813
-##  constante_alto 24hs - contraste_neg 24hs   0.325650 0.768 249   -2.023
-##  constante_alto 24hs - contraste_pos 24hs  -1.651540 0.797 249   -4.088
-##  constante_alto 24hs - constante_alto 48hs -0.427316 0.658 249   -2.438
-##  constante_alto 24hs - constante_bajo 48hs  0.236803 0.788 249   -2.173
-##  constante_alto 24hs - contraste_neg 48hs   2.062050 0.863 249   -0.577
-##  constante_alto 24hs - contraste_pos 48hs  -1.651544 0.797 249   -4.088
-##  constante_bajo 24hs - contraste_neg 24hs   0.738347 0.777 249   -1.636
-##  constante_bajo 24hs - contraste_pos 24hs  -1.238843 0.783 249   -3.633
-##  constante_bajo 24hs - constante_alto 48hs -0.014619 0.781 249   -2.402
-##  constante_bajo 24hs - constante_bajo 48hs  0.649500 0.667 249   -1.389
-##  constante_bajo 24hs - contraste_neg 48hs   2.474747 0.888 249   -0.240
-##  constante_bajo 24hs - contraste_pos 48hs  -1.238847 0.783 249   -3.633
-##  contraste_neg 24hs - contraste_pos 24hs   -1.977190 0.806 249   -4.440
-##  contraste_neg 24hs - constante_alto 48hs  -0.752966 0.774 249   -3.118
-##  contraste_neg 24hs - constante_bajo 48hs  -0.088846 0.773 249   -2.453
-##  contraste_neg 24hs - contraste_neg 48hs    1.736400 0.720 249   -0.465
-##  contraste_neg 24hs - contraste_pos 48hs   -1.977194 0.806 249   -4.440
-##  contraste_pos 24hs - constante_alto 48hs   1.224224 0.781 249   -1.163
-##  contraste_pos 24hs - constante_bajo 48hs   1.888343 0.812 249   -0.593
-##  contraste_pos 24hs - contraste_neg 48hs    3.713590 0.949 249    0.813
-##  contraste_pos 24hs - contraste_pos 48hs   -0.000004 0.639 249   -1.954
-##  constante_alto 48hs - constante_bajo 48hs  0.664119 0.791 249   -1.753
-##  constante_alto 48hs - contraste_neg 48hs   2.489366 0.882 249   -0.208
-##  constante_alto 48hs - contraste_pos 48hs  -1.224228 0.781 249   -3.611
-##  constante_bajo 48hs - contraste_neg 48hs   1.825247 0.864 249   -0.816
-##  constante_bajo 48hs - contraste_pos 48hs  -1.888347 0.812 249   -4.370
-##  contraste_neg 48hs - contraste_pos 48hs   -3.713594 0.949 249   -6.614
-##  upper.CL t.ratio p.value
-##     1.988  -0.526  0.9995
-##     2.675   0.424  0.9999
-##     0.785  -2.072  0.4358
-##     1.583  -0.650  0.9981
-##     2.647   0.300  1.0000
-##     4.701   2.389  0.2514
-##     0.785  -2.072  0.4358
-##     3.113   0.951  0.9806
-##     1.156  -1.582  0.7610
-##     2.372  -0.019  1.0000
-##     2.688   0.974  0.9777
-##     5.189   2.787  0.1029
-##     1.156  -1.582  0.7610
-##     0.485  -2.455  0.2203
-##     1.613  -0.973  0.9778
-##     2.275  -0.115  1.0000
-##     3.938   2.411  0.2405
-##     0.485  -2.455  0.2203
-##     3.611   1.568  0.7690
-##     4.370   2.326  0.2836
-##     6.614   3.914  0.0029
-##     1.954   0.000  1.0000
-##     3.081   0.840  0.9906
-##     5.187   2.821  0.0944
-##     1.163  -1.568  0.7690
-##     4.467   2.112  0.4098
-##     0.593  -2.326  0.2836
-##    -0.813  -3.914  0.0029
-## 
-## Results are averaged over the levels of: SEMANA 
-## Results are given on the log odds ratio (not the response) scale. 
-## Confidence level used: 0.95 
-## Conf-level adjustment: tukey method for comparing a family of 8 estimates 
-## P value adjustment: tukey method for comparing a family of 8 estimates
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{plot}\NormalTok{(tukey\_sin3, }\AttributeTok{comparisons=}\NormalTok{T)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{TP_FINAL_RMarkdown_files/figure-latex/unnamed-chunk-1-11.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\DocumentationTok{\#\#\#\# Efectos simples}
-
-\NormalTok{ef\_simples\_sin3}\OtherTok{\textless{}{-}}\FunctionTok{emmeans}\NormalTok{(m9\_sin3,pairwise}\SpecialCharTok{\textasciitilde{}}\NormalTok{TRATAMIENTO}\SpecialCharTok{|}\NormalTok{tiempo\_testeo,}\AttributeTok{type=}\StringTok{"link"}\NormalTok{)}
-
-\NormalTok{ef\_simples\_sin3 }\CommentTok{\# A las 24 hs no dan significativas las comparaciones y las 48 hs dan significativas las comparaciones constante alto vs contraste negativo y contraste negativo vs contraste positivo. Ninguna nos interesa mucho.}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## $emmeans
-## tiempo_testeo = 24hs:
-##  TRATAMIENTO    emmean    SE  df lower.CL upper.CL t.ratio p.value
-##  constante_alto -0.309 0.560 249   -1.413    0.794  -0.552  0.5812
-##  constante_bajo  0.103 0.556 249   -0.991    1.198   0.186  0.8527
-##  contraste_neg  -0.635 0.537 249   -1.693    0.423  -1.183  0.2381
-##  contraste_pos   1.342 0.569 249    0.221    2.463   2.359  0.0191
-## 
-## tiempo_testeo = 48hs:
-##  TRATAMIENTO    emmean    SE  df lower.CL upper.CL t.ratio p.value
-##  constante_alto  0.118 0.557 249   -0.979    1.215   0.212  0.8326
-##  constante_bajo -0.546 0.567 249   -1.663    0.571  -0.963  0.3364
-##  contraste_neg  -2.371 0.681 249   -3.713   -1.030  -3.482  0.0006
-##  contraste_pos   1.342 0.569 249    0.221    2.463   2.359  0.0191
-## 
-## Results are averaged over the levels of: SEMANA 
-## Results are given on the logit (not the response) scale. 
-## Confidence level used: 0.95 
-## 
-## $contrasts
-## tiempo_testeo = 24hs:
-##  contrast                        estimate    SE  df lower.CL upper.CL t.ratio
-##  constante_alto - constante_bajo   -0.413 0.785 249   -2.444    1.618  -0.526
-##  constante_alto - contraste_neg     0.326 0.768 249   -1.662    2.313   0.424
-##  constante_alto - contraste_pos    -1.652 0.797 249   -3.713    0.410  -2.072
-##  constante_bajo - contraste_neg     0.738 0.777 249   -1.271    2.747   0.951
-##  constante_bajo - contraste_pos    -1.239 0.783 249   -3.265    0.787  -1.582
-##  contraste_neg - contraste_pos     -1.977 0.806 249   -4.061    0.106  -2.455
-##  p.value
-##   0.9528
-##   0.9744
-##   0.1651
-##   0.7775
-##   0.3910
-##   0.0698
-## 
-## tiempo_testeo = 48hs:
-##  contrast                        estimate    SE  df lower.CL upper.CL t.ratio
-##  constante_alto - constante_bajo    0.664 0.791 249   -1.381    2.709   0.840
-##  constante_alto - contraste_neg     2.489 0.882 249    0.207    4.772   2.821
-##  constante_alto - contraste_pos    -1.224 0.781 249   -3.244    0.795  -1.568
-##  constante_bajo - contraste_neg     1.825 0.864 249   -0.410    4.060   2.112
-##  constante_bajo - contraste_pos    -1.888 0.812 249   -3.988    0.211  -2.326
-##  contraste_neg - contraste_pos     -3.714 0.949 249   -6.168   -1.259  -3.914
-##  p.value
-##   0.8353
-##   0.0264
-##   0.3989
-##   0.1520
-##   0.0948
-##   0.0007
-## 
-## Results are averaged over the levels of: SEMANA 
-## Results are given on the log odds ratio (not the response) scale. 
-## Confidence level used: 0.95 
-## Conf-level adjustment: tukey method for comparing a family of 4 estimates 
-## P value adjustment: tukey method for comparing a family of 4 estimates
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\#**************************** EN CONCLUSIÓN ************************************}
-
-\CommentTok{\# Sacar los datos de 3hs no ayudó. En los contrastes ortogonales dieron significativas las mismas comparaciones que cuando dejábamos las 3hs. Hasta sucede que cuando dejamos las 3hs, los p{-}valores de las comparaciones son menores, lo que nos lleva a pensar que en realidad sacando las 3hs perdemos potencia porque eliminamos muchas observaciones y la disminución de parámetros estimados no llega a compensarlas. Entonces, decidimos quedarnos con los datos de las 3hs que encima nos aportan información de que a las 3hs (memoria a corto término) no hay diferencias significativas entre los grupos.}
-
-\CommentTok{\# Pensamos en quedarnos con los contrastes ortogonales (con los datos que incluyen las 3hs) porque son los contrastes que queríamos hacer a priori y los resultados podrían tener una explicación biológica. Habría que confirmar que la línea de los contrastes ortogonales está bien hecha.}
-
-\CommentTok{\# Son los contrastes que queríamos hacer porque en otros experimentos que hizo Mili observó que las abejas aprenden más en el tiempo si son alimentadas con mayor concentración de azúcar, hasta llegar a un techo (también hay un piso). Entonces, tiene sentido comparar a los grupos que fueron alimentados con la misma concentración de azúcar en el entrenamiento.}
-
-\CommentTok{\# Pensamos que la comparación constante alto vs contraste positivo a las 48 hs no está dando significativa porque el control (constante alto a las 48 hs) tiene probabilidad muy cercana a 0,5, lo que hace que su varianza sea enorme y haya menor potencia en la comparación.}
-
-
 \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
 \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\# GRÁFICO FINAL \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
 \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
@@ -1995,7 +922,7 @@ genera un mayor efecto diferencial.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{TP_FINAL_RMarkdown_files/figure-latex/unnamed-chunk-1-12.pdf}
+\includegraphics{TP_FINAL_RMarkdown_files/figure-latex/unnamed-chunk-1-9.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2005,7 +932,7 @@ genera un mayor efecto diferencial.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{TP_FINAL_RMarkdown_files/figure-latex/unnamed-chunk-1-13.pdf}
+\includegraphics{TP_FINAL_RMarkdown_files/figure-latex/unnamed-chunk-1-10.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2014,7 +941,7 @@ genera un mayor efecto diferencial.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{TP_FINAL_RMarkdown_files/figure-latex/unnamed-chunk-1-14.pdf}
+\includegraphics{TP_FINAL_RMarkdown_files/figure-latex/unnamed-chunk-1-11.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2023,7 +950,7 @@ genera un mayor efecto diferencial.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{TP_FINAL_RMarkdown_files/figure-latex/unnamed-chunk-1-15.pdf}
+\includegraphics{TP_FINAL_RMarkdown_files/figure-latex/unnamed-chunk-1-12.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2032,6 +959,6 @@ genera un mayor efecto diferencial.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{TP_FINAL_RMarkdown_files/figure-latex/unnamed-chunk-1-16.pdf}
+\includegraphics{TP_FINAL_RMarkdown_files/figure-latex/unnamed-chunk-1-13.pdf}
 
 \end{document}
