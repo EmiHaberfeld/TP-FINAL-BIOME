@@ -267,6 +267,8 @@ m10 <- glmmTMB(rta ~ TRATAMIENTO*tiempo_testeo + SEMANA + (1|ID), data=long_test
 ########################### EVALUACIÓN DE SUPUESTOS ############################
 ################################################################################
 
+# Como la variable respuesta es dicotómica, no hay posibilidad de sobre o subdispersión.
+
 ################# Supuestos m9:
 
 #### Parte fija:
@@ -290,6 +292,8 @@ car::qqPlot(Bi_ID)
 # Prueba de shapiro:
 shapiro.test(Bi_ID)
 
+# Para el modelo 9 (semana como aleatoria) no se cumple la normalidad de la variable aleatoria ID. 
+
 ################# Supuestos m10:
 
 #### Parte fija:
@@ -301,36 +305,43 @@ Bi_ID_10 <- unlist(ranef(m10))
 car::qqPlot(Bi_ID_10)
 shapiro.test(Bi_ID_10)
 
-# PARA M10 (SEMANA FIJA) NO HAY EVIDENCIAS PARA RECHAZAR CUMPLIMIENTO DE SUPUESTOS DE LA PARTE FIJA NI ALEATORIA (ID).
-# PARA M9 NO SE CUMPLE LA NORMALIDAD DE LA VARIABLE ALEATORIA ID.
+# Para el modelo 10 (semana como fija) no hay evidencias para rechazar el cumplimiento de los supuestos de la parte fija ni aleatoria (ID). Optamos por el modelo 10 con la semana como variable aleatoria porque no descartamos el incumplimiento de los supuestos.
 
-AIC(m9,m10)
-# Elegimos usar m10 porque mejora el AIC y se cumplen los supuestos.
 ```
 Se implementó un modelo lineal generalizado condicional con la función glmmTMB de la librería glmmTMB. Se optó por un modelo condicional ya que se compararon modelos marginales con distintas matrices de correlación y, a partir de un ranking de QIC (el cual compara modelos según su verosimilitud y cantidad de parámetros estimados), el más conveniente resultó ser un modelo marginal con matriz de simetría compuesta. Como los modelos condicionales tienen implícita una matriz de simetría compuesta y resultan más familiares para su implementación en R, se eligió esta opción. 
 Al elegir un modelo condicional en vez de uno marginal, se quiso en un principio incluir a la variable explicativa "semana" como una variable de efectos aleatorios, dado que no se presentan preguntas puntuales acerca de las diferencias entre semanas y sería interesante poder generalizar a todas las semanas en las que se podría hacer el experimento. Sin embargo, al evaluar los supuestos, el supuesto de normalidad de los residuos de la variable de efectos aleatorios “ID” no cumplía las expectativas. Por lo tanto, se terminó incluyendo la variable "semana" como una de efectos fijos. El modelo ahora incluye más parámetros y, por lo tanto, logra un mejor ajuste, resultando en predichos más precisos con los datos. Es por esto que al evaluar nuevamente los supuestos, se logra obtener una prueba satisfactoria de Shapiro-Wilk para los residuos de la variable de efectos aleatorios “ID”.
 
-## Modelo teórico
+#### Modelo teórico
+
+$Y_{ijkl} = $*extensión / no extensión de la probóscide frente al odorante*
+
+$Y_{ijkl}\sim Bernoulli (\pi_{ijk})$
 
 ##### *Escala del predictor lineal*
 
-$logit$($\pi_{ijk}$) = $\mu$ + $\alpha_i$ + $\beta_j$ + $\alpha\beta_{ij}$ + $\gamma_k$ + $A_{l(ij)(k)}$
+$logit$($\pi_{ijkl}$) = $\mu$ + $\alpha_i$ + $\beta_j$ + $\alpha\beta_{ij}$ + $\gamma_k$ + $A_{l(ij)(k)}$
 
 ##### *Escala de odds*
 
-$\frac{\pi_{ijk}}{(1-\pi_{ijk})}$= $e^{(\mu + \alpha_i + \beta_j + \alpha*\beta_{ij} + \gamma_k + A_{l(ij)(k)})}$
-
-##### *Escala de probabilidades*
-
-$\pi_{ijk}$ = $\frac{e^{(\mu + \alpha_i + \beta_j + \alpha*\beta_{ij} + \gamma_k + A_{l(ij)(k)})}}{1+e^{(\mu + \alpha_i + \beta_j + \alpha*\beta_{ij} + \gamma_k + A_{l(ij)(k)})}}$
-
-Con *i* = 1 *a* 4; *j* = 1 *a* 3;  *k* = 1 *a* 7 y *l* = 1 *a* ?
+$\frac{\pi_{ijkl}}{(1-\pi_{ijkl})}$= $e^{(\mu + \alpha_i + \beta_j + \alpha*\beta_{ij} + \gamma_k + A_{l(ij)(k)})}$
 
 *Siendo odds igual a la probabilidad de extensión de probóscide sobre la probabilidad de no extensión.*
 
-$Y_{ijk}\sim Bernoulli (\pi_{ijk})$
+##### *Escala de probabilidades*
 
-*Con Y siendo extensi?n de la prob?scide frente al odorante.*
+$\pi_{ijkl}$ = $\frac{e^{(\mu + \alpha_i + \beta_j + \alpha*\beta_{ij} + \gamma_k + A_{l(ij)(k)})}}{1+e^{(\mu + \alpha_i + \beta_j + \alpha*\beta_{ij} + \gamma_k + A_{l(ij)(k)})}}$
+
+Con *i* = 1 a 4,
+*j* = 1 a 3,
+*k* = 1 a 7,
+*l* = 1 a 21 cuando *k* = 1
+*l* = 1 a 13 cuando *k* = 2 
+*l* = 1 a 13 cuando *k* = 3
+*l* = 1 a 19 cuando *k* = 4
+*l* = 1 a 22 cuando *k* = 5
+*l* = 1 a 28 cuando *k* = 6
+*l* = 1 a 16 cuando *k* = 7
+
 
 $A_l\sim NID(0, \sigma_{abejas}^2)$
 
