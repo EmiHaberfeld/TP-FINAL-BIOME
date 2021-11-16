@@ -267,12 +267,13 @@ m10 <- glmmTMB(rta ~ TRATAMIENTO*tiempo_testeo + SEMANA + (1|ID), data=long_test
 ########################### EVALUACIÓN DE SUPUESTOS ############################
 ################################################################################
 
-# Supuestos m9:
-## Parte fija:
+################# Supuestos m9:
+
+#### Parte fija:
 sim_m9 <- simulateResiduals(m9, n=1000)
 plot(sim_m9)
 
-# Supuestos para variable aleatoria Semana:
+#### Variable aleatoria Semana:
 Bi_semana <- unlist(ranef(m9))
 Bi_semana <- Bi_semana[1:7]
 # QQPlot con estos residuos:
@@ -280,7 +281,7 @@ car::qqPlot(Bi_semana)
 # Prueba de shapiro:
 shapiro.test(Bi_semana)
 
-# Supuestos para variable aleatoria ID:
+#### Variable aleatoria ID:
 Bi_ID <- unlist(ranef(m9))
 Bi_ID <- Bi_ID[8:139]
 # QQPlot con estos residuos:
@@ -289,12 +290,13 @@ car::qqPlot(Bi_ID)
 # Prueba de shapiro:
 shapiro.test(Bi_ID)
 
-# Supuestos m10:
-## Parte fija:
+################# Supuestos m10:
+
+#### Parte fija:
 sim_m10 <- simulateResiduals(m9, n=1000)
 plot(sim_m10)
 
-# Supuestos para variable aleatoria ID:
+#### Variable aleatoria ID:
 Bi_ID_10 <- unlist(ranef(m10))
 car::qqPlot(Bi_ID_10)
 shapiro.test(Bi_ID_10)
@@ -304,8 +306,7 @@ shapiro.test(Bi_ID_10)
 
 AIC(m9,m10)
 # Elegimos usar m10 porque mejora el AIC y se cumplen los supuestos.
-
-
+```
 Se implementó un modelo lineal generalizado condicional con la función glmmTMB de la librería glmmTMB. Se optó por un modelo condicional ya que se compararon modelos marginales con distintas matrices de correlación y, a partir de un ranking de QIC (el cual compara modelos según su verosimilitud y cantidad de parámetros estimados), el más conveniente resultó ser un modelo marginal con matriz de simetría compuesta. Como los modelos condicionales tienen implícita una matriz de simetría compuesta y resultan más familiares para su implementación en R, se eligió esta opción. 
 Al elegir un modelo condicional en vez de uno marginal, se quiso en un principio incluir a la variable explicativa "semana" como una variable de efectos aleatorios, dado que no se presentan preguntas puntuales acerca de las diferencias entre semanas y sería interesante poder generalizar a todas las semanas en las que se podría hacer el experimento. Sin embargo, al evaluar los supuestos, el supuesto de normalidad de los residuos de la variable de efectos aleatorios “ID” no cumplía las expectativas. Por lo tanto, se terminó incluyendo la variable "semana" como una de efectos fijos. El modelo ahora incluye más parámetros y, por lo tanto, logra un mejor ajuste, resultando en predichos más precisos con los datos. Es por esto que al evaluar nuevamente los supuestos, se logra obtener una prueba satisfactoria de Shapiro-Wilk para los residuos de la variable de efectos aleatorios “ID”.
 
@@ -335,97 +336,9 @@ $A_l\sim NID(0, \sigma_{abejas}^2)$
 
 ```{r,include=FALSE}
 ################################################################################
-############################### MODELADO #######################################
-################################################################################
-
-################## PRIMERA PROPUESTA: MODELO MARGINAL (GEEGLM)
-# Para geeglm, las filas del data frame tienen que estar ordenadas por paciente y por tiempo:
-long_testeo <- arrange(long_testeo,ID)
-
-# Notacion de matrices de covarianza en geeglm:
-# Estructura simple: independence
-# Simetria compuesta: exchangeable
-# AR1: ar1
-# Desestructurada: unstructured
-
-### Interaccion tratamiento*tiempo
-m5 <- geeglm(formula=rta~TRATAMIENTO*tiempo_testeo+SEMANA,family=binomial,data=long_testeo,id=ID,
-             corstr="independence")
-anova(m5)
-m6 <- geeglm(formula=rta~TRATAMIENTO*tiempo_testeo+SEMANA,family=binomial,data=long_testeo,id=ID,
-             corstr="exchangeable")
-anova(m6)
-m7 <- geeglm(formula=rta~TRATAMIENTO*tiempo_testeo+SEMANA,family=binomial,data=long_testeo,id=ID,
-             corstr="ar1")
-anova(m7)
-m8 <- geeglm(formula=rta~TRATAMIENTO*tiempo_testeo+SEMANA,family=binomial,data=long_testeo,id=ID,
-             corstr="unstructured")
-anova(m8)
-
-## SELECCION DE MODELOS (en geeglm rankeamos por QIC):
-model.sel(m5,m6,m7,m8, rank = QIC)
-
-# Estructura simple: la sacamos porque no estariamos declarando dependencia de datos entre tiempos para una misma abeja.
-# Simetria compuesta: decimos que para cada abeja hay una misma correlacion entre tiempos.
-# AR1: la sacamos porque a pesar de tener la misma cantidad de parámetros que la de simetria compuesta, tiene un peor ajuste porque nuestros tiempos no son equidistantes como asume AR1, entonces el QIC es mayor.
-# Desestructurada: la sacamos porque estima mas parametros, por eso el QIC da un poco mas alto.
-
-################## SEGUNDA PROPUESTA: MODELO CONDICIONAL (GLMMTMB)
-
-# Como elegimos simetria compuesta, probamos un modelo condicional:
-
-# Semana como aleatoria:
-m9 <- glmmTMB(rta ~ TRATAMIENTO*tiempo_testeo +  (1|SEMANA) + (1|ID), data=long_testeo, family="binomial")
-
-# Semana como fija:
-m10 <- glmmTMB(rta ~ TRATAMIENTO*tiempo_testeo + SEMANA + (1|ID), data=long_testeo, family="binomial")
-
-################################################################################
-########################### EVALUACIÓN DE SUPUESTOS ############################
-################################################################################
-
-# Supuestos m9:
-## Parte fija:
-sim_m9 <- simulateResiduals(m9, n=1000)
-plot(sim_m9)
-
-# Supuestos para variable aleatoria Semana:
-Bi_semana <- unlist(ranef(m9))
-Bi_semana <- Bi_semana[1:7]
-# QQPlot con estos residuos:
-car::qqPlot(Bi_semana)
-# Prueba de shapiro:
-shapiro.test(Bi_semana)
-
-# Supuestos para variable aleatoria ID:
-Bi_ID <- unlist(ranef(m9))
-Bi_ID <- Bi_ID[8:139]
-# QQPlot con estos residuos:
-# QQPlot con estos residuos:
-car::qqPlot(Bi_ID)
-# Prueba de shapiro:
-shapiro.test(Bi_ID)
-
-# Supuestos m10:
-## Parte fija:
-sim_m10 <- simulateResiduals(m9, n=1000)
-plot(sim_m10)
-
-# Supuestos para variable aleatoria ID:
-Bi_ID_10 <- unlist(ranef(m10))
-car::qqPlot(Bi_ID_10)
-shapiro.test(Bi_ID_10)
-
-# PARA M10 (SEMANA FIJA) NO HAY EVIDENCIAS PARA RECHAZAR CUMPLIMIENTO DE SUPUESTOS DE LA PARTE FIJA NI ALEATORIA (ID).
-# PARA M9 NO SE CUMPLE LA NORMALIDAD DE LA VARIABLE ALEATORIA ID.
-
-AIC(m9,m10)
-# Elegimos usar m10 porque mejora el AIC y se cumplen los supuestos.
-
-################################################################################
 ########################## ESTIMACIÓN E INFERENCIA #############################
 ################################################################################
-```
+
 ## Modelo implementado en R
 ```{r}
 m10 <- glmmTMB(rta ~ TRATAMIENTO*tiempo_testeo + SEMANA + (1|ID), data=long_testeo, family="binomial")   # Modelo seleccionado: semana como VE de efectos fijos
