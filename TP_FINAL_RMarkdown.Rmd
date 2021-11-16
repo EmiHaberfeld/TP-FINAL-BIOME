@@ -249,7 +249,7 @@ model.sel(m5,m6,m7,m8, rank = QIC)
 # Los QIC dan muy similares porque tenemos pocos tiempos que correlacionar y cualquier matriz de covarianza ajusta medianamente bien.
 
 # Estructura simple (m5): lo descartamos porque no estaríamos declarando dependencia de datos entre tiempos para una misma abeja.
-# Simetría compuesta (m6): decimos que para cada abeja hay una misma correlacion entre tiempos. Elegimos este modelo.
+# Simetría compuesta (m6): decimos que para cada abeja hay una misma correlacion entre tiempos. Elegimos este modelo porque dentro de los que declaran dependencia es el que tiene menor QIC.
 # AR1 (m7): lo descartamos porque a pesar de tener la misma cantidad de parámetros que la de simetría compuesta, tiene un peor ajuste porque nuestros tiempos no son equidistantes como asume AR1, entonces el QIC es mayor.
 # Desestructurada (m8): el QIC da más alto porque estima más parámetros y la verosimilitud no aumenta lo suficiente para compensarlo. Por lo tanto, descartamos este modelo.
 
