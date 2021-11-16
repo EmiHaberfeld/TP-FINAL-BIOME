@@ -194,7 +194,7 @@ Como se observa variabilidad en las respuestas entre semanas, podría resultar c
 
 
 ### Modelo estadístico - Etapa de evaluación
-Como la variable respuesta es dicotómica (extensión o no de la probóscide), se espera una distribución de probabilidades de Bernoulli. Por lo tanto, se utilizará un modelo lineal generalizado para modelarla. El diseño experimental es de medidas repetidas porque cada abeja fue medida repetidas veces a lo largo del tiempo (4 veces en la etapa de evaluación).
+Como la variable respuesta es dicotómica (extensión o no de la probóscide), se espera una distribución de probabilidades de Bernoulli. Por lo tanto, se utilizará un modelo lineal generalizado para modelarla. El diseño experimental es de medidas repetidas porque cada abeja fue medida repetidas veces a lo largo del tiempo (3 veces en la etapa de evaluación).
 
 Como variables explicativas se incluyeron:
 
