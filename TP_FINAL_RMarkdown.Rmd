@@ -173,7 +173,29 @@ Desde un punto de vista m√°s te√≥rico quisimos, en un principio, incluir a la va
 Como soluci√≥n a este problema decidimos probar incluir en el modelo la variable semana como una de efectos fijos. El modelo ahora incluye m√°s par√°metros y por lo tanto logra un mejor ajuste, resultando en predichos m√°s precisos con nuestros datos. Es por esto que al chequear nuevamente los supuestos, se logra obtener una prueba satisfactoria de Shapiro-Wilk para los residuos de la variable de efectos aleatorios ‚ÄúID‚Äù.
 
 ## Modelo te√≥rico
-logit($$\pi_{ijkl}$$) = $$\mu$$ + $$\alpha_i$$ + $$\beta_j$$ + $$\alpha*\beta_{ij}$$ + $$\gamma_k$$ + $$A_{l(ij)(k)}$$
+
+##### *Escala del predictor lineal*
+
+$logit$($\pi_{ijk}$) = $\mu$ + $\alpha_i$ + $\beta_j$ + $\alpha*\beta_{ij}$ + $\gamma_k$ + $A_{l(ij)(k)}$
+
+##### *Escala de odds*
+
+$\pi_{ijk}$/$(1-\pi_{ijk})$ = $e^{(\mu + \alpha_i + \beta_j + \alpha*\beta_{ij} + \gamma_k + A_{l(ij)(k)})}$
+
+##### *Escala de probabilidades*
+
+$\pi_{ijk}$ = $\frac{e^{(\mu + \alpha_i + \beta_j + \alpha*\beta_{ij} + \gamma_k + A_{l(ij)(k)})}}{1+e^{(\mu + \alpha_i + \beta_j + \alpha*\beta_{ij} + \gamma_k + A_{l(ij)(k)})}}$
+
+Con *i* = 1 *a* 4, *j* = 1 *a* 3, *k* = 1 *a* ? y *l* = 1 *a* ?
+
+*Siendo odds igual a la probabilidad de extensiÛn de probÛscide sobre la probabilidad de no extensiÛn.*
+
+$Y_{ijk}\sim Bernoulli (\pi_{ijk})$
+
+*Con Y siendo extensiÛn de la probÛscide frente al odorante.*
+
+$A_l\sim NID(0, \sigma_{abejas}^2)$
+
 ```{r,include=FALSE}
 ################################################################################
 ############################### MODELADO #######################################
