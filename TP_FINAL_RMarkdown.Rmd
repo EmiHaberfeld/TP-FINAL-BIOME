@@ -1,14 +1,13 @@
 ---
-title: "Trabajo Práctico Final  \nBiometría II - 2021"
-author: "Matías Alemán, Milagros Azcueta, Manuel Fiz, Emilia Haberfeld, Diego Kafer, Juan Francisco Robuschi, Ilán Shalom, Rodrigo Villarreal"
-date: "16/11/2021"
+title: "El rol de la expectativa en la formación de memorias apetitivas en abejas *Apis mellifera*  \nBiometría II - 2021"
+author: "Matías Alemán, Milagros Azcueta, Manuel Fiz, Emilia Haberfeld, Diego Kafer, \nJuan Francisco Robuschi, Ilán Shalom, Rodrigo Villarreal"
 output: pdf_document
 editor_options: 
   chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 ```
 ```{r, include=FALSE}
 # Borrar objetos de la memoria
@@ -17,8 +16,7 @@ rm(list = ls())
 ################################################################################
 ####################### CARGA DE LIBRERIAS Y DATOS: ############################
 ################################################################################
-#install.packages('tinytex')
-tinytex::install_tinytex()
+
 library(readxl)    # datos de excel
 library(reshape2)  # melt
 library(pastecs)   # tapply
@@ -32,28 +30,51 @@ library(car)       # Anova
 library(emmeans)   # comparaciones
 library(DHARMa)
 
-setwd("D:/Milagros Azcueta/Documents/GitHub/TP-FINAL-BIOME")
-datos <- read_excel("datos.xlsx")
+setwd("") # Setear directorio de trabajo.
+datos <- read_excel("datos.xlsx") # Cargamos la base de datos
 str(datos)
+# Cambiamos variables explicativas a factores
 datos$SEMANA         <- as.factor(datos$SEMANA)
 datos$ID             <- as.factor(datos$ID)
 datos$ANT            <- as.factor(datos$ANT)
 datos$PROB           <- as.factor(datos$PROB)
 datos$TRATAMIENTO    <- as.factor(datos$TRATAMIENTO)
 str(datos)
-# Colmena no la vamos a incluir en el analisis porque esta explicada por Semana.
 ```
 # Introducción
-Los animales se encuentran constantemente tomando decisiones respecto a cuándo alimentarse, aparearse, dormir, y demás acciones (1). A través de aprendizajes y experiencias previas, son capaces de comparar dos o más escenarios probables antes de realizar cualquier acción (2). La generación de una expectativa respecto a dichos escenarios es un proceso que permite a los animales predecir la aparición de estímulos (tanto aversivos como apetitivos) y de este modo, adaptar su comportamiento (3). Esta expectativa incide directamente en sus capacidades mnésicas, debido a que el aprendizaje depende de asociaciones entre claves externas y representaciones internas de dichas claves (4). Este proceso ha sido ampliamente estudiado en vertebrados, pero hay menos información disponible en invertebrados.
+Los animales se encuentran constantemente tomando decisiones respecto a cuándo alimentarse, aparearse, dormir, y demás acciones (1). A través de aprendizajes y experiencias previas, son capaces de comparar dos o más escenarios probables antes de realizar cualquier acción (2). La generación de una expectativa respecto a dichos escenarios es un proceso que permite a los animales predecir la aparición de estímulos (tanto aversivos como apetitivos) y, de este modo, adaptar su comportamiento (3). Esta expectativa incide directamente en sus capacidades mnésicas, debido a que el aprendizaje depende de asociaciones entre claves externas y representaciones internas de dichas claves (4). Este proceso ha sido ampliamente estudiado en vertebrados, pero hay menos información disponible en invertebrados.
 
-El objetivo de este trabajo es estudiar la modulación de memorias a largo término a partir de cambios en la expectativa de la recompensa. El modelo experimental es la abeja Apis mellifera y los experimentos fueron realizados en un contexto controlado dentro del laboratorio.
+El objetivo de este trabajo es estudiar la modulación de memorias a corto y largo término a partir de cambios en la expectativa de la recompensa. Se espera que una mayor expectativa mejore el aprendizaje y una menor expectativa disminuya el aprendizaje. El modelo experimental es la abeja *Apis mellifera* y los experimentos fueron realizados en un contexto controlado dentro del laboratorio.
 
 # Materiales y métodos
-Abejas Apis mellifera fueron entrenadas bajo un condicionamiento clásico del reflejo de extensión de probóscide (de aquí en más PER, por sus siglas en inglés) (5,6): se administra un odorante a la vez que se tocan las antenas con una gota de sacarosa. La abeja extiende su probóscide como reflejo de este estímulo, y en ese momento se la alimenta con una solución azucarada. De este entrenamiento, recibieron 4 ensayos. Terminada la etapa de entrenamiento, se realizaron tres testeos donde se presentó solo el odorante a 3, 24 y 48 hs posteriores al último ensayo de entrenamiento.
+Abejas *Apis mellifera* fueron entrenadas bajo un condicionamiento clásico del reflejo de extensión de probóscide (de aquí en más PER, por sus siglas en inglés) (5, 6): se administra un odorante a la vez que se tocan las antenas con una gota de sacarosa; la abeja extiende su probóscide como reflejo de este estímulo y, en ese momento, se la alimenta con una solución azucarada sobre la probóscide. De este entrenamiento recibieron 4 ensayos espaciados cada 10 minutos. Terminado el último ensayo de la etapa de entrenamiento, se realizaron tres testeos donde se presentó solo el odorante a 3 hs, 24 hs y 48 hs y se midió la extensión de la probóscide frente al olor (sí-no).
 
-Las abejas se dividieron en 4 grupos experimentales dependiendo de la sacarosa recibida en las antenas y en la probóscide. Los grupos "constante alto" y "constante bajo" recibieron tanto en las antenas como en la probóscide azúcar de concentración 1,5 M y 0,5 M respectivamente. Por otro lado, los grupos "contraste positivo" y "contraste negativo" recibieron azúcar de distinta concentración en cada pieza sensorial: los animales del grupo contraste positivo recibieron sacarosa 0,5 M en las antenas y 1,5 M en su probóscide. Por otro lado, los animales del contraste negativo recibieron azúcar 1,5 M en las antenas para luego ser alimentados con sacarosa 0,5 M.
+![](dispositivo_experimental.jpg)
+**Figura 1:** dispositivo experimental. MILI O MATI DESCRIBAN ESTA.
 
-A continuación se presentan gráficos en base a una estadística descriptiva exploratoria para observar la tendencia de los datos:
+![](linea_de_tiempo.jpg)
+**Figura 2:** diseño experimental MILI VENÍ A CHECKEAR ESTA
+
+Para estudiar el rol de la expectativa en la formación de memoria, las abejas se dividieron en 4 grupos experimentales dependiendo de la concentración de sacarosa recibida en las antenas y en la probóscide. El grupo **"constante bajo"** recibió tanto en las antenas como en la probóscide una solución azucarada de concentración 0,5 M. En cambio, el grupo **"constante alto"** recibió tanto en las antenas como en la probóscide azúcar de concentración 1,5 M. Por otro lado, los grupos *"contraste positivo"* y *"contraste negativo"* recibieron soluciones azucaradas de distinta concentración en cada pieza sensorial: los animales del grupo "contraste positivo" recibieron sacarosa 0,5 M en las antenas y 1,5 M en su probóscide. Por último, los animales del "contraste negativo" recibieron azúcar 1,5 M en las antenas y 0,5 M en la probóscide.
+
+Se espera que el grupo "contraste positivo" aprenda la asociación olor-azúcar más fuertemente que el grupo "constante alto" debido a un mayor estado motivacional gracias a la "sorpresa" recibida en la probóscide (azúcar 1,5 M) en contraste con lo recibido en las antenas segundos antes (0,5 M). Caso opuesto, se espera que la proporción de animales del grupo "contraste negativo" que aprendan la asociación sea menor que la proporción de animales del grupo "constante bajo", debido a un estado motivacional degradado por la "decepción" de recibir azúcar 0,5 M cuando esperaban 1,5 M. La idea es comparar entre grupos con igual concentración de azúcar recibida en la probóscide dado que la ingesta de alimento (la recompensa) es la señal post-ingestiva que permite la consolidación de la memoria asociativa. (CITAR SI EXISTE).
+
+Para minimizar la variabilidad entre individuos, se tomaron las siguientes decisiones sobre el diseño experimental: todas aquellas abejas que presentaron PER al estimular con el odorante previo al condicionamiento fueron excluidas del experimento. De esta manera, se buscó que las respuestas de PER observadas tengan una relación directa con el aprendizaje y no que se estén viendo respuestas espontáneas o basadas en experiencias previas. Es por esto que todos los valores del primer ensayo del entrenamiento son nulos. Además, se decidió excluir aquellas abejas que no comieron en al menos dos ensayos de la fase de aprendizaje para descartar a aquellas con menor apetito. En consecuencia, se descartan las abejas que por falta de motivación no transitaron el aprendizaje con la contigüidad y contingencia necesaria entre los estímulos para generar una memoria robusta. Por último, se estipuló que si una abeja fallecía durante la duración total del experimento, los datos recopilados de esa abeja no se contemplarían en el análisis estadístico.
+
+Como VR se midió la extensión de la probóscide frente al olor (si-no). Al ser una variable dicotómica, la distribución de probabilidades esperada es una Bernoulli. El diseño es de medidas repetidas ya que cada abeja fue medida 7 veces (4 ensayos de entrenamiento + 3 testeos). Se realizó estadística descriptiva de la etapa de entrenamiento y un modelo estadístico para la etapa de evaluación ya que el mayor interés del análisis está depositado en las diferencias observables durante esta etapa. Como variables explicativas se incluyeron:
+
+VE1: Tiempo de testeo → cualitativa fija de 3 niveles (3, 24, 48 hs).
+
+VE2: Tratamiento → cualitativa fija de 4 niveles (constante alto, constante bajo, contraste positivo, contraste negativo)
+
+VE3: ID de abeja → cualitativa aleatoria de 132 niveles (abeja 1 a 132).
+
+VE4: Semana de trabajo → cualitativa aleatoria de 7 niveles (semanas 1 a 7). Covariable.
+
+
+
+Para evaluar el aprendizaje en la etapa de entrenamiento se realizó un análisis descriptivo porque interesa saber cualitativamente si todas hay una tendencia de aprendizaje en todas las abejas. Se sabe por otros estudios MILIII que el protocolo realizado logra un aprendizaje efectivo.
+
 ```{r,include=FALSE}
 ################################################################################
 ############################### DESCRIPTIVA ####################################
@@ -90,7 +111,16 @@ gp_entr <- ggplot(prob_exito_entr_long, aes(x=nro_ensayo, y=proporcion_exitos, c
                       values=c("#00b050","#70ad47","#ed7c31","#ff0000")) +
   labs(col="Tratamiento") +
   guides(color = guide_legend(override.aes=list(shape=c(15,15,16,16)))) #leyenda
+```
+```{r}
+gp_entr   # Grafico de perfiles de la etapa de entrenamiento
+```
+**Figura 3:** Proporciones de PER para cada tratamiento en cada ensayo de entrenamiento.
 
+En la etapa de entrenamiento, se observa que todos los animales parten de una respuesta nula al odorante en el ensayo 1. En los ensayos subsiguientes todos los grupos parecen alcanzar una proporción de PER asintótica alrededor de 0,6, lo que se traduce en un buen aprendizaje de la asociación odorante-recompensa.
+
+
+```{r, include=FALSE}
 ################## TESTEO:
 # PASAMOS DATOS TEST A LONG:
 wide_testeo <- datos[,c(1,2,3,4,5,10,11,12)]
@@ -125,9 +155,15 @@ gp_testeo <- ggplot(prob_exito_testeo_long,aes(x=tiempo_testeo, y=proporcion_exi
                       values=c("#00b050","#70ad47","#ed7c31","#ff0000")) +
   guides(color = guide_legend(override.aes=list(shape=c(15,15,16,16)))) + #leyenda
   labs(col="Tratamiento")
+gp_testeo # Grafico de perfiles de la etapa de evaluacion
 
+# Proporciones de PER para cada tratamiento en cada tiempo de evaluación. Respecto a la etapa de evaluación, a 3 hs los resultados parecen ser opuestos a la hipótesis (los grupos CONSTANTE BAJO y CONTRASTE NEGATIVO tienen respuestas más altas que CONSTANTE ALTO y CONTRASTE POSITIVO), pero luego, esta relación se revierte en las pruebas a 24 y 48 hs.
+```
+
+................. ESCRIBIR ALGO SOBRE POR QUÉ HACEMOS DESCRIPTIVA DE SEMANA
+
+```{r, include=FALSE}
 ################## EXPLORAMOS SEMANA COMO COVARIABLE:
-
 prob_exito_semana <- round(tapply(long_testeo$rta,list(long_testeo$SEMANA,long_testeo$tiempo_testeo), mean),2)
 prob_exito_semana
 # Creamos un data frame en formato long con estos valores:
@@ -143,29 +179,16 @@ gp_semana <- ggplot(prob_exito_semana_long, aes(x=tiempo_testeo, y=proporcion_ex
   labs(x="Tiempo de evaluacion (hs)",y="Proporcion de PER",title="Proporcion de PER en cada semana",col="Semana") +
   ylim(0,1) + theme_classic()
 ```
-```{r}
-gp_entr   # Grafico de perfiles de la etapa de entrenamiento
-```
-**Figura 1:** Proporciones de PER para cada tratamiento en cada ensayo de entrenamiento. En la etapa de entrenamiento, se observa que todos los animales parten de una respuesta nula al odorante en el ensayo 1. En los ensayos subsiguientes todos los grupos parecen alcanzar una proporción de PER asintótica alrededor de 0,6, lo que se traduce en un buen aprendizaje de la asociación odorante-recompensa.
-```{r}
-gp_testeo # Grafico de perfiles de la etapa de evaluacion
-```
-**Figura 2:** Proporciones de PER para cada tratamiento en cada tiempo de evaluación. Respecto a la etapa de evaluación, a 3 hs los resultados parecen ser opuestos a la hipótesis (los grupos CONSTANTE BAJO y CONTRASTE NEGATIVO tienen respuestas más altas que CONSTANTE ALTO y CONTRASTE POSITIVO), pero luego, esta relación se revierte en las pruebas a 24 y 48 hs.
+
 ```{r}
 gp_semana # Grafico de perfiles de la etapa de evaluacion por semana
 ```
-**Figura 3:** Respecto a la proporción de PER en cada tiempo de evaluación en cada semana, se observa cierto grado de variabilidad en las respuestas. Resulta conveniente incluirla como variable explicatoria del modelo.
+**Figura 4:** proporción de PER en cada tiempo de evaluación para cada semana (se promediaron los cuatro tratamientos).
+
+Como se observa variabilidad en las respuestas entre semanas, resulta conveniente incluir la variable "semana" como variable explicatoria del modelo para tener una mayor variabilidad explicada.
 
 # Modelado
-Como VR se midió la extensión de la probóscide frente al olor (si-no). Al ser una variable dicotómica, la distribución de probabilidades esperada es una Bernoulli. El diseño es de medidas repetidas ya que cada abeja fue medida 7 veces (4 ensayos de entrenamiento + 3 testeos). Se realizó estadística descriptiva de la etapa de entrenamiento y un modelo estadístico para la etapa de evaluación ya que el mayor interés del análisis está depositado en las diferencias observables durante esta etapa. Como variables explicativas se incluyeron:
 
-VE1: Tiempo de testeo → cualitativa fija de 3 niveles (3, 24, 48 hs).
-
-VE2: Tratamiento → cualitativa fija de 4 niveles (constante alto, constante bajo, contraste positivo, contraste negativo)
-
-VE3: ID de abeja → cualitativa aleatoria de 132 niveles (abeja 1 a 132).
-
-VE4: Semana de trabajo → cualitativa aleatoria de 7 niveles (semanas 1 a 7). Covariable.
 
 Se implementó un modelo lineal generalizado condicional con la función glmmTMB de la librería glmmTMB. Se optó por un modelo condicional ya que se compararon modelos marginales con distintas matrices de correlación y, a partir de un ranking de QIC (el cual compara modelos según su verosimilitud y cantidad de parámetros estimados), el más conveniente resultó ser un modelo marginal con matriz de simetría compuesta. Como los modelos condicionales tienen implícita una matriz de simetría compuesta y resultan más familiares para su implementación en R, se elige esta opción. 
 Desde un punto de vista más teórico quisimos, en un principio, incluir a la variable “semana” como una de efectos aleatorios, dado que no presentamos preguntas o hipótesis puntuales acerca de las diferencias entre semanas. Sin embargo, al chequear los supuestos, el supuesto de normalidad de los residuos de la variable de efectos aleatorios “ID” no cumplía las expectativas.
@@ -188,11 +211,11 @@ $\pi_{ijk}$ = $\frac{e^{(\mu + \alpha_i + \beta_j + \alpha*\beta_{ij} + \gamma_k
 
 Con *i* = 1 *a* 4, *j* = 1 *a* 3, *k* = 1 *a* ? y *l* = 1 *a* ?
 
-*Siendo odds igual a la probabilidad de extensi�n de prob�scide sobre la probabilidad de no extensi�n.*
+*Siendo odds igual a la probabilidad de extensi?n de prob?scide sobre la probabilidad de no extensi?n.*
 
 $Y_{ijk}\sim Bernoulli (\pi_{ijk})$
 
-*Con Y siendo extensi�n de la prob�scide frente al odorante.*
+*Con Y siendo extensi?n de la prob?scide frente al odorante.*
 
 $A_l\sim NID(0, \sigma_{abejas}^2)$
 
