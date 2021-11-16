@@ -28,6 +28,7 @@ library(glmmTMB)   # Modelado con glmmTMB
 library(car)       # Anova
 library(emmeans)   # Comparaciones
 library(DHARMa)    # Supuestos
+library(dplyr)     # Función arrange
 
 setwd("") # Setear directorio de trabajo.
 datos <- read_excel("datos.xlsx") # Cargamos la base de datos
@@ -193,8 +194,6 @@ Como variables explicativas se incluyeron:
 - ID de abeja: cualitativa aleatoria de 132 niveles (abeja 1 a 132).
 
 - Semana de trabajo: cualitativa fija de 7 niveles (semanas 1 a 7).
-
-
 
 Se implementó un modelo lineal generalizado condicional con la función glmmTMB de la librería glmmTMB. Se optó por un modelo condicional ya que se compararon modelos marginales con distintas matrices de correlación y, a partir de un ranking de QIC (el cual compara modelos según su verosimilitud y cantidad de parámetros estimados), el más conveniente resultó ser un modelo marginal con matriz de simetría compuesta. Como los modelos condicionales tienen implícita una matriz de simetría compuesta y resultan más familiares para su implementación en R, se elige esta opción. 
 Desde un punto de vista más teórico quisimos, en un principio, incluir a la variable “semana” como una de efectos aleatorios, dado que no presentamos preguntas o hipótesis puntuales acerca de las diferencias entre semanas. Sin embargo, al chequear los supuestos, el supuesto de normalidad de los residuos de la variable de efectos aleatorios “ID” no cumplía las expectativas.
