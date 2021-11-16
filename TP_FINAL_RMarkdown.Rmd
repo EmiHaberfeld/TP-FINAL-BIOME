@@ -146,15 +146,15 @@ gp_semana <- ggplot(prob_exito_semana_long, aes(x=tiempo_testeo, y=proporcion_ex
 ```{r}
 gp_entr   # Grafico de perfiles de la etapa de entrenamiento
 ```
-Proporciones de PER para cada tratamiento en cada ensayo de entrenamiento. En la etapa de entrenamiento, se observa que todos los animales parten de una respuesta nula al odorante en el ensayo 1. En los ensayos subsiguientes todos los grupos parecen alcanzar una proporción de PER asintótica alrededor del 60%, lo que se traduce en un buen aprendizaje de la asociación odorante-recompensa.
+**Figura 1:** Proporciones de PER para cada tratamiento en cada ensayo de entrenamiento. En la etapa de entrenamiento, se observa que todos los animales parten de una respuesta nula al odorante en el ensayo 1. En los ensayos subsiguientes todos los grupos parecen alcanzar una proporción de PER asintótica alrededor del 60%, lo que se traduce en un buen aprendizaje de la asociación odorante-recompensa.
 ```{r}
 gp_testeo # Grafico de perfiles de la etapa de evaluacion
 ```
-Proporciones de PER para cada tratamiento en cada tiempo de evaluación. Respecto a la etapa de evaluación, a 3 hs los resultados parecen ser opuestos a la hipótesis (los grupos CONSTANTE BAJO y CONTRASTE NEGATIVO tienen respuestas más altas que CONSTANTE ALTO y CONTRASTE POSITIVO), pero luego, esta relación se revierte en las pruebas a 24 y 48 hs.
+**Figura 2:** Proporciones de PER para cada tratamiento en cada tiempo de evaluación. Respecto a la etapa de evaluación, a 3 hs los resultados parecen ser opuestos a la hipótesis (los grupos CONSTANTE BAJO y CONTRASTE NEGATIVO tienen respuestas más altas que CONSTANTE ALTO y CONTRASTE POSITIVO), pero luego, esta relación se revierte en las pruebas a 24 y 48 hs.
 ```{r}
 gp_semana # Grafico de perfiles de la etapa de evaluacion por semana
 ```
-Respecto a la proporcion de PER en cada tiempo de evaluacion en cada semana, se observa cierto grado de variabilidad en las respuestas. Resulta conveniente incluirla como variable explicatoria del modelo.
+**Figura 3:** Respecto a la proporcion de PER en cada tiempo de evaluacion en cada semana, se observa cierto grado de variabilidad en las respuestas. Resulta conveniente incluirla como variable explicatoria del modelo.
 
 # Modelado
 Como VR se midio la extension de la proboscide frente al olor (si-no). Al ser una variable dicotomica, la distribucion de probabilidades esperada es una Bernoulli. El diseño es de medidas repetidas ya que cada abeja fue medida 7 veces (4 ensayos de entrenamiento + 3 testeos). Se realizo estadistica descriptiva de la etapa de entrenamiento y un modelo estadistico para la etapa de evaluacion ya que el mayor interes del analisis esta depositado en las diferencias observables durante esta etapa. Como variables explicatorias se incluyeron:
@@ -168,7 +168,11 @@ Como solución a este problema decidimos probar incluir en el modelo la variable
 
 ## Modelo teorico:
 Escala del Predictor Lineal
-logit(\pi_ijkl) = \mu + \alpha_i + \beta_j + \alpha*\beta_ij + \gamma_k + A_l(ij)(k)
+
+logit($$\pi_{ijkl}$$) = $$\mu$$ + $$\alpha_i$$ + $$\beta_j$$ + $$\alpha*\beta_{ij}$$ + $$\gamma_k$$ + $$A_{l(ij)(k)}$$
+
+
+
 
 ```{r,include=FALSE}
 ################################################################################
@@ -336,7 +340,7 @@ gp_final <- ggplot(res_modelo,aes(x=tiempo_testeo,y=prob,group=TRATAMIENTO,color
 ```{r}
 gp_final  # Grafico final, medidas resumen del modelo
 ```
-REDACTARSE UN EPIGRAFE PIOLA DE ESTO
+**Figura 4:** REDACTARSE UN EPIGRAFE PIOLA DE ESTO
 
 
 # Discusion
