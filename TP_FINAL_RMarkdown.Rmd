@@ -313,50 +313,63 @@ Al elegir un modelo condicional en vez de uno marginal, se quiso en un principio
 
 #### Modelo teórico
 
-$Y_{ijkl} = $*extensión / no extensión de la probóscide frente al odorante*
+
+$Y_{ijkl}$ = *extensión / no extensión de la probóscide frente al odorante*
 
 $Y_{ijkl}\sim Bernoulli (\pi_{ijk})$
 
-##### *Escala del predictor lineal*
+###### *Escala del predictor lineal*
 
 $logit$($\pi_{ijkl}$) = $\mu$ + $\alpha_i$ + $\beta_j$ + $\alpha\beta_{ij}$ + $\gamma_k$ + $A_{l(ij)(k)}$
 
-##### *Escala de odds*
+###### *Escala de odds*
 
 $\frac{\pi_{ijkl}}{(1-\pi_{ijkl})}$= $e^{(\mu + \alpha_i + \beta_j + \alpha*\beta_{ij} + \gamma_k + A_{l(ij)(k)})}$
 
 *Siendo odds igual a la probabilidad de extensión de probóscide sobre la probabilidad de no extensión.*
 
-##### *Escala de probabilidades*
+###### *Escala de probabilidades*
 
 $\pi_{ijkl}$ = $\frac{e^{(\mu + \alpha_i + \beta_j + \alpha*\beta_{ij} + \gamma_k + A_{l(ij)(k)})}}{1+e^{(\mu + \alpha_i + \beta_j + \alpha*\beta_{ij} + \gamma_k + A_{l(ij)(k)})}}$
 
 Con *i* = 1 a 4,
+
 *j* = 1 a 3,
+
 *k* = 1 a 7,
+
 *l* = 1 a 21 cuando *k* = 1
+
 *l* = 1 a 13 cuando *k* = 2 
+
 *l* = 1 a 13 cuando *k* = 3
+
 *l* = 1 a 19 cuando *k* = 4
+
 *l* = 1 a 22 cuando *k* = 5
+
 *l* = 1 a 28 cuando *k* = 6
+
 *l* = 1 a 16 cuando *k* = 7
 
 
 $A_l\sim NID(0, \sigma_{abejas}^2)$
 
-```{r,include=FALSE}
+#### Modelo implementado en R
+
+```{r, echo=TRUE}
+m10 <- glmmTMB(rta ~ TRATAMIENTO*tiempo_testeo + SEMANA + (1|ID), data=long_testeo, family="binomial")
+```
+
+
+```{r}
 ################################################################################
 ########################## ESTIMACIÓN E INFERENCIA #############################
 ################################################################################
 
-## Modelo implementado en R
-```{r}
-m10 <- glmmTMB(rta ~ TRATAMIENTO*tiempo_testeo + SEMANA + (1|ID), data=long_testeo, family="binomial")   # Modelo seleccionado: semana como VE de efectos fijos
-
-Anova(m10)   # Prueba de ANOVA del modelo seleccionado
+Anova(m10)  # Prueba de ANOVA del modelo seleccionado
 ```
-La interacción tratamiento*tiempo resulta significativa. Por ende, no es posible evaluar efectos principales. Las comparaciones se realizaron con contrastes ortogonales ya que se poseen hipótesis a priori sobre las mismas.
+La interacción entre los tratamientos y el tiempo resulta significativa. Por lo tanto, no es posible evaluar efectos principales. Las comparaciones se realizaron con contrastes ortogonales ya que se poseen hipótesis a priori sobre las mismas.
 
 ## Contrastes a priori
 Se espera que el grupo CONTRASTE POSITIVO aprenda la asociación olor-azúcar más fuertemente que el CONSTANTE ALTO, debido a un mayor estado motivacional gracias a la "sorpresa" recibida en la probóscide (azúcar 1,5 M) en contraste con el azúcar esperada que tocó las antenas segundos antes (0,5 M). Caso opuesto, se espera que la proporción de animales del grupo CONTRASTE NEGATIVO que aprendan la asociación sea menor que la proporción de animales del grupo CONSTANTE BAJO, debido a un estado motivacional degradado por la "decepción" de recibir azúcar 0,5 M cuando esperaban 1,5 M.
