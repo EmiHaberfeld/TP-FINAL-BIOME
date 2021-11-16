@@ -1,6 +1,6 @@
 ---
 title: "Trabajo Práctico Final  \nBiometría II - 2021"
-author: "Matías Alemán, Milagros Azcueta, Manuel Fiz, Emilia Haberfeld, Diego Kafer, Ilán Shalom"
+author: "Matías Alemán, Milagros Azcueta, Manuel Fiz, Emilia Haberfeld, Diego Kafer, Juan Francisco Robuschi, Ilán Shalom, Rodrigo Villarreal"
 date: "16/11/2021"
 output: pdf_document
 editor_options: 
@@ -17,7 +17,7 @@ rm(list = ls())
 ################################################################################
 ####################### CARGA DE LIBRERIAS Y DATOS: ############################
 ################################################################################
-install.packages('tinytex')
+#install.packages('tinytex')
 tinytex::install_tinytex()
 library(readxl)    # datos de excel
 library(reshape2)  # melt
@@ -143,7 +143,6 @@ gp_semana <- ggplot(prob_exito_semana_long, aes(x=tiempo_testeo, y=proporcion_ex
   labs(x="Tiempo de evaluacion (hs)",y="Proporcion de PER",title="Proporcion de PER en cada semana",col="Semana") +
   ylim(0,1) + theme_classic()
 ```
-
 ```{r}
 gp_entr   # Grafico de perfiles de la etapa de entrenamiento
 ```
@@ -273,7 +272,6 @@ AIC(m9,m10)
 m10 <- glmmTMB(rta ~ TRATAMIENTO*tiempo_testeo + SEMANA + (1|ID), data=long_testeo, family="binomial")   # Modelo seleccionado: semana como VE de efectos fijos
 
 Anova(m10)   # Prueba de ANOVA del modelo seleccionado
-
 ```
 La interacción tratamiento*tiempo resulta significativa. Por ende, no es posible evaluar efectos principales. Las comparaciones se realizaron con contrastes ortogonales ya que se poseen hipótesis a priori sobre las mismas.
 
@@ -303,7 +301,7 @@ ortogonales<-emmeans(m10,~TRATAMIENTO*tiempo_testeo,type="response",
 ```
 # Resultados
 ```{r}
-ortogonales # Implementacion de contrastes ortogonales
+ortogonales # Implementación de contrastes ortogonales
 ```
 ```{r,include=FALSE}
 ################################################################################
