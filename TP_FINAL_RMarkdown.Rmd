@@ -1,6 +1,15 @@
 ---
-title: "El rol de la expectativa en la formación de memorias apetitivas en abejas *Apis mellifera*  \nBiometría II - 2021"
-author: "Matías Alemán, Milagros Azcueta, Manuel Fiz, Emilia Haberfeld, Diego Kafer, \nJuan Francisco Robuschi, Ilán Shalom, Rodrigo Villarreal"
+title: "El rol de la expectativa en la formación de memorias apetitivas en abejas *Apis mellifera*"
+subtitle: "Biometría II - 2021"
+author: 
+- Matías Alemán
+- Milagros Azcueta
+- Manuel Fiz
+- Emilia Haberfeld
+- Diego Kafer
+- Juan Francisco Robuschi
+- Ilán Shalom
+- Rodrigo Villarreal
 output: pdf_document
 editor_options: 
   chunk_output_type: console
@@ -50,24 +59,26 @@ El objetivo de este trabajo es estudiar la modulación de memorias a corto y lar
 ## Diseño experimental
 Abejas *Apis mellifera* fueron entrenadas bajo un condicionamiento clásico del reflejo de extensión de probóscide (de aquí en más PER, por sus siglas en inglés) (5, 6): se administra un odorante a la vez que se tocan las antenas con una gota de sacarosa; la abeja extiende su probóscide como reflejo de este estímulo y, en ese momento, se la alimenta con una solución azucarada sobre la probóscide. De este entrenamiento recibieron 4 ensayos espaciados cada 10 minutos. Terminado el último ensayo de la etapa de entrenamiento, se realizaron tres testeos donde se presentó solo el odorante a 3 hs, 24 hs y 48 hs y se midió la extensión de la probóscide frente al olor (sí-no).
 
+La mitad de las abejas fueron entrenadas con acetofenona y el resto con 1-hexanol. Los dos odorantes son neutros y percibidos por las abejas según literatura, y se utilizan ambos para controlar posibles preferencias que puedan existir por un odorante u otro (7).
+
 ![](dispositivo_experimental.jpg){width=50%}
 
-**Figura 1:** dispositivo experimental. MILI O MATI DESCRIBAN ESTA.
+**Figura 1:** dispositivo experimental. Cada abeja se encuentra en un cepo metálico individual como se observa en la imagen. Son colocadas frente al tubo plástico, el cual está conectado a un dispositivo electrónico que permite enviar un flujo de aire con odorante a través del mismo. Cuando el investigador lo desea, presiona un botón  y el dispositivo se activa por el tiempo deseado. Mientras el odorante sale por el tubo, el investigador administra la sacarosa en las antenas para que la abeja extienda la probóscide y así poder otorgarle la recompensa. En la imagen la sacarosa se administra con un escarbadiente, en nuestro experimento se administró con una jeringa que otorga aproximadamente 0,4 (micro)litros de solución.
 
 ![](linea_de_tiempo.jpg)
-**Figura 2:** diseño experimental MILI VENÍ A CHECKEAR ESTA
+**Figura 2:** esquema del diseño experimental. Durante el día 1 se realiza la etapa de Entrenamiento, la cual consiste de 4 ensayos de presentación odorante-sacarosa separados por 10 minutos. Luego del último ensayo se realizan tres evaluaciones a 3, 24 y 48 hs. En las mismas se presenta el solo el odorante y se mide la extensión de la probóscide (sí-no).
 
 Para estudiar el rol de la expectativa en la formación de memoria, las abejas se dividieron en 4 grupos experimentales dependiendo de la concentración de sacarosa recibida en las antenas y en la probóscide. El grupo **"constante bajo"** recibió tanto en las antenas como en la probóscide una solución azucarada de concentración 0,5 M. En cambio, el grupo **"constante alto"** recibió tanto en las antenas como en la probóscide azúcar de concentración 1,5 M. Por otro lado, los grupos *"contraste positivo"* y *"contraste negativo"* recibieron soluciones azucaradas de distinta concentración en cada pieza sensorial: los animales del grupo "contraste positivo" recibieron sacarosa 0,5 M en las antenas y 1,5 M en su probóscide. Por último, los animales del "contraste negativo" recibieron azúcar 1,5 M en las antenas y 0,5 M en la probóscide.
 
-Se espera que el grupo "contraste positivo" aprenda la asociación olor-azúcar más fuertemente que el grupo "constante alto" debido a un mayor estado motivacional gracias a la "sorpresa" recibida en la probóscide (azúcar 1,5 M) en contraste con lo recibido en las antenas segundos antes (0,5 M). Caso opuesto, se espera que la proporción de animales del grupo "contraste negativo" que aprendan la asociación sea menor que la proporción de animales del grupo "constante bajo", debido a un estado motivacional degradado por la "decepción" de recibir azúcar 0,5 M cuando esperaban 1,5 M. La idea es comparar entre grupos con igual concentración de azúcar recibida en la probóscide dado que la ingesta de alimento (la recompensa) es la señal post-ingestiva que permite la consolidación de la memoria asociativa. (CITAR SI EXISTE).
+Se espera que el grupo "contraste positivo" aprenda la asociación olor-azúcar más fuertemente que el grupo "constante alto" debido a un mayor estado motivacional gracias a la "sorpresa" recibida en la probóscide (azúcar 1,5 M) en contraste con lo recibido en las antenas segundos antes (0,5 M). Caso opuesto, se espera que la proporción de animales del grupo "contraste negativo" que aprendan la asociación sea menor que la proporción de animales del grupo "constante bajo", debido a un estado motivacional degradado por la "decepción" de recibir azúcar 0,5 M cuando esperaban 1,5 M. La idea es comparar entre grupos con igual concentración de azúcar recibida en la probóscide dado que la ingesta de alimento (la recompensa) es la señal post-ingestiva que permite la consolidación de la memoria asociativa (8).
 
 Para minimizar la variabilidad entre individuos, se tomaron las siguientes decisiones sobre el diseño experimental: todas aquellas abejas que presentaron PER al estimular con el odorante previo al condicionamiento fueron excluidas del experimento. De esta manera, se buscó que las respuestas de PER observadas tengan una relación directa con el aprendizaje y no que se estén viendo respuestas espontáneas o basadas en experiencias previas. Es por esto que todos los valores del primer ensayo del entrenamiento son nulos. Además, se decidió excluir aquellas abejas que no comieron en al menos dos ensayos de la fase de aprendizaje para descartar a aquellas con menor apetito. En consecuencia, se descartan las abejas que por falta de motivación no transitaron el aprendizaje con la contigüidad y contingencia necesaria entre los estímulos para generar una memoria robusta. Por último, se estipuló que si una abeja fallecía durante la duración total del experimento, los datos recopilados de esa abeja no se contemplarían en el análisis estadístico.
 
 ## Análisis estadístico
-Se dividió el experimento en dos etapas: la etapa de entrenamiento y la etapa de evaluación. En ambas se mide como variable respuesta la extensión o no de la probóscide frente al olor. Entonces, cada abeja fue medida 7 veces: 4 ensayos de entrenamiento y 3 testeos). Se decidió realizar un modelo estadístico solo para la etapa de evaluación ya que el mayor interés del análisis está depositado en las diferencias observables durante esta etapa.
+Se dividió el experimento en dos etapas: la etapa de entrenamiento y la etapa de evaluación. En ambas se mide como variable respuesta la extensión o no de la probóscide frente al olor. Entonces, cada abeja fue medida 7 veces: 4 ensayos de entrenamiento y 3 testeos. Se decidió realizar un modelo estadístico solo para la etapa de evaluación ya que el mayor interés del análisis está depositado en las diferencias observables durante esta etapa.
 
 ### Estadística descriptiva
-Para evaluar el aprendizaje en la etapa de entrenamiento se realizó un análisis descriptivo porque interesa saber cualitativamente si hay una tendencia de aprendizaje en todas las abejas. Se sabe por otros estudios MILIII que el protocolo realizado logra un aprendizaje efectivo.
+Para evaluar el aprendizaje en la etapa de entrenamiento se realizó un análisis descriptivo porque interesa saber cualitativamente si hay una tendencia de aprendizaje en todas las abejas. Se sabe por otros estudios que el protocolo realizado logra un aprendizaje efectivo (5).
 
 ```{r,include=FALSE}
 ################################################################################
@@ -109,7 +120,7 @@ gp_entr <- ggplot(prob_exito_entr_long, aes(x=nro_ensayo, y=proporcion_exitos, c
 ```{r}
 gp_entr   # Grafico de perfiles de la etapa de entrenamiento
 ```
-**Figura 3:** Proporciones de PER para cada tratamiento en cada ensayo de entrenamiento.
+**Figura 3:** proporciones de PER para cada tratamiento en cada ensayo de entrenamiento.
 
 En la etapa de entrenamiento, se observa que todos los animales parten de una respuesta nula al odorante en el ensayo 1. En los ensayos subsiguientes todos los grupos parecen alcanzar una proporción de PER asintótica alrededor de 0,6, lo que se traduce en un buen aprendizaje de la asociación odorante-recompensa.
 
@@ -151,7 +162,7 @@ gp_testeo <- ggplot(prob_exito_testeo_long,aes(x=tiempo_testeo, y=proporcion_exi
   labs(col="Tratamiento")
 gp_testeo # Grafico de perfiles de la etapa de evaluacion
 
-# Proporciones de PER para cada tratamiento en cada tiempo de evaluación. Respecto a la etapa de evaluación, a 3 hs los resultados parecen ser opuestos a la hipótesis (los grupos CONSTANTE BAJO y CONTRASTE NEGATIVO tienen respuestas más altas que CONSTANTE ALTO y CONTRASTE POSITIVO), pero luego, esta relación se revierte en las pruebas a 24 y 48 hs.
+# Proporciones de PER para cada tratamiento en cada tiempo de evaluación. Respecto a la etapa de evaluación, a 3 hs los resultados parecen ser opuestos a la hipótesis (los grupos "constante bajo" y "contraste negativo" tienen respuestas más altas que "constante alto" y "contraste positivo"), pero luego, esta relación se revierte en las pruebas a 24 y 48 hs.
 ```
 
 Se cuenta con el dato de la semana en la cual se hizo cada ensayo, por lo que se podría tener en cuenta esta variable en el análisis. Se realizó un gráfico descriptivo para evaluar si considerar la semana de trabajo resultaría ventajoso.
@@ -166,8 +177,7 @@ colnames(prob_exito_semana_long) <- c("SEMANA","tiempo_testeo","proporcion_exito
 # Cambiamos los nombres del tiempo de testeo:
 prob_exito_semana_long$tiempo_testeo <- with(prob_exito_semana_long, factor(tiempo_testeo,levels = c("3hs","24hs","48hs"),labels = c("3","24","48")))
 
-# Graficamente:
-gp_semana <- ggplot(prob_exito_semana_long, aes(x=tiempo_testeo, y=proporcion_exitos, colour=SEMANA,group=SEMANA)) +
+# Graficamente:gp_semana <- ggplot(prob_exito_semana_long, aes(x=tiempo_testeo, y=proporcion_exitos, colour=SEMANA,group=SEMANA)) +
   geom_line(linetype=2) +
   geom_point(size=2) +
   labs(x="Tiempo de evaluacion (hs)",y="Proporcion de PER",title="Proporcion de PER en cada semana",col="Semana") +
@@ -311,26 +321,26 @@ shapiro.test(Bi_ID_10)
 Se implementó un modelo lineal generalizado condicional con la función glmmTMB de la librería glmmTMB. Se optó por un modelo condicional ya que se compararon modelos marginales con distintas matrices de correlación y, a partir de un ranking de QIC (el cual compara modelos según su verosimilitud y cantidad de parámetros estimados), el más conveniente resultó ser un modelo marginal con matriz de simetría compuesta. Como los modelos condicionales tienen implícita una matriz de simetría compuesta y resultan más familiares para su implementación en R, se eligió esta opción. 
 Al elegir un modelo condicional en vez de uno marginal, se quiso en un principio incluir a la variable explicativa "semana" como una variable de efectos aleatorios, dado que no se presentan preguntas puntuales acerca de las diferencias entre semanas y sería interesante poder generalizar a todas las semanas en las que se podría hacer el experimento. Sin embargo, al evaluar los supuestos, el supuesto de normalidad de los residuos de la variable de efectos aleatorios “ID” no cumplía las expectativas. Por lo tanto, se terminó incluyendo la variable "semana" como una de efectos fijos. El modelo ahora incluye más parámetros y, por lo tanto, logra un mejor ajuste, resultando en predichos más precisos con los datos. Es por esto que al evaluar nuevamente los supuestos, se logra obtener una prueba satisfactoria de Shapiro-Wilk para los residuos de la variable de efectos aleatorios “ID”.
 
-#### Modelo teórico
+### Modelo teórico
 
 
 $Y_{ijkl}$ = *extensión / no extensión de la probóscide frente al odorante*
 
 $Y_{ijkl}\sim Bernoulli (\pi_{ijk})$
 
-###### *Escala del predictor lineal*
+##### *Escala del predictor lineal*
 
 $logit$($\pi_{ijkl}$) = $\mu$ + $\alpha_i$ + $\beta_j$ + $\alpha\beta_{ij}$ + $\gamma_k$ + $A_{l(ij)(k)}$
 
-###### *Escala de odds*
+##### *Escala de odds*
 
-$\frac{\pi_{ijkl}}{(1-\pi_{ijkl})}$= $e^{(\mu + \alpha_i + \beta_j + \alpha*\beta_{ij} + \gamma_k + A_{l(ij)(k)})}$
+$\frac{\pi_{ijkl}}{(1-\pi_{ijkl})}$= $e^{(\mu + \alpha_i + \beta_j + \alpha\beta_{ij} + \gamma_k + A_{l(ij)(k)})}$
 
 *Siendo odds igual a la probabilidad de extensión de probóscide sobre la probabilidad de no extensión.*
 
-###### *Escala de probabilidades*
+##### *Escala de probabilidades*
 
-$\pi_{ijkl}$ = $\frac{e^{(\mu + \alpha_i + \beta_j + \alpha*\beta_{ij} + \gamma_k + A_{l(ij)(k)})}}{1+e^{(\mu + \alpha_i + \beta_j + \alpha*\beta_{ij} + \gamma_k + A_{l(ij)(k)})}}$
+$\pi_{ijkl}$ = $\frac{e^{(\mu + \alpha_i + \beta_j + \alpha\beta_{ij} + \gamma_k + A_{l(ij)(k)})}}{1+e^{(\mu + \alpha_i + \beta_j + \alpha\beta_{ij} + \gamma_k + A_{l(ij)(k)})}}$
 
 Con *i* = 1 a 4,
 
@@ -355,13 +365,13 @@ Con *i* = 1 a 4,
 
 $A_l\sim NID(0, \sigma_{abejas}^2)$
 
-#### Modelo implementado en R
+### Modelo implementado en R
 
 ```{r, echo=TRUE}
 m10 <- glmmTMB(rta ~ TRATAMIENTO*tiempo_testeo + SEMANA + (1|ID), data=long_testeo, family="binomial")
 ```
 
-#### Estimación e inferencia
+### Estimación e inferencia
 ```{r}
 ################################################################################
 ########################## ESTIMACIÓN E INFERENCIA #############################
@@ -430,7 +440,7 @@ gp_final <- ggplot(res_modelo,aes(x=tiempo_testeo,y=prob,group=TRATAMIENTO,color
 
 gp_final  # Gráfico final, medidas resumen del modelo
 ```
-*Figura 4:* Proporciones estimadas de PER para cada tratamiento en cada tiempo de evaluación. Los resultados se informan como la media +/- el error estándar de cada combinación de tiempo y tratamiento.
+*Figura 6:* proporciones estimadas de PER para cada tratamiento en cada tiempo de evaluación. Los resultados se informan como la media +/- el error estándar de cada combinación de tiempo y tratamiento. Se grafican los errores estándar y no los intervalos de confianza porque se superpondrían quitándole claridad al gráfico.
 
 En el primer tiempo de evaluación (3 hs) no se observaron diferencias significativas en los contrastes (p>0,05). 
 
@@ -439,13 +449,13 @@ A 24 hs se observaron diferencias significativas entre los grupos "constante alt
 En la evaluación a 48 hs, se observaron diferencias significativas entre los grupos "constante bajo" y "contraste negativo". La chance de extensión de probóscide para el grupo "contraste negativo" disminuye en promedio entre un 21,4% y un 97,93% respecto al grupo "constante bajo", con un 95% de confianza (p<0,05). No se observaron diferencias significativas en la comparación "constante alto" vs "contraste positivo" a 48 hs (p>0,05), aunque la tendencia de las estimaciones coincide con lo observado a 24 hs.
 
 # Discusión
-Debido a que la interacción tratamiento*tiempo resultó significativa, se realizaron contrastes ortogonales teniendo en cuenta ambas variables. Si nos situamos en primer lugar en las comparaciones en t = 3 hs, se observa que ninguno de los dos contrastes propuestos mostró diferencias significativas. Lo que es más curioso aun es que la tendencia de la respuesta parece ser opuesta a la esperada por los contrastes a priori: los grupos "contraste negativo" y "constante bajo" son aquellos que mayor proporción de PER presentaron. Debido a que la memoria observada a las 3 hs posteriores de finalizado el último ensayo de entrenamiento es una memoria de corto término, puede estar influida por diversos fenómenos ajenos al tratamiento aplicado. En particular, se propone que en este punto temporal hay un conflicto en relación a la expresión de la memoria generada. Los animales de los grupos "contraste negativo" y "constante bajo" son los que menos azúcar ingirieron (en términos nutricionales), ya que siempre consumieron azúcar de concentración 0,5 M. Por lo tanto, es muy probable que a 3 hs estos animales estén más motivados que los otros dos grupos y que por ende, lo que parece ser una mayor retención de la memoria (que solo es posible de observar a través de la extensión de la probóscide en este experimento) sea un reflejo de la motivación de estos animales por seguir ingiriendo azúcar. En contraste, las abejas de los grupos "contraste positivo" y "constante alto" habrían alcanzado un nivel de saciedad más alto, respondiendo menos al estímulo que se asocia con la llegada de azúcar (odorante). 
+Debido a que la interacción entre tratamiento y tiempo de evaluación resultó significativa, se realizaron contrastes ortogonales teniendo en cuenta ambas variables. Si nos situamos en primer lugar en las comparaciones en t = 3 hs, se observa que ninguno de los dos contrastes propuestos mostró diferencias significativas. Lo que es más curioso aun es que la tendencia de la respuesta parece ser opuesta a la esperada por las hipótesis: los grupos "contraste negativo" y "constante bajo" son aquellos que mayor proporción de PER presentaron. Debido a que la memoria observada a las 3 hs posteriores de finalizado el último ensayo de entrenamiento es una memoria de corto término, puede estar influida por diversos fenómenos ajenos al tratamiento aplicado. En particular, se propone que en este punto temporal hay un conflicto en relación a la expresión de la memoria generada. Los animales de los grupos "contraste negativo" y "constante bajo" son los que menos azúcar ingirieron (en términos nutricionales), ya que siempre consumieron azúcar de concentración 0,5 M. Por lo tanto, es muy probable que a 3 hs estos animales estén más motivados que los otros dos grupos y que por ende, lo que parece ser una mayor retención de la memoria (que solo es posible de observar a través de la extensión de la probóscide en este experimento) sea un reflejo de la motivación de estos animales por seguir ingiriendo azúcar. Por el contrario, las abejas de los grupos "contraste positivo" y "constante alto" habrían alcanzado un nivel de saciedad más alto, respondiendo menos al estímulo que se asocia con la llegada de azúcar (odorante). 
 
-El día siguiente al aprendizaje, se buscó estudiar la consolidación de memoria de largo término en las abejas. Al hacer las comparaciones a t = 24 hs se observaron diferencias significativas entre los grupos "constante alto" y "contraste positivo". Esto sugiere que un mismatch positivo entre lo que el animal capta con las antenas y lo que ingiere genera una consolidación de memoria de largo término más robusta, la cual tiene un efecto directo en el comportamiento. Creemos que el animal al sensar con las antenas genera expectativas de lo que va a ingerir y es la sorpresa positiva que siente lo que generaría un estado motivacional que predispone a una mayor retención de la experiencia. Por otro lado, al comparar los grupos "constante bajo" contra "constraste negativo", no observamos diferencias significativas. Sin embargo se pudo observar una tendencia que encaja con lo teorizado a priori: aquellos animales pertenecientes al grupo contraste negativo presentaron una menor proporción de PER que el grupo constante bajo. Esto sugiere que puede haber un efecto en la consolidación de la memoria de largo término por mismatch negativo. Si trasladamos la evaluación a 24 hs al entorno natural de un animal "decepcionado", se relaciona con la evocación de una memoria de un sitio que otorga recompensas pero que no alcanzan la calidad esperada por la abeja. Es probable que la relación de compromiso entre un estímulo positivo (presencia de una recompensa) y un estímulo menos motivante (que la recompensa no sea de la calidad esperada) genere que los animales igualmente visiten la fuente de alimento (en este caso, sería análogo a responder al odorante). Sin embargo, pasadas 48 hs del encuentro con ese sitio, es altamente probable que ese mismo animal haya encontrado una locación que le permita obtener recursos de mayor calidad. Por lo tanto, se propone que en el grupo "contraste negativo" se genera una traza mnésica inhibitoria en relación a la degradación de la recompensa esperada, que resulta evidente en evaluaciones posteriores a las 24 hs. 
+En la evaluación a 24 hs, se buscó estudiar la consolidación de memoria de largo término en las abejas. Al hacer las comparaciones a t = 24 hs se observaron diferencias significativas entre los grupos "constante alto" y "contraste positivo". Esto sugiere que un contraste positivo entre lo que el animal capta con las antenas y lo que ingiere genera una consolidación de memoria de largo término más robusta, la cual tiene un efecto directo en el comportamiento. Creemos que el animal al sensar con las antenas genera expectativas de lo que va a ingerir y es la "sorpresa" positiva lo que generaría un estado motivacional que predispone a una mayor retención de la experiencia. Por otro lado, al comparar los grupos "constante bajo" contra "constraste negativo", no observamos diferencias significativas. Sin embargo, se pudo observar una tendencia que acompaña las hipótesis: aquellos animales pertenecientes al grupo contraste negativo presentaron una menor proporción de PER que el grupo constante bajo. Esto sugiere que puede haber un efecto en la consolidación de la memoria de largo término por contraste negativo. Si trasladamos la evaluación a 24 hs al entorno natural de un animal "decepcionado", se relaciona con la evocación de una memoria de un sitio que otorga recompensas pero que no alcanzan la calidad esperada por la abeja. Es probable que la relación de compromiso entre un estímulo positivo (presencia de una recompensa) y un estímulo menos motivante (que la recompensa no sea de la calidad esperada) genere que los animales igualmente visiten la fuente de alimento (en este caso, sería análogo a responder al odorante). Sin embargo, pasadas 48 hs del encuentro con ese sitio, es altamente probable que ese mismo animal haya encontrado una locación que le permita obtener recursos de mayor calidad. Por lo tanto, se propone que en el grupo "contraste negativo" se genera una traza mnésica debilitada en relación a la degradación de la recompensa esperada, que resulta evidente en evaluaciones posteriores a las 24 hs. 
 
-En la evaluación a 48 hs no se observaron diferencias significativas entre los grupos "constante alto" y "contraste positivo". Esto puede explicarse en base a la distribución de probabilidades de nuestros datos. En una distribución Bernoulli, el punto de máxima varianza se encuentra en p=0,5. Trasladado al ejemplo de este trabajo, sería el caso en el cual el 50% de las abejas extiende su probóscide y el 50% no lo hace, bajo un mismo tratamiento. Debido a que la proporción de PER estimada para el grupo "constante alto" a 48 hs es de 0,51, este grupo tiene la máxima varianza posible. Por lo tanto, a pesar de que se mantiene la misma tendencia observada en la evaluación a las 24 hs, la comparación con el grupo "contraste positivo" resulta no significativa en este caso. Por otro lado, la comparación entre los grupos "constante bajo" y "contraste negativo" resultó significativa. Se pudo observar que la sorpresa negativa que sufre el animal en este último grupo es capaz de modular la memoria a largo término. Si bien la memoria del grupo "constante bajo" decae en el tiempo, la memoria del grupo "contraste ngativo" lo hace a un ritmo mayor.
+En la evaluación a 48 hs no se observaron diferencias significativas entre los grupos "constante alto" y "contraste positivo". Esto puede explicarse en base a la distribución de probabilidades de nuestros datos. En una distribución Bernoulli, el punto de máxima varianza se encuentra en p=0,5. Trasladado al ejemplo de este trabajo, sería el caso en el cual el 50% de las abejas extiende su probóscide y el 50% no lo hace, bajo un mismo tratamiento. Debido a que la proporción de PER estimada para el grupo "constante alto" a 48 hs es de 0,51, este grupo tiene la máxima varianza posible. Por lo tanto, a pesar de que se mantiene la misma tendencia observada en la evaluación a las 24 hs, la comparación con el grupo "contraste positivo" resulta no significativa en este caso. Por otro lado, la comparación entre los grupos "constante bajo" y "contraste negativo" resultó significativa. Se pudo observar que la "sorpresa" negativa que sufre el animal en este último grupo es capaz de modular la memoria a largo término. Si bien la memoria del grupo "constante bajo" decae en el tiempo, la memoria del grupo "contraste negativo" lo hace a un ritmo mayor.
 
-Como conclusión, resulta interesante haber observado que no solo es importante que haya un mismatch entre lo esperado y lo obtenido para modular una memoria a largo término, sino que también la valencia de ese contraste tendrá un efecto diferencial sobre esa memoria.
+Como conclusión, resulta interesante haber observado que no solo es importante que haya una diferencia entre lo esperado y lo obtenido para modular una memoria a largo término, sino que también la valencia de ese contraste tendrá un efecto diferencial sobre esa memoria.
 
 # Bibliografía
 1. McFarland, D. J. Decision making in animals. Nature 269, 15–21 (1977).
@@ -454,3 +464,5 @@ Como conclusión, resulta interesante haber observado que no solo es importante 
 4. Rescorla, R. A. A Pavlovian analysis of goal-directed behavior. Am. Psychol. 42, 119–129 (1987).
 5. Bitterman, M. E., Menzel, R., Fietz, A. & Schäfer, S. Classical conditioning of proboscis extension in honeybees (Apis mellifera). J. Comp. Psychol. 97, 107–119 (1983).
 6. Takeda, K. Classical conditioned response in the honey bee. J. Insect Physiol. 6, 168–179 (1961).
+7. Chen, J.-Y., Marachlian, E., Assisi, C., Huerta, R., Smith, B. H., Locatelli, F., & Bazhenov, M. (2015). Learning Modifies Odor Mixture Processing to Improve Detection of Relevant Components. Journal of Neuroscience, 35(1), 179–197. 
+8.Wright, G. A., Mustard, J. A., Kottcamp, S. M., & Smith, B. H. (2007). Olfactory memory formation and the influence of reward pathway during appetitive learning by honey bees. Journal of Experimental Biology, 210(22), 4024–4033. 
