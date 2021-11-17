@@ -39,7 +39,7 @@ library(emmeans)   # Comparaciones
 library(DHARMa)    # Supuestos
 library(dplyr)     # Función arrange
 
-setwd("C:/Users/hecto/Desktop/Ilán/Biome II/TP FINAL/TP-FINAL-BIOME") # Setear directorio de trabajo.
+setwd("") # Setear directorio de trabajo.
 datos <- read_excel("datos.xlsx") # Cargamos la base de datos
 str(datos)
 # Cambiamos variables explicativas a factores
@@ -329,6 +329,8 @@ $Y_{ijkl}$ = *extensión / no extensión de la probóscide frente al odorante*
 
 $Y_{ijkl}\sim Bernoulli (\pi_{ijk})$
 
+$A_l\sim NID(0, \sigma_{abejas}^2)$
+
 ##### *Escala del predictor lineal:*
 
 $logit$($\pi_{ijkl}$) = $\mu$ + $\alpha_i$ + $\beta_j$ + $\alpha\beta_{ij}$ + $\gamma_k$ + $A_{l(ij)(k)}$
@@ -364,12 +366,11 @@ Con *i* = 1 a 4,
 *l* = 1 a 16 cuando *k* = 7
 
 
-$A_l\sim NID(0, \sigma_{abejas}^2)$
-
 ### Modelo implementado en R
 
 ```{r, echo=TRUE}
-m10 <- glmmTMB(rta ~ TRATAMIENTO*tiempo_testeo + SEMANA + (1|ID), data=long_testeo, family="binomial")
+m10 <- glmmTMB(rta ~ TRATAMIENTO*tiempo_testeo + SEMANA + (1|ID), 
+               data=long_testeo, family="binomial")
 ```
 
 ### Estimación e inferencia
