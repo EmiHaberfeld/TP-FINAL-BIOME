@@ -329,17 +329,17 @@ $Y_{ijkl}$ = *extensión / no extensión de la probóscide frente al odorante*
 
 $Y_{ijkl}\sim Bernoulli (\pi_{ijk})$
 
-##### *Escala del predictor lineal*
+##### *Escala del predictor lineal:*
 
 $logit$($\pi_{ijkl}$) = $\mu$ + $\alpha_i$ + $\beta_j$ + $\alpha\beta_{ij}$ + $\gamma_k$ + $A_{l(ij)(k)}$
 
-##### *Escala de odds*
+##### *Escala de odds:*
 
 $\frac{\pi_{ijkl}}{(1-\pi_{ijkl})}$= $e^{(\mu + \alpha_i + \beta_j + \alpha\beta_{ij} + \gamma_k + A_{l(ij)(k)})}$
 
 *Siendo odds igual a la probabilidad de extensión de probóscide sobre la probabilidad de no extensión.*
 
-##### *Escala de probabilidades*
+##### *Escala de probabilidades:*
 
 $\pi_{ijkl}$ = $\frac{e^{(\mu + \alpha_i + \beta_j + \alpha\beta_{ij} + \gamma_k + A_{l(ij)(k)})}}{1+e^{(\mu + \alpha_i + \beta_j + \alpha\beta_{ij} + \gamma_k + A_{l(ij)(k)})}}$
 
@@ -441,7 +441,7 @@ gp_final <- ggplot(res_modelo,aes(x=tiempo_testeo,y=prob,group=TRATAMIENTO,color
 
 gp_final  # Gráfico final, medidas resumen del modelo
 ```
-**Figura 6:** proporciones estimadas de PER para cada tratamiento en cada tiempo de evaluación. Los resultados se informan como la media +/- el error estándar de cada combinación de tiempo y tratamiento. Se grafican los errores estándar y no los intervalos de confianza porque se superpondrían quitándole claridad al gráfico.
+**Figura 6:** proporciones estimadas de PER para cada tratamiento en cada tiempo de evaluación. Los resultados se informan como la media $\pm$ el error estándar de cada combinación de tiempo y tratamiento. Se grafican los errores estándar y no los intervalos de confianza porque se superpondrían quitándole claridad al gráfico.
 
 En el primer tiempo de evaluación (3 hs) no se observaron diferencias significativas en los contrastes (p>0,05). 
 
