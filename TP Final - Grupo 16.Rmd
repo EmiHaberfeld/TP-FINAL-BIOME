@@ -68,7 +68,7 @@ La mitad de las abejas fueron entrenadas con acetofenona y el resto con 1-hexano
 ![](linea_de_tiempo.jpg)
 **Figura 2:** esquema del diseño experimental. Durante el día 1 se realiza la etapa de Entrenamiento, la cual consiste de 4 ensayos de presentación odorante-sacarosa separados por 10 minutos. Luego del último ensayo se realizan tres evaluaciones a 3, 24 y 48 hs. En las mismas se presenta el solo el odorante y se mide la extensión de la probóscide (sí-no).
 
-Para estudiar el rol de la expectativa en la formación de memoria, las abejas se dividieron en 4 grupos experimentales dependiendo de la concentración de sacarosa recibida en las antenas y en la probóscide. El grupo **"constante bajo"** recibió tanto en las antenas como en la probóscide una solución azucarada de concentración 0,5 M. En cambio, el grupo **"constante alto"** recibió tanto en las antenas como en la probóscide azúcar de concentración 1,5 M. Por otro lado, los grupos **"contraste positivo"** y **"contraste negativo"** recibieron soluciones azucaradas de distinta concentración en cada pieza sensorial: los animales del grupo "contraste positivo" recibieron sacarosa 0,5 M en las antenas y 1,5 M en su probóscide. Por último, los animales del "contraste negativo" recibieron azúcar 1,5 M en las antenas y 0,5 M en la probóscide.
+Para estudiar el rol de la expectativa en la formación de memoria, las abejas se dividieron en 4 grupos experimentales dependiendo de la concentración de sacarosa recibida en las antenas y en la probóscide. El grupo **"constante bajo"** recibió tanto en las antenas como en la probóscide una solución azucarada de concentración 0,5 M. En cambio, el grupo **"constante alto"** recibió tanto en las antenas como en la probóscide azúcar de concentración 1,5 M. Por otro lado, los grupos *"contraste positivo"* y *"contraste negativo"* recibieron soluciones azucaradas de distinta concentración en cada pieza sensorial: los animales del grupo "contraste positivo" recibieron sacarosa 0,5 M en las antenas y 1,5 M en su probóscide. Por último, los animales del "contraste negativo" recibieron azúcar 1,5 M en las antenas y 0,5 M en la probóscide.
 
 Se espera que el grupo "contraste positivo" aprenda la asociación olor-azúcar más fuertemente que el grupo "constante alto" debido a un mayor estado motivacional gracias a la "sorpresa" recibida en la probóscide (azúcar 1,5 M) en contraste con lo recibido en las antenas segundos antes (0,5 M). Caso opuesto, se espera que la proporción de animales del grupo "contraste negativo" que aprendan la asociación sea menor que la proporción de animales del grupo "constante bajo", debido a un estado motivacional degradado por la "decepción" de recibir azúcar 0,5 M cuando esperaban 1,5 M. La idea es comparar entre grupos con igual concentración de azúcar recibida en la probóscide dado que la ingesta de alimento (la recompensa) es la señal post-ingestiva que permite la consolidación de la memoria asociativa (8).
 
@@ -109,7 +109,7 @@ gp_entr <- ggplot(prob_exito_entr_long, aes(x=nro_ensayo, y=proporcion_exitos, c
   geom_line(linetype=2) +
   geom_point(size=2,shape=c(15,16,16,15,15,16,16,15,15,16,16,15,15,16,16,15)) + 
   #shape puntos
-  labs(x="Número de ensayo",y="Proporción de PER",title="Curva de aprendizaje") +
+  labs(x="Numero de ensayo",y="Proporcion de PER",title="Curva de aprendizaje") +
   ylim(0,1) + theme_classic() +
   scale_colour_manual(labels = c("Contraste positivo","Constante alto",
                                  "Constante bajo","Contraste negativo"),
@@ -152,8 +152,8 @@ prob_exito_testeo_long$TRATAMIENTO <- factor(prob_exito_testeo_long$TRATAMIENTO,
 gp_testeo <- ggplot(prob_exito_testeo_long,aes(x=tiempo_testeo, y=proporcion_exitos, colour=TRATAMIENTO,group=TRATAMIENTO)) +
   geom_line(linetype=2) +
   geom_point(size=2,shape=c(15,16,16,15,15,16,16,15,15,16,16,15)) + #shape puntos
-  labs(x="Tiempo de evaluación (hs)",y="Proporción de PER",
-       title="Descriptiva evaluación") +
+  labs(x="Tiempo de evaluacion (hs)",y="Proporcion de PER",
+       title="Descriptiva evaluacion") +
   ylim(0,1) + theme_classic() +
   scale_colour_manual(labels = c("Contraste positivo","Constante alto",
                                  "Constante bajo","Contraste negativo"),
@@ -181,7 +181,7 @@ prob_exito_semana_long$tiempo_testeo <- with(prob_exito_semana_long, factor(tiem
 gp_semana <- ggplot(prob_exito_semana_long, aes(x=tiempo_testeo, y=proporcion_exitos, colour=SEMANA,group=SEMANA)) +
   geom_line(linetype=2) +
   geom_point(size=2) +
-  labs(x="Tiempo de evaluación (hs)",y="Proporción de PER",title="Proporción de PER en cada semana",col="Semana") +
+  labs(x="Tiempo de evaluacion (hs)",y="Proporcion de PER",title="Proporcion de PER en cada semana",col="Semana") +
   ylim(0,1) + theme_classic()
 ```
 
@@ -329,17 +329,17 @@ $Y_{ijkl}$ = *extensión / no extensión de la probóscide frente al odorante*
 
 $Y_{ijkl}\sim Bernoulli (\pi_{ijk})$
 
-##### *Escala del predictor lineal:*
+##### *Escala del predictor lineal*
 
 $logit$($\pi_{ijkl}$) = $\mu$ + $\alpha_i$ + $\beta_j$ + $\alpha\beta_{ij}$ + $\gamma_k$ + $A_{l(ij)(k)}$
 
-##### *Escala de odds:*
+##### *Escala de odds*
 
 $\frac{\pi_{ijkl}}{(1-\pi_{ijkl})}$= $e^{(\mu + \alpha_i + \beta_j + \alpha\beta_{ij} + \gamma_k + A_{l(ij)(k)})}$
 
 *Siendo odds igual a la probabilidad de extensión de probóscide sobre la probabilidad de no extensión.*
 
-##### *Escala de probabilidades:*
+##### *Escala de probabilidades*
 
 $\pi_{ijkl}$ = $\frac{e^{(\mu + \alpha_i + \beta_j + \alpha\beta_{ij} + \gamma_k + A_{l(ij)(k)})}}{1+e^{(\mu + \alpha_i + \beta_j + \alpha\beta_{ij} + \gamma_k + A_{l(ij)(k)})}}$
 
@@ -424,7 +424,7 @@ res_modelo$TRATAMIENTO <- factor(res_modelo$TRATAMIENTO,
 
 # Graficamos:
 gp_final <- ggplot(res_modelo,aes(x=tiempo_testeo,y=prob,group=TRATAMIENTO,color=TRATAMIENTO)) +  
-  labs(x="Tiempo de evaluación (hs)",y="Proporción de PER",title="Estimaciones del modelo") +
+  labs(x="Tiempo de evaluacion (hs)",y="Proporcion de PER",title="Estimaciones del modelo") +
   geom_errorbar(aes(ymin=(prob-res_modelo$SE),ymax=(prob+res_modelo$SE)),
                 width=.2,color="lightgrey") +
   geom_line(linetype=2) +
@@ -441,13 +441,13 @@ gp_final <- ggplot(res_modelo,aes(x=tiempo_testeo,y=prob,group=TRATAMIENTO,color
 
 gp_final  # Gráfico final, medidas resumen del modelo
 ```
-**Figura 6:** proporciones estimadas de PER para cada tratamiento en cada tiempo de evaluación. Los resultados se informan como la media $\pm$ el error estándar de cada combinación de tiempo y tratamiento. Se grafican los errores estándar y no los intervalos de confianza porque se superpondrían quitándole claridad al gráfico.
+**Figura 6:** proporciones estimadas de PER para cada tratamiento en cada tiempo de evaluación. Los resultados se informan como la media +/- el error estándar de cada combinación de tiempo y tratamiento. Se grafican los errores estándar y no los intervalos de confianza porque se superpondrían quitándole claridad al gráfico.
 
 En el primer tiempo de evaluación (3 hs) no se observaron diferencias significativas en los contrastes (p>0,05). 
 
-A 24 hs se observaron diferencias significativas entre los grupos "constante alto" y "contraste positivo". Las chances de extensión de probóscide para el grupo "contraste positivo" aumentan entre un 18,76% y un 3278,38% respecto al grupo "constante alto", con un 95% de confianza (p<0,05). No se observaron diferencias significativas en la comparación "constante bajo" vs "contraste negativo" (p>0,05). 
+A 24 hs se observaron diferencias significativas entre los grupos "constante alto" y "contraste positivo". La chance de extensión de probóscide para el grupo "contraste positivo" aumenta en promedio entre un 2,96% y un 84,2% respecto al grupo "constante alto", con un 95% de confianza (p<0,05). No se observaron diferencias significativas en la comparación "constante bajo" vs "contraste negativo" (p>0,05). 
 
-En la evaluación a 48 hs, se observaron diferencias significativas entre los grupos "constante bajo" y "contraste negativo". Las chances de extensión de probóscide para el grupo "contraste negativo" disminuyen entre un 21,4% y un 97,93% respecto al grupo "constante bajo", con un 95% de confianza (p<0,05). No se observaron diferencias significativas en la comparación "constante alto" vs "contraste positivo" a 48 hs (p>0,05), aunque la tendencia de las estimaciones coincide con lo observado a 24 hs.
+En la evaluación a 48 hs, se observaron diferencias significativas entre los grupos "constante bajo" y "contraste negativo". La chance de extensión de probóscide para el grupo "contraste negativo" disminuye en promedio entre un 21,4% y un 97,93% respecto al grupo "constante bajo", con un 95% de confianza (p<0,05). No se observaron diferencias significativas en la comparación "constante alto" vs "contraste positivo" a 48 hs (p>0,05), aunque la tendencia de las estimaciones coincide con lo observado a 24 hs.
 
 # Discusión
 Debido a que la interacción entre tratamiento y tiempo de evaluación resultó significativa, se realizaron contrastes ortogonales teniendo en cuenta ambas variables. Si nos situamos en primer lugar en las comparaciones en t = 3 hs, se observa que ninguno de los dos contrastes propuestos mostró diferencias significativas. Lo que es más curioso aun es que la tendencia de la respuesta parece ser opuesta a la esperada por las hipótesis: los grupos "contraste negativo" y "constante bajo" son aquellos que mayor proporción de PER presentaron. Debido a que la memoria observada a las 3 hs posteriores de finalizado el último ensayo de entrenamiento es una memoria de corto término, puede estar influida por diversos fenómenos ajenos al tratamiento aplicado. En particular, se propone que en este punto temporal hay un conflicto en relación a la expresión de la memoria generada. Los animales de los grupos "contraste negativo" y "constante bajo" son los que menos azúcar ingirieron (en términos nutricionales), ya que siempre consumieron azúcar de concentración 0,5 M. Por lo tanto, es muy probable que a 3 hs estos animales estén más motivados que los otros dos grupos y que por ende, lo que parece ser una mayor retención de la memoria (que solo es posible de observar a través de la extensión de la probóscide en este experimento) sea un reflejo de la motivación de estos animales por seguir ingiriendo azúcar. Por el contrario, las abejas de los grupos "contraste positivo" y "constante alto" habrían alcanzado un nivel de saciedad más alto, respondiendo menos al estímulo que se asocia con la llegada de azúcar (odorante). 
