@@ -39,7 +39,7 @@ library(emmeans)   # Comparaciones
 library(DHARMa)    # Supuestos
 library(dplyr)     # Función arrange
 
-#setwd("") # Setear directorio de trabajo.
+setwd("") # Setear directorio de trabajo.
 datos <- read_excel("datos.xlsx") # Cargamos la base de datos
 str(datos)
 # Cambiamos variables explicativas a factores
@@ -324,16 +324,25 @@ Al elegir un modelo condicional en vez de uno marginal, se quiso en un principio
 
 ### Modelo teórico
 
-
 $Y_{ijkl}$ = *extensión / no extensión de la probóscide frente al odorante*
-
-$Y_{ijkl}\sim Bernoulli (\pi_{ijk})$
-
-$A_l\sim NID(0, \sigma_{abejas}^2)$
 
 ##### *Escala del predictor lineal:*
 
 $logit$($\pi_{ijkl}$) = $\mu$ + $\alpha_i$ + $\beta_j$ + $\alpha\beta_{ij}$ + $\gamma_k$ + $A_{l(ij)(k)}$
+
+$\pi_{ijkl}$: probabilidad de extensión de probóscide,
+
+$\mu$: media poblacional,
+
+$\alpha_i$: efecto fijo de cada tratamiento,
+
+$\beta_j$: efecto fijo del tiempo de evaluación, 
+
+$\alpha\beta_{ij}$: interacción entre tratamiento y tiempo, 
+
+$\gamma_k$: efecto fijo de la semana de trabajo, 
+
+$A_{l(ij)(k)}$: efecto aleatorio de cada abeja.
 
 ##### *Escala de odds:*
 
@@ -364,6 +373,12 @@ Con *i* = 1 a 4,
 *l* = 1 a 28 cuando *k* = 6
 
 *l* = 1 a 16 cuando *k* = 7
+
+##### *Supuestos:*
+
+$Y_{ijkl}\sim Bernoulli (\pi_{ijk})$
+
+$A_l\sim NID(0, \sigma_{abejas}^2)$
 
 
 ### Modelo implementado en R
