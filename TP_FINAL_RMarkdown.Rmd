@@ -39,7 +39,7 @@ library(emmeans)   # Comparaciones
 library(DHARMa)    # Supuestos
 library(dplyr)     # Función arrange
 
-setwd("") # Setear directorio de trabajo.
+#setwd("") # Setear directorio de trabajo.
 datos <- read_excel("datos.xlsx") # Cargamos la base de datos
 str(datos)
 # Cambiamos variables explicativas a factores
@@ -63,10 +63,10 @@ La mitad de las abejas fueron entrenadas con acetofenona y el resto con 1-hexano
 
 ![](dispositivo_experimental.jpg){width=50%}
 
-**Figura 1:** dispositivo experimental. Cada abeja se encuentra en un cepo metálico individual como se observa en la imagen. Son colocadas frente al tubo plástico, el cual está conectado a un dispositivo electrónico que permite enviar un flujo de aire con odorante a través del mismo. Cuando el investigador lo desea, presiona un botón  y el dispositivo se activa por el tiempo deseado. Mientras el odorante sale por el tubo, el investigador administra la sacarosa en las antenas para que la abeja extienda la probóscide y así poder otorgarle la recompensa. En la imagen la sacarosa se administra con un escarbadiente, en nuestro experimento se administró con una jeringa que otorga aproximadamente 0,4 $\mu$litros de solución.
+**Figura 1:** dispositivo experimental. Cada abeja se encuentra en un cepo metálico individual como se observa en la imagen. Son colocadas frente al tubo plástico, el cual está conectado a un dispositivo electrónico que permite enviar un flujo de aire con odorante a través del mismo. Cuando el investigador lo desea, presiona un botón  y el dispositivo se activa por el tiempo deseado. Mientras el odorante sale por el tubo, el investigador administra la sacarosa en las antenas para que la abeja extienda la probóscide y así poder otorgarle la recompensa. En la imagen la sacarosa se administra con un escarbadiente, en este experimento se administró con una jeringa que otorga aproximadamente 0,4 $\mu$litros de solución.
 
 ![](linea_de_tiempo.jpg)
-**Figura 2:** esquema del diseño experimental. Durante el día 1 se realiza la etapa de Entrenamiento, la cual consiste de 4 ensayos de presentación odorante-sacarosa separados por 10 minutos. Luego del último ensayo se realizan tres evaluaciones a 3, 24 y 48 hs. En las mismas se presenta el solo el odorante y se mide la extensión de la probóscide (sí-no).
+**Figura 2:** esquema del diseño experimental. Durante el día 1 se realiza la etapa de Entrenamiento, la cual consiste de 4 ensayos de presentación odorante-sacarosa separados por 10 minutos. Luego del último ensayo se realizan tres evaluaciones a 3, 24 y 48 hs. En las mismas se presenta solo el odorante y se mide la extensión de la probóscide (sí-no).
 
 Para estudiar el rol de la expectativa en la formación de memoria, las abejas se dividieron en 4 grupos experimentales dependiendo de la concentración de sacarosa recibida en las antenas y en la probóscide. El grupo **"constante bajo"** recibió tanto en las antenas como en la probóscide una solución azucarada de concentración 0,5 M. En cambio, el grupo **"constante alto"** recibió tanto en las antenas como en la probóscide azúcar de concentración 1,5 M. Por otro lado, los grupos **"contraste positivo"** y **"contraste negativo"** recibieron soluciones azucaradas de distinta concentración en cada pieza sensorial: los animales del grupo "contraste positivo" recibieron sacarosa 0,5 M en las antenas y 1,5 M en su probóscide. Por último, los animales del "contraste negativo" recibieron azúcar 1,5 M en las antenas y 0,5 M en la probóscide.
 
