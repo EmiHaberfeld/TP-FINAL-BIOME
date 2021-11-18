@@ -22,9 +22,7 @@ knitr::opts_chunk$set(echo = FALSE)
 # Borrar objetos de la memoria
 rm(list = ls()) 
 
-################################################################################
-####################### CARGA DE LIBRERIAS Y DATOS: ############################
-################################################################################
+####################### CARGA DE LIBRERIAS Y DATOS:
 
 library(readxl)    # Para importar los datos de excel
 library(reshape2)  # Función melt
@@ -81,10 +79,6 @@ Se dividió el experimento en dos etapas: la etapa de entrenamiento y la etapa d
 Para evaluar el aprendizaje en la etapa de entrenamiento se realizó un análisis descriptivo porque interesa saber cualitativamente si hay una tendencia de aprendizaje en todas las abejas. Se sabe por otros estudios que el protocolo realizado logra un aprendizaje efectivo (5).
 
 ```{r,include=FALSE}
-################################################################################
-############################### DESCRIPTIVA ####################################
-################################################################################
-
 ################## ENTRENAMIENTO:
 # PASAMOS DATOS ENTRENAMIENTO A LONG:
 wide_entr <- datos[,c(1,2,3,4,5,6,7,8,9)]
@@ -194,7 +188,7 @@ Como se observa variabilidad en las respuestas entre semanas, podría resultar c
 
 
 ### Modelo estadístico - Etapa de evaluación
-Como la variable respuesta es dicotómica (extensión o no de la probóscide), se espera una distribución de probabilidades de Bernoulli. Por lo tanto, se utilizará un modelo lineal generalizado para modelarla. El diseño experimental es de medidas repetidas porque cada abeja fue medida repetidas veces a lo largo del tiempo (3 veces en la etapa de evaluación).
+Como la variable respuesta es dicotómica (extensión o no de la probóscide), se espera una distribución de probabilidades de Bernoulli. Por lo tanto, se utilizará un modelo lineal generalizado para modelarla. En particular, una regresión logística. El diseño experimental es de medidas repetidas porque cada abeja fue medida repetidas veces a lo largo del tiempo (3 veces en la etapa de evaluación).
 
 Como variables explicativas se incluyeron:
 
@@ -204,13 +198,11 @@ Como variables explicativas se incluyeron:
 
 - ID de abeja: cualitativa aleatoria de 132 niveles (abeja 1 a 132).
 
-- Semana de trabajo: cualitativa fija de 7 niveles (semanas 1 a 7).
+- Semana de trabajo: cualitativa fija de 7 niveles (semanas 1 a 7). Covariable.
+
+Como todas las variables explicativas son cualitativas, optamos por expresar el modelo como una comparación de medias.
 
 ```{r,include=FALSE}
-################################################################################
-############################### MODELADO #######################################
-################################################################################
-
 ################## PRIMERA PROPUESTA: MODELO MARGINAL (GEEGLM)
 # Para geeglm, las filas del data frame tienen que estar ordenadas por paciente y por tiempo:
 long_testeo <- arrange(long_testeo,ID)
@@ -274,9 +266,7 @@ m9 <- glmmTMB(rta ~ TRATAMIENTO*tiempo_testeo +  (1|SEMANA) + (1|ID), data=long_
 # Semana como fija:
 m10 <- glmmTMB(rta ~ TRATAMIENTO*tiempo_testeo + SEMANA + (1|ID), data=long_testeo, family="binomial")
 
-################################################################################
-########################### EVALUACIÓN DE SUPUESTOS ############################
-################################################################################
+########################### EVALUACIÓN DE SUPUESTOS
 
 # Como la variable respuesta es dicotómica, no hay posibilidad de sobre o subdispersión.
 
@@ -316,11 +306,11 @@ Bi_ID_10 <- unlist(ranef(m10))
 car::qqPlot(Bi_ID_10)
 shapiro.test(Bi_ID_10)
 
-# Para el modelo 10 (semana como fija) no hay evidencias para rechazar el cumplimiento de los supuestos de la parte fija ni aleatoria (ID). Optamos por el modelo 10 con la semana como variable aleatoria porque no descartamos el incumplimiento de los supuestos.
+# Para el modelo 10 (semana como fija) no hay evidencias para rechazar el cumplimiento de los supuestos de la parte fija ni aleatoria (ID). Optamos por el modelo 10 con la semana como variable de efectos fijos porque no descartamos el incumplimiento de los supuestos.
 
 ```
-Se implementó un modelo lineal generalizado condicional con la función glmmTMB de la librería glmmTMB. Se optó por un modelo condicional ya que se compararon modelos marginales con distintas matrices de correlación y, a partir de un ranking de QIC (el cual compara modelos según su verosimilitud y cantidad de parámetros estimados), el más conveniente resultó ser un modelo marginal con matriz de simetría compuesta. Como los modelos condicionales tienen implícita una matriz de simetría compuesta y resultan más familiares para su implementación en R, se eligió esta opción. 
-Al elegir un modelo condicional en vez de uno marginal, se quiso en un principio incluir a la variable explicativa "semana" como una variable de efectos aleatorios, dado que no se presentan preguntas puntuales acerca de las diferencias entre semanas y sería interesante poder generalizar a todas las semanas en las que se podría hacer el experimento. Sin embargo, al evaluar los supuestos, el supuesto de normalidad de los residuos de la variable de efectos aleatorios “ID” no cumplía las expectativas. Por lo tanto, se terminó incluyendo la variable "semana" como una de efectos fijos. El modelo ahora incluye más parámetros y, por lo tanto, logra un mejor ajuste, resultando en predichos más precisos con los datos. Es por esto que al evaluar nuevamente los supuestos, se logra obtener una prueba satisfactoria de Shapiro-Wilk para los residuos de la variable de efectos aleatorios “ID”.
+Se implementó un modelo lineal generalizado condicional con la función glmmTMB (familia "binomial") de la librería glmmTMB. Se optó por un modelo condicional ya que se compararon modelos marginales con distintas matrices de correlación y, a partir de un ranking de QIC (el cual compara modelos según su verosimilitud y cantidad de parámetros estimados), el más conveniente resultó ser un modelo marginal con matriz de simetría compuesta. Como los modelos condicionales tienen implícita una matriz de simetría compuesta y resultan más familiares para su implementación en R, se eligió esta opción. 
+Al elegir un modelo condicional en vez de uno marginal, se quiso en un principio incluir a la variable explicativa "semana" como una variable de efectos aleatorios, dado que no se presentan preguntas puntuales acerca de las diferencias entre semanas y sería interesante poder generalizar a todas las semanas en las que se podría hacer el experimento. Sin embargo, al evaluar los supuestos, el supuesto de normalidad de los residuos de la variable de efectos aleatorios “ID” no cumplía las expectativas. Por lo tanto, se terminó incluyendo la variable "semana" como una de efectos fijos. El modelo ahora incluye más parámetros y, por lo tanto, logra un mejor ajuste, resultando en predichos más precisos con los datos. Es por esto que al evaluar nuevamente los supuestos, no hay evidencias para rechazar ninguno de ellos y, en particular, no se descarta la normalidad de los residuos de la variable de efectos aleatorios “ID”.
 
 ### Modelo teórico
 
@@ -329,20 +319,6 @@ $Y_{ijkl}$ = *extensión / no extensión de la probóscide frente al odorante*
 ##### *Escala del predictor lineal:*
 
 $logit$($\pi_{ijkl}$) = $\mu$ + $\alpha_i$ + $\beta_j$ + $\alpha\beta_{ij}$ + $\gamma_k$ + $A_{l(ij)(k)}$
-
-$\pi_{ijkl}$: probabilidad de extensión de probóscide,
-
-$\mu$: media poblacional,
-
-$\alpha_i$: efecto fijo de cada tratamiento,
-
-$\beta_j$: efecto fijo del tiempo de evaluación, 
-
-$\alpha\beta_{ij}$: interacción entre tratamiento y tiempo, 
-
-$\gamma_k$: efecto fijo de la semana de trabajo, 
-
-$A_{l(ij)(k)}$: efecto aleatorio de cada abeja.
 
 ##### *Escala de odds:*
 
@@ -374,6 +350,22 @@ Con *i* = 1 a 4,
 
 *l* = 1 a 16 cuando *k* = 7
 
+
+$\pi_{ijkl}$: probabilidad de extensión de probóscide,
+
+$\mu$: media poblacional,
+
+$\alpha_i$: efecto fijo de cada tratamiento,
+
+$\beta_j$: efecto fijo del tiempo de evaluación, 
+
+$\alpha\beta_{ij}$: interacción entre tratamiento y tiempo, 
+
+$\gamma_k$: efecto fijo de la semana de trabajo, 
+
+$A_{l(ij)(k)}$: efecto aleatorio de cada abeja.
+
+
 ##### *Supuestos:*
 
 $Y_{ijkl}\sim Bernoulli (\pi_{ijk})$
@@ -390,19 +382,13 @@ m10 <- glmmTMB(rta ~ TRATAMIENTO*tiempo_testeo + SEMANA + (1|ID),
 
 ### Estimación e inferencia
 ```{r}
-################################################################################
-########################## ESTIMACIÓN E INFERENCIA #############################
-################################################################################
-
 Anova(m10)  # Prueba de ANOVA del modelo seleccionado
 ```
 La interacción entre los tratamientos y el tiempo resulta significativa. Por lo tanto, no es posible evaluar efectos principales. Las comparaciones se realizan con contrastes ortogonales ya que se poseen hipótesis a priori sobre las mismas.
 
 # Resultados
 ```{r}
-################################################################################
-############################### COMPARACIONES ##################################
-################################################################################
+############################### COMPARACIONES
 
 # Seteamos el emmeans:
 options(emmeans= list(emmeans = list(infer = c(TRUE, TRUE)),
@@ -423,9 +409,7 @@ ortogonales # Implementación de contrastes ortogonales
 **Figura 5:** la tabla superior indica la probabilidad de extensión de probóscide para cada tratamiento en cada tiempo con su desvío estándar (SE) e intervalos de confianza (CL). La tabla inferior indica los resultados de los contrastes realizados en odds ratio con su desvío estándar (SE) e intervalos de confianza (CL). Se consideran significativos p-valores < 0,05.
 
 ```{r}
-################################################################################
-############################### GRÁFICO FINAL ##################################
-################################################################################
+############################### GRÁFICO FINAL
 
 res_modelo <- as.data.frame(ortogonales$emmeans)
 
